@@ -390,4 +390,6 @@ if ( ! function_exists( 'woodmart_enqueue_inline_style_anchor' ) ) {
 function wc_empty_cart_redirect_url() {
 	return 'https://tiendaenlinea.precor.pe';
 }
-add_filter( 'woocommerce_return_to_shop_redirect', 'wc_empty_cart_redirect_url' );
+
+         
+
