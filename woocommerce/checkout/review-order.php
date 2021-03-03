@@ -18,6 +18,7 @@
 
 defined('ABSPATH') || exit;
 $totalProducts = count(WC()->cart->get_cart());
+$pesoTotalKg = 0;
 ?>
 <style>
 	.woocommerce-checkout-review-order-table {
@@ -29,10 +30,12 @@ $totalProducts = count(WC()->cart->get_cart());
 		top: 0;
 	}
 </style>
+
 <table class="shop_table woocommerce-checkout-review-order-table">
 	<thead>
 		<tr>
 			<th class="product-name"><?php esc_html_e('Product', 'woocommerce'); ?></th>
+			<th class="product-name">Peso</th>
 			<th class="product-total"><?php esc_html_e('Subtotal', 'woocommerce'); ?></th>
 		</tr>
 	</thead>
@@ -41,6 +44,11 @@ $totalProducts = count(WC()->cart->get_cart());
 		do_action('woocommerce_review_order_before_cart_contents');
 
 		foreach (WC()->cart->get_cart() as $cart_item_key => $cart_item) {
+			// logica para agregar peso
+			$_product_id = $cart_item['product_id'];
+			$peso = get_post_meta($_product_id, 'peso', true);
+			$pesoTotalKg += doubleval((is_null($peso) || $peso == "") ?   0 : $peso);
+			// 
 			$_product = apply_filters('woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key);
 
 			if ($_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters('woocommerce_checkout_cart_item_visible', true, $cart_item, $cart_item_key)) {
@@ -53,6 +61,10 @@ $totalProducts = count(WC()->cart->get_cart());
 						?>
 						<?php echo wc_get_formatted_cart_item_data($cart_item); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
 						?>
+					</td>
+					<!-- aqui va el peso -->
+					<td class="product-total">
+						<?= number_format(floatval($peso), 2)  ?>
 					</td>
 					<td class="product-total">
 						<?php echo apply_filters('woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal($_product, $cart_item['quantity']), $cart_item, $cart_item_key); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
@@ -70,12 +82,14 @@ $totalProducts = count(WC()->cart->get_cart());
 
 		<tr class="cart-subtotal">
 			<th><?php esc_html_e('Subtotal', 'woocommerce'); ?></th>
+			<td></td>
 			<td><?php wc_cart_totals_subtotal_html(); ?></td>
 		</tr>
 
 		<?php foreach (WC()->cart->get_coupons() as $code => $coupon) : ?>
 			<tr class="cart-discount coupon-<?php echo esc_attr(sanitize_title($code)); ?>">
 				<th><?php wc_cart_totals_coupon_label($coupon); ?></th>
+				<td></td>
 				<td><?php wc_cart_totals_coupon_html($coupon); ?></td>
 			</tr>
 		<?php endforeach; ?>
@@ -93,6 +107,7 @@ $totalProducts = count(WC()->cart->get_cart());
 		<?php foreach (WC()->cart->get_fees() as $fee) : ?>
 			<tr class="fee">
 				<th><?php echo esc_html($fee->name); ?></th>
+				<td></td>
 				<td><?php wc_cart_totals_fee_html($fee); ?></td>
 			</tr>
 		<?php endforeach; ?>
@@ -103,12 +118,14 @@ $totalProducts = count(WC()->cart->get_cart());
 				?>
 					<tr class="tax-rate tax-rate-<?php echo esc_attr(sanitize_title($code)); ?>">
 						<th><?php echo esc_html($tax->label); ?></th>
+						<td></td>
 						<td><?php echo wp_kses_post($tax->formatted_amount); ?></td>
 					</tr>
 				<?php endforeach; ?>
 			<?php else : ?>
 				<tr class="tax-total">
 					<th><?php echo esc_html(WC()->countries->tax_or_vat()); ?></th>
+					<td></td>
 					<td><?php wc_cart_totals_taxes_total_html(); ?></td>
 				</tr>
 			<?php endif; ?>
@@ -118,6 +135,7 @@ $totalProducts = count(WC()->cart->get_cart());
 
 		<tr class="order-total">
 			<th><?php esc_html_e('Total', 'woocommerce'); ?></th>
+			<td></td>
 			<td><?php wc_cart_totals_order_total_html(); ?></td>
 		</tr>
 
@@ -225,6 +243,14 @@ $totalProducts = count(WC()->cart->get_cart());
 
 	}
 
+	.modaltotalKgWoocommerce {
+		display: flex;
+		justify-content: space-between;
+		padding: .5rem 1.5rem;
+		padding-bottom: 0;
+		font-size: 14px !important;
+	}
+
 	@media(min-width: 1140px) {
 		.modalProducts {
 			padding-top: 0rem;
@@ -244,9 +270,12 @@ $totalProducts = count(WC()->cart->get_cart());
 
 		}
 
+		.modaltotalKgWoocommerce {
+			font-size: 18px !important;
+		}
 	}
 </style>
-
+<!-- Aqui se duplica lo que edites arriba porque hace una peticion ajax -->
 <!-- The Modal -->
 <div id="myModalProducts" class="modalProducts">
 
@@ -255,49 +284,20 @@ $totalProducts = count(WC()->cart->get_cart());
 			<h4 style="color: white; margin-bottom: 0;">Lista de Productos</h4>
 			<span class="closeModalProducts">&times;</span>
 		</div>
+		<div class="modaltotalKgWoocommerce">
+			<p></p>
+			<p>Peso Total: <?= number_format($pesoTotalKg, 2) ?> kg</p>
+		</div>
+
 		<div class="modaltotalWoocommerce">
 			<p>Cantidad de Productos: <?= $totalProducts ?></p>
 			<p class="order-total">
 				<span><?php esc_html_e('Total', 'woocommerce'); ?> : <?php wc_cart_totals_order_total_html(); ?></span>
 			</p>
 		</div>
+		<!-- de aqui para abajo se autogenera con la peticion ajax -->
 		<div class="modalContentProducts">
 			<table class="shop_table woocommerce-checkout-review-order-table">
-				<th class="product-name"><?php esc_html_e('Product', 'woocommerce'); ?></th>
-				<th class="product-total"><?php esc_html_e('Subtotal', 'woocommerce'); ?></th>
-				<tbody>
-
-					<?php
-					do_action('woocommerce_review_order_before_cart_contents');
-
-					foreach (WC()->cart->get_cart() as $cart_item_key => $cart_item) {
-						$_product = apply_filters('woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key);
-
-						if ($_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters('woocommerce_checkout_cart_item_visible', true, $cart_item, $cart_item_key)) {
-					?>
-							<tr class="<?php echo esc_attr(apply_filters('woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key)); ?>">
-								<td class="product-name">
-									<?php echo apply_filters('woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key) . '&nbsp;'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
-									?>
-
-									<?php echo apply_filters('woocommerce_checkout_cart_item_quantity', ' <strong class="product-quantity">' . sprintf('&times;&nbsp;%s', $cart_item['quantity']) . '</strong>', $cart_item, $cart_item_key); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
-									?>
-									<?php echo wc_get_formatted_cart_item_data($cart_item); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
-									?>
-								</td>
-								<td class="product-total">
-									<?php echo apply_filters('woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal($_product, $cart_item['quantity']), $cart_item, $cart_item_key); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
-									?>
-								</td>
-							</tr>
-					<?php
-						}
-					}
-
-					do_action('woocommerce_review_order_after_cart_contents');
-					?>
-				</tbody>
-
 			</table>
 		</div>
 	</div>
