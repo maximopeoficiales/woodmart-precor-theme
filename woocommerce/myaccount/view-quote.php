@@ -91,7 +91,20 @@ if (file_exists(YITH_Request_Quote_Premium()->get_pdf_file_path($order_id))) {
 	$pdf_file = YITH_Request_Quote_Premium()->get_pdf_file_url($order_id);
 }
 $print_button_pdf = get_option('ywraq_pdf_in_myaccount') === 'yes' && $pdf_file;
+?>
+<?php
+$actions = wc_get_account_orders_actions($order);
+//se agrego enlace en nueva pestaña al plugin yith
+if (!empty($actions)) {
+	foreach ($actions as $key => $action) { // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+		// solo mostrae el de invoice
+		
+		if ($key == "invoice") {
 
+			echo '<p class="ywraq-buttons"><a target="_blank" href="' . esc_url($action['url']) . '" class="ywraq-big-button ywraq-pdf-file ' . sanitize_html_class($key) . '">' . esc_html($action['name']) . '</a></p>';
+		}
+	}
+}
 if (in_array($order->get_status(), array('ywraq-pending'))) :
 ?>
 	<style>
@@ -101,17 +114,7 @@ if (in_array($order->get_status(), array('ywraq-pending'))) :
 	</style>
 	<p class="ywraq-buttons">
 		<?php
-		$actions = wc_get_account_orders_actions($order);
-		//se agrego enlace en nueva pestaña al plugin yith
-		if (!empty($actions)) {
-			foreach ($actions as $key => $action) { // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
-				// solo mostrae el de invoice
-				if ($key == "invoice") {
 
-					echo '<a target="_blank" href="' . esc_url($action['url']) . '" class="ywraq-big-button ywraq-pdf-file ' . sanitize_html_class($key) . '">' . esc_html($action['name']) . '</a>';
-				}
-			}
-		}
 
 		if ($print_button_pdf) {
 		?>
