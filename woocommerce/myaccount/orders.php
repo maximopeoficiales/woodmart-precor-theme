@@ -69,6 +69,7 @@ do_action( 'woocommerce_before_account_orders', $has_orders ); ?>
 										echo '<a target="_blank" href="' . esc_url( $action['url'] ) . '" class="woocommerce-button button ' . sanitize_html_class( $key ) . '">' . esc_html( $action['name'] ) . '</a>';
 									}
 								}
+								
 								?>
 							<?php endif; ?>
 						</td>
