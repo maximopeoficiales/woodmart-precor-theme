@@ -27,6 +27,7 @@
 if (!defined('ABSPATH')) {
 	exit; // Exit if accessed directly.
 }
+
 YITH_YWRAQ_Order_Request()->is_expired($order_id);
 
 $order = wc_get_order($order_id);
@@ -98,10 +99,10 @@ $actions = wc_get_account_orders_actions($order);
 if (!empty($actions)) {
 	foreach ($actions as $key => $action) { // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 		// solo mostrae el de invoice
-		
+
 		if ($key == "invoice") {
 
-			echo '<p class="ywraq-buttons"><a target="_blank" href="' . esc_url($action['url']) . '" class="ywraq-big-button ywraq-pdf-file ' . sanitize_html_class($key) . '">' . esc_html($action['name']) . '</a></p>';
+			echo '<p class="ywraq-buttons"><a target="_blank" href="' . esc_url($action['url']) . '" class="ywraq-big-button ywraq-pdf-file ' . sanitize_html_class($key) . '">' . "<i class='fas fa-print mr-1'></i>" . esc_html($action['name']) . '</a></p>';
 		}
 	}
 }

@@ -31,7 +31,7 @@ $pesoTotalKg = 0;
 <div class="woocommerce cart-content-wrapper row">
 
 	<?php do_action('woocommerce_before_cart'); ?>
-	<form class="woocommerce-cart-form cart-data-form  col-lg-8 " style="margin-bottom: 10px;" action="<?php echo esc_url(wc_get_cart_url()); ?>" method="post">
+	<form class="woocommerce-cart-form cart-data-form  col-lg-12 " style="margin-bottom: 10px;" action="<?php echo esc_url(wc_get_cart_url()); ?>" method="post">
 		<div class="cart-table-section">
 
 			<?php do_action('woocommerce_before_cart_table'); ?>
@@ -191,7 +191,7 @@ $pesoTotalKg = 0;
 		</div>
 	</form>
 
-	<div class="cart-totals-section col-lg-4">
+	<div class="cart-totals-section col-lg-12">
 		<?php woocommerce_cart_totals(); ?>
 	</div>
 

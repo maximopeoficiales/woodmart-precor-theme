@@ -161,3 +161,50 @@ Estilos del Modal
     display: block;
   }
 }
+
+.mr-1 {
+  margin-right: 4px;
+}
+/* badge-precor */
+.badge-precor {
+  text-transform: capitalize;
+  display: inline-block;
+  min-width: 10px;
+  padding: 3px 7px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  border-radius: 10px;
+}
+.badge-precor-primary {
+  background-color: #4d7db1;
+}
+
+.badge-precor-secondary {
+  background-color: #6c757d;
+}
+.badge-precor-success {
+  color: white;
+  background-color: var(--main-bg-color);
+}
+.badge-precor-danger {
+  background-color: #dc3545;
+}
+.badge-precor-warning {
+  color: black;
+  background-color: #ffc107;
+}
+.badge-precor-info {
+  background-color: #17a2b8;
+}
+.badge-precor-ligth {
+  color: black;
+  background-color: #ffffff;
+}
+.badge-precor-dark {
+  background-color: #343a40;
+}
