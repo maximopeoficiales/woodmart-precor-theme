@@ -50,5 +50,6 @@
            }
       } 
  </script>
+      <h4 class='text-center'>Elige tu forma de pago</h4>
       ";
  }

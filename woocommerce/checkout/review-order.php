@@ -20,17 +20,6 @@ defined('ABSPATH') || exit;
 $totalProducts = count(WC()->cart->get_cart());
 $pesoTotalKg = 0;
 ?>
-<style>
-	.woocommerce-checkout-review-order-table {
-		position: relative;
-	}
-
-	.woocommerce-checkout-review-order-table thead {
-		position: sticky;
-		top: 0;
-	}
-</style>
-
 <table class="shop_table woocommerce-checkout-review-order-table">
 	<thead>
 		<tr>
@@ -46,7 +35,7 @@ $pesoTotalKg = 0;
 		foreach (WC()->cart->get_cart() as $cart_item_key => $cart_item) {
 			// logica para agregar peso
 			$_product_id = $cart_item['product_id'];
-			$peso = get_post_meta($_product_id, 'peso', true);
+			$peso = doubleval(get_post_meta($_product_id, 'peso', true))  * $cart_item['quantity'];
 			$pesoTotalKg += doubleval((is_null($peso) || $peso == "") ?   0 : $peso);
 			// 
 			$_product = apply_filters('woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key);
@@ -144,136 +133,7 @@ $pesoTotalKg = 0;
 	</tfoot>
 </table>
 <style>
-	/* The Modal (background) */
-	.modalProducts {
-		display: none;
-		/* Hidden by default */
-		position: fixed;
-		/* Stay in place */
-		z-index: 1;
-		/* Sit on top */
-		left: 0;
-		top: 0;
-		width: 100%;
-		/* Full width */
-		height: 100vh;
-		/* Full height */
-		overflow: auto;
-		/* Enable scroll if needed */
-		background-color: rgb(0, 0, 0);
-		/* Fallback color */
-		background-color: rgba(0, 0, 0, 0.4);
-		animation-name: animatetop;
-		animation-duration: 0.4s;
-		padding-top: 2rem;
-		overflow: hidden;
-		/* Black w/ opacity */
-	}
-
-	/* Modal Content/Box */
-	.modalContainerProducts {
-		background-color: #fefefe;
-		margin: 15% auto;
-		/* 15% from the top and centered */
-		width: 90%;
-		border-radius: 13px;
-		/* Could be more or less, depending on screen size */
-	}
-
-	/* The Close Button */
-	.closeModalProducts {
-		color: #aaa;
-		font-size: 28px;
-	}
-
-	.closeModalProducts:hover,
-	.closeModalProducts:focus {
-		color: #fefefe;
-		text-decoration: none;
-		cursor: pointer;
-		font-weight: bold;
-
-	}
-
-	@keyframes animatetop {
-		from {
-			top: -300px;
-			opacity: 0
-		}
-
-		to {
-			top: 0;
-			opacity: 1
-		}
-	}
-
-	.modalHeaderProducts {
-		padding: .5rem 1rem;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		background-color: #00396E;
-		color: white;
-	}
-
-	.modalContentProducts {
-		padding: 1rem;
-		max-height: 400px;
-		overflow-y: auto;
-	}
-
-	.modalContentProducts table tbody {
-		display: table-row-group !important;
-		overflow-y: auto !important;
-	}
-
-
-
-	.modaltotalWoocommerce {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		padding: .5rem 1.5rem;
-		padding-bottom: 0;
-		font-size: 14px !important;
-	}
-
-	.modaltotalWoocommerce span strong span {
-		font-size: 14px !important;
-
-	}
-
-	.modaltotalKgWoocommerce {
-		display: flex;
-		justify-content: space-between;
-		padding: .5rem 1.5rem;
-		padding-bottom: 0;
-		font-size: 14px !important;
-	}
-
-	@media(min-width: 1140px) {
-		.modalProducts {
-			padding-top: 0rem;
-		}
-
-		.modalContainerProducts {
-			margin: 10% auto;
-			max-height: 600px;
-		}
-
-		.modaltotalWoocommerce {
-			font-size: 18px !important;
-		}
-
-		.modaltotalWoocommerce span strong span {
-			font-size: 18px !important;
-
-		}
-
-		.modaltotalKgWoocommerce {
-			font-size: 18px !important;
-		}
-	}
+	
 </style>
 <!-- Aqui se duplica lo que edites arriba porque hace una peticion ajax -->
 <!-- The Modal -->

@@ -394,5 +394,8 @@ function wc_empty_cart_redirect_url()
 {
 	return 'https://tiendaenlinea.precor.pe';
 }
-
+// registro css global para todo el tema
+wp_register_style("customPrecor", get_template_directory_uri() . "/helpers/css/styles.css", '', '1.0.0');
+wp_enqueue_style('customPrecor');
+// llamo a mi carpeta helpers 
 require get_template_directory() . "/helpers/functions.php";

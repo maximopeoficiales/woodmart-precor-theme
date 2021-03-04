@@ -1,0 +1,163 @@
+:root {
+  --main-bg-color: #00396e;
+  --precor-bg-secondary: #32cc52;
+  --color-azul: #00396e;
+  --texto-azul: #00396e;
+}
+
+.texto-precor-azul {
+  color: var(--texto-azul);
+}
+/* se cambio color de mensaje  */
+.dokan-alert-success,
+.dokan-message,
+.dokan-store-contact .alert-success,
+.mc4wp-success,
+.woocommerce-message,
+.wpcf7-mail-sent-ok,
+.yith_ywraq_add_item_product_message {
+  background-color: var(--precor-bg-secondary) !important;
+}
+/* 
+Estilos del Modal
+*/
+/* The Modal (background) */
+.modalProducts {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100vh;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0);
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+  padding-top: 2rem;
+  overflow: hidden;
+  /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modalContainerProducts {
+  background-color: #fefefe;
+  margin: 15% auto;
+  /* 15% from the top and centered */
+  width: 90%;
+  border-radius: 13px;
+  /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.closeModalProducts {
+  color: #aaa;
+  font-size: 28px;
+}
+
+.closeModalProducts:hover,
+.closeModalProducts:focus {
+  color: #fefefe;
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+@keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+.modalHeaderProducts {
+  padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #00396e;
+  color: white;
+}
+
+.modalContentProducts {
+  padding: 1rem;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.modalContentProducts table tbody {
+  display: table-row-group !important;
+  overflow-y: auto !important;
+}
+
+.modaltotalWoocommerce {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1.5rem;
+  padding-bottom: 0;
+  font-size: 14px !important;
+}
+
+.modaltotalWoocommerce span strong span {
+  font-size: 14px !important;
+}
+
+.modaltotalKgWoocommerce {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 1.5rem;
+  padding-bottom: 0;
+  font-size: 14px !important;
+}
+
+@media (min-width: 1140px) {
+  .modalProducts {
+    padding-top: 0rem;
+  }
+
+  .modalContainerProducts {
+    margin: 10% auto;
+    max-height: 600px;
+  }
+
+  .modaltotalWoocommerce {
+    font-size: 18px !important;
+  }
+
+  .modaltotalWoocommerce span strong span {
+    font-size: 18px !important;
+  }
+
+  .modaltotalKgWoocommerce {
+    font-size: 18px !important;
+  }
+}
+/* fin de estilos del modal */
+.not-show-precor {
+  display: none;
+}
+
+/* mostrar peso peso total en cart resposive */
+@media (max-width: 576px) {
+  .product-precor-custom {
+    display: flex;
+    justify-content: space-between;
+  }
+  .not-show-precor {
+    display: block;
+  }
+}

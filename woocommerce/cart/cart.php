@@ -20,14 +20,10 @@ defined('ABSPATH') || exit;
 $pesoTotalKg = 0;
 ?>
 <style>
-	@media (min-width: 1200px) {
-		.site-content:not(.col-lg-12) .cart-content-wrapper .cart-data-form {
-			flex-basis: 100%;
-			max-width: 100%;
-		}
-
-		.site-content:not(.col-lg-12) .cart-content-wrapper .cart-totals-section {
-			flex-basis: 100%;
+	@media (min-width: 769px) {
+		.col-md-9 {
+			-ms-flex: 0 0 100%;
+			flex: 0 0 100%;
 			max-width: 100%;
 		}
 	}
@@ -35,7 +31,7 @@ $pesoTotalKg = 0;
 <div class="woocommerce cart-content-wrapper row">
 
 	<?php do_action('woocommerce_before_cart'); ?>
-	<form class="woocommerce-cart-form cart-data-form col-md-12 col-lg-12 col-xl-12" style="margin-bottom: 10px;" action="<?php echo esc_url(wc_get_cart_url()); ?>" method="post">
+	<form class="woocommerce-cart-form cart-data-form  col-lg-8 " style="margin-bottom: 10px;" action="<?php echo esc_url(wc_get_cart_url()); ?>" method="post">
 		<div class="cart-table-section">
 
 			<?php do_action('woocommerce_before_cart_table'); ?>
@@ -45,12 +41,13 @@ $pesoTotalKg = 0;
 					<tr>
 						<th class="product-remove">&nbsp;</th>
 						<th class="product-thumbnail">&nbsp;</th>
-						<th class="product-name"><?php esc_html_e('Product', 'woocommerce'); ?></th>
-						<th class="product-name">Peso</th>
-						<th class="product-name">Espesor</th>
-						<th class="product-price"><?php esc_html_e('Price', 'woocommerce'); ?></th>
-						<th class="product-quantity"><?php esc_html_e('Quantity', 'woocommerce'); ?></th>
-						<th class="product-subtotal"><?php esc_html_e('Subtotal', 'woocommerce'); ?></th>
+						<th class="product-name texto-precor-azul"><?php esc_html_e('Product', 'woocommerce'); ?></th>
+						<th class="product-name texto-precor-azul">Peso</th>
+						<th class="product-name texto-precor-azul">Peso Total</th>
+						<!-- <th class="product-name">Espesor</th> -->
+						<th class="product-price texto-precor-azul"><?php esc_html_e('Price', 'woocommerce'); ?></th>
+						<th class="product-quantity texto-precor-azul"><?php esc_html_e('Quantity', 'woocommerce'); ?></th>
+						<th class="product-subtotal texto-precor-azul"><?php esc_html_e('Subtotal', 'woocommerce'); ?></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -62,7 +59,8 @@ $pesoTotalKg = 0;
 						$product_id = apply_filters('woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key);
 
 						// modificacion para total de kg
-						$peso = get_post_meta($product_id, 'peso', true);
+						$simplePeso = doubleval(get_post_meta($product_id, 'peso', true));
+						$peso = $simplePeso * $cart_item['quantity'];
 						$espesor = get_post_meta($product_id, 'espesor', true);
 						$pesoTotalKg += doubleval((is_null($peso) || $peso == "") ?   0 : $peso);
 						// 
@@ -118,8 +116,13 @@ $pesoTotalKg = 0;
 									}
 									?>
 								</td>
-								<td class="product-name" data-title="Peso"><?= number_format(doubleval($peso), 2) ?></td>
-								<td class="product-name" data-title="Espesor"><?= number_format(doubleval($espesor), 2) ?></td>
+								<td class="" data-title="Peso">
+									<?= number_format(doubleval($simplePeso), 2) ?> kg
+								</td>
+								<td class="" data-title="Peso Total">
+									<?= number_format(doubleval($peso), 2) ?> kg
+								</td>
+								<!-- <td class="product-name" data-title="Espesor"><?= number_format(doubleval($espesor), 2) ?></td> -->
 								<td class="product-price" data-title="<?php esc_attr_e('Price', 'woocommerce'); ?>">
 									<?php
 									echo apply_filters('woocommerce_cart_item_price', WC()->cart->get_product_price($_product), $cart_item, $cart_item_key);
@@ -188,7 +191,7 @@ $pesoTotalKg = 0;
 		</div>
 	</form>
 
-	<div class="cart-totals-section col-md-12 col-lg-12 col-xl-12">
+	<div class="cart-totals-section col-lg-4">
 		<?php woocommerce_cart_totals(); ?>
 	</div>
 
