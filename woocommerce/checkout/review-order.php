@@ -142,7 +142,7 @@ $pesoTotalKg = 0;
 	<div class="modalContainerProducts">
 		<div class="modalHeaderProducts">
 			<h4 style="color: white; margin-bottom: 0;">Lista de Productos</h4>
-			<span class="closeModalProducts">&times;</span>
+			<span class="closeModalProducts" id="hiddeModalProducts">&times;</span>
 		</div>
 		<div class="modaltotalKgWoocommerce">
 			<p></p>
