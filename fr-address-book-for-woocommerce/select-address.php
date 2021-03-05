@@ -49,6 +49,7 @@ if (count($addresses) < fr_address_book_for_woocommerce()->max_addresses) {
                 </div>
                 <!-- contenido del modal-->
                 <div class="modalContentProducts">
+                    <h4 class="text-center">Direccion Actual: <b class="texto-precor-azul" id="currentAddressPrecor"></b></h4>
                     <div class="" style="display: flex;">
                         <input type="text" class="" placeholder="Busca una direccion" aria-label="Busca una direccion" aria-describedby="Busca una direccion" id="inputSearchAddressPrecor">
                         <div class="">
@@ -70,7 +71,7 @@ if (count($addresses) < fr_address_book_for_woocommerce()->max_addresses) {
                             <?php foreach ($field_options as $id => $label) :
                                 $address = $addresses[$id]["address_1"];
                             ?>
-                                <input type="radio" class="input-radio " value="<?php echo $id ?>" name="<?php echo "fabfw_address_{$type}_id" ?>" id="<?php echo "fabfw_address_{$type}_id_{$id}" ?>" <?php checked($id, $saved_address_id) ?> />
+                                <input type="radio" class="input-radio input-radio-address-precor" value="<?php echo $id ?>" name="<?php echo "fabfw_address_{$type}_id" ?>" id="<?php echo "fabfw_address_{$type}_id_{$id}" ?>" <?php checked($id, $saved_address_id) ?> />
                                 <label for="<?php echo "fabfw_address_{$type}_id_{$id}" ?>" class="radio precor-my-address-item" data-address="<?= $address ?>">
                                     <span><?php echo $label ?></span>
                                 </label>
@@ -150,6 +151,23 @@ if (count($addresses) < fr_address_book_for_woocommerce()->max_addresses) {
 
         }, 1000);
     }
+    const getCheckedAddressPrecor = () => {
+        // solucion rapida
+        setInterval(() => {
+            let addressText = "";
+            let inputRadioAddressPrecorList = document.querySelectorAll('.input-radio-address-precor');
+            inputRadioAddressPrecorList.forEach(e => {
+                let addressChecked = document.querySelector(`label[for=${e.id}]`)
+                if (e.checked) {
+                    addressChecked.classList.add("precor-my-address-item-selected")
+                    document.querySelector("#currentAddressPrecor").innerText = addressChecked.getAttribute("data-address");
+                } else {
+                    addressChecked.classList.remove("precor-my-address-item-selected")
+                }
+            })
+        }, 1000);
+    }
     inputSearchAddressPrecor.addEventListener("keyup", searchAddressPrecor);
     btnSearchAddressPrecor.addEventListener("click", searchAddressPrecor);
+    getCheckedAddressPrecor();
 </script>

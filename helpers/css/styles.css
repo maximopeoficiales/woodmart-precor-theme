@@ -265,8 +265,7 @@ Estilos del Modal
 }
 
 /* boton pintada cuando seleccionan */
-.precor-my-address-item :focus,
-.precor-my-address-item :hover {
+.precor-my-address-item-selected {
   background-color: var(--main-bg-color) !important;
   color: white;
 }
