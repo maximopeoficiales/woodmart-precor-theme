@@ -36,7 +36,7 @@ if (count($addresses) < fr_address_book_for_woocommerce()->max_addresses) {
 <div class="fabfw-select-address-container">
     <?php if ($addresses) :
     ?>
-
+         <h4 class="text-center  ">Direccion actual : <b class="texto-precor-azul" id="addressPrincipalPrecor"></b></h4>
         <button class="button-precor bg-precor-azul" type="button" id="btnShowModalDirections">Elige una Direccion</button>
 
         <!-- aqui va el modal -->
@@ -49,7 +49,7 @@ if (count($addresses) < fr_address_book_for_woocommerce()->max_addresses) {
                 </div>
                 <!-- contenido del modal-->
                 <div class="modalContentProducts">
-                    <h4 class="text-center">Direccion Actual: <b class="texto-precor-azul" id="currentAddressPrecor"></b></h4>
+                    <h4 class="text-center">Direccion Seleccionada: <b class="texto-precor-azul" id="currentAddressPrecor"></b></h4>
                     <div class="" style="display: flex;">
                         <input type="text" class="" placeholder="Busca una direccion" aria-label="Busca una direccion" aria-describedby="Busca una direccion" id="inputSearchAddressPrecor">
                         <div class="">
@@ -161,6 +161,7 @@ if (count($addresses) < fr_address_book_for_woocommerce()->max_addresses) {
                 if (e.checked) {
                     addressChecked.classList.add("precor-my-address-item-selected")
                     document.querySelector("#currentAddressPrecor").innerText = addressChecked.getAttribute("data-address");
+                    document.querySelector("#addressPrincipalPrecor").innerText = addressChecked.getAttribute("data-address");
                 } else {
                     addressChecked.classList.remove("precor-my-address-item-selected")
                 }
