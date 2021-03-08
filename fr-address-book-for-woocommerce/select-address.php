@@ -36,7 +36,7 @@ if (count($addresses) < fr_address_book_for_woocommerce()->max_addresses) {
 <div class="fabfw-select-address-container">
     <?php if ($addresses) :
     ?>
-         <h4 class="text-center  ">Direccion actual : <b class="texto-precor-azul" id="addressPrincipalPrecor"></b></h4>
+        <h4 class="text-center  ">Direccion actual : <b class="texto-precor-azul" id="addressPrincipalPrecor"></b></h4>
         <button class="button-precor bg-precor-azul" type="button" id="btnShowModalDirections">Elige una Direccion</button>
 
         <!-- aqui va el modal -->
@@ -45,17 +45,26 @@ if (count($addresses) < fr_address_book_for_woocommerce()->max_addresses) {
             <div class="modalContainerProducts">
                 <div class="modalHeaderProducts">
                     <h4 style="color: white; margin-bottom: 0;">Lista de Direcciones</h4>
-                    <span class="closeModalProducts" id="hiddeModalDirections">&times;</span>
+
+                    <div>
+                        <button class="button-precor text-white" type="button" id="hiddeModalDirections" style="background-color: #69daf5 !important; max-width: 80px; margin-bottom: 0;">Cerrar</button>
+                    </div>
+                    <!-- <span class="closeModalProducts" id="">&times;</span> -->
                 </div>
                 <!-- contenido del modal-->
                 <div class="modalContentProducts">
                     <h4 class="text-center">Direccion Seleccionada: <b class="texto-precor-azul" id="currentAddressPrecor"></b></h4>
+
                     <div class="" style="display: flex;">
                         <input type="text" class="" placeholder="Busca una direccion" aria-label="Busca una direccion" aria-describedby="Busca una direccion" id="inputSearchAddressPrecor">
                         <div class="">
                             <button class="bg-precor-azul text-white" type="button" id="btnSearchAddressPrecor">Buscar</button>
                         </div>
                     </div>
+                    <div class="text-center">
+
+                    </div>
+
                     <!-- spinner -->
                     <div class="spinner-container-precor" style="display: none; margin-top: 1rem;">
                         <h4 class="text-center texto-precor-azul">Buscando Direcciones ...</h4>

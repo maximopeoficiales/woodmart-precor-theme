@@ -133,7 +133,7 @@ $pesoTotalKg = 0;
 	</tfoot>
 </table>
 <style>
-	
+
 </style>
 <!-- Aqui se duplica lo que edites arriba porque hace una peticion ajax -->
 <!-- The Modal -->
@@ -142,7 +142,9 @@ $pesoTotalKg = 0;
 	<div class="modalContainerProducts">
 		<div class="modalHeaderProducts">
 			<h4 style="color: white; margin-bottom: 0;">Lista de Productos</h4>
-			<span class="closeModalProducts" id="hiddeModalProducts">&times;</span>
+			<div>
+				<button class="button-precor text-white" type="button" id="hiddeModalProducts" style="background-color: #69daf5 !important; max-width: 80px; margin-bottom: 0;">Cerrar</button>
+			</div>
 		</div>
 		<div class="modaltotalKgWoocommerce">
 			<p></p>
