@@ -115,6 +115,12 @@ function precorEvaluateBadge($status)
 								$actions = wc_get_account_orders_actions($order);
 								//se agrego enlace en nueva pestaña
 								if (!empty($actions)) {
+
+									echo '  <div class="menu-simple-dropdown wd-tools-element item-event-hover">
+										<a class="wd-tools-text" style="max-width:180px; display: inline-flex;">Opciones</a>
+												<div class="sub-menu-dropdown" style="width:140px;">
+													<ul class="sub-menu ">
+														<li class="">';
 									foreach ($actions as $key => $action) { // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 										$icon = "";
 										switch ($key) {
@@ -133,10 +139,13 @@ function precorEvaluateBadge($status)
 											default:
 												break;
 										}
-
-
-										echo '<a target="_blank" href="' . esc_url($action['url']) . '" class="woocommerce-button button ' . sanitize_html_class($key) . '">' . $icon . esc_html($action['name']) . '</a>';
+										echo '<a target="_blank" href="' . esc_url($action['url']) . '" class="precor-bg-white text-center precor-text-gray ' . sanitize_html_class($key) . '">' . $icon . esc_html($action['name']) . '</a>';
 									}
+
+									echo '					</li>
+													</ul>
+												</div>
+											</div>';
 								}
 
 								?>

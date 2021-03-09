@@ -1,8 +1,24 @@
 :root {
   --main-bg-color: #00396e;
   --precor-bg-secondary: #32cc52;
+  --color-secondary: #32cc52;
+  --color-gris: #878787;
   --color-azul: #00396e;
   --texto-azul: #00396e;
+}
+.text-white {
+  color: white !important;
+}
+.precor-bg-green {
+  color: white !important;
+  background-color: var(--precor-bg-secondary) !important;
+}
+.precor-text-gray {
+  font-size: 14px !important;
+  color: var(--color-gris) !important;
+}
+.precor-text-gray:hover {
+  color: var(--color-secondary) !important;
 }
 .bg-precor-azul {
   background-color: var(--main-bg-color) !important;
@@ -268,4 +284,19 @@ Estilos del Modal
 .precor-my-address-item-selected {
   background-color: var(--main-bg-color) !important;
   color: white;
+}
+.precor-bg-white {
+  background-color: white !important;
+}
+.precor-submenu {
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+.menu-simple-dropdown.wd-tools-element.item-event-hover {
+  display: inline-flex;
+}
+/* correcion de posicion para submenus de botones */
+.item-event-hover:hover > .sub-menu-dropdown {
+  left: -18px;
 }

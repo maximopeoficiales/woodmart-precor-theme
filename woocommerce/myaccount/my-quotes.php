@@ -183,7 +183,13 @@ function precorEvaluateBadgeQuotes($status)
 						$actions = apply_filters('ywraq_my_account_my_quotes_actions', $actions, $order);
 
 						if ($actions) {
-							foreach ($actions as $key => $action) {
+							// foreach ($actions as $key => $action) {
+							echo '  <div class="menu-simple-dropdown wd-tools-element item-event-hover">
+										<a class="wd-tools-text precor-bg-green precor-button-green" style="max-width:180px; display: inline-flex;border-radius: 25px;">Opciones</a>
+												<div class="sub-menu-dropdown" style="width:140px;">
+													<ul class="sub-menu ">
+														<li class="">';
+							foreach ($actions as $key => $action) { // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 								$icon = "";
 								switch ($key) {
 									case 'view':
@@ -198,8 +204,16 @@ function precorEvaluateBadgeQuotes($status)
 									default:
 										break;
 								}
-								echo '<a href="' . esc_url($action['url']) . '" class="button"' . sanitize_html_class($key) . '">' . $icon . esc_html($action['name']) . '</a>';
+
+								echo '<a  href="' . esc_url($action['url']) . '" class=" text-center ' . sanitize_html_class($key) . '">' . $icon . esc_html($action['name']) . '</a>';
 							}
+
+							echo '					</li>
+													</ul>
+												</div>
+											</div>';
+							// echo '<a href="' . esc_url($action['url']) . '" class="button"' . sanitize_html_class($key) . '">' . $icon . esc_html($action['name']) . '</a>';
+							// }
 						}
 						?>
 
