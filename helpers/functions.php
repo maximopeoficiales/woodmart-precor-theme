@@ -45,8 +45,8 @@ function hookNewContentInOrderReview()
            }
       } 
  </script>
-      <h4 class='text-center'>Elige tu forma de pago</h4>
       ";
+     //  <h4 class='text-center'>Elige tu forma de pago</h4>
 }
 
 // obtengo categoria del producto por idProduct
