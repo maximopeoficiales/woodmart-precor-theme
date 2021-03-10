@@ -58,3 +58,27 @@ function getCategoryNameByIdProduct($idProduct): string
      $term = get_term_by("id", $category_id, "product_cat", "ARRAY_A");
      return $term["name"];
 }
+
+// shortcode
+// Add Shortcode
+
+function precor_pfrx_addshorcode()
+{
+     add_shortcode('prflxtrflds_get_value', function ($atts) {
+          // Attributes
+          $user_id = get_current_user_id();
+
+          $prflxtrflds_name = $atts["name"];
+
+          global $wpdb;
+          $sql = "SELECT wpufd.user_value  FROM wp_prflxtrflds_fields_id wpfi JOIN
+          wp_prflxtrflds_user_field_data wpufd  on wpufd.field_id = wpfi.field_id 
+          WHERE wpfi.field_name =%s
+          AND  wpufd.user_id =$user_id LIMIT 1";
+          $results = $wpdb->get_results($wpdb->prepare($sql, $prflxtrflds_name));
+          $wpdb->flush();
+          $prflxtrflds_value = $results[0]->user_value == null ? "" : $results[0]->user_value;
+          return ($prflxtrflds_value);
+     });
+}
+add_action('init', 'precor_pfrx_addshorcode');
