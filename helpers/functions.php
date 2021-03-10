@@ -78,7 +78,22 @@ function precor_pfrx_addshorcode()
           $results = $wpdb->get_results($wpdb->prepare($sql, $prflxtrflds_name));
           $wpdb->flush();
           $prflxtrflds_value = $results[0]->user_value == null ? "" : $results[0]->user_value;
-          return ($prflxtrflds_value);
+          return $prflxtrflds_value;
+     });
+}
+function precor_status_wallet()
+{
+     add_shortcode('get_status_wallet', function () {
+          // Attributes
+          $user_id = get_current_user_id();
+
+          global $wpdb;
+          $sql = "SELECT IF(wf.status= 'unlocked','Activo','Inactivo') as status FROM wp_fswcwallet wf WHERE wf.user_id = $user_id LIMIT 1";
+          $results = $wpdb->get_results($wpdb->prepare($sql));
+          $wpdb->flush();
+          $status = $results[0]->status == null ? "" : $results[0]->status;
+          return $status;
      });
 }
 add_action('init', 'precor_pfrx_addshorcode');
+add_action('init', 'precor_status_wallet');
