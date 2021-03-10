@@ -47,7 +47,7 @@ if (count($addresses) < fr_address_book_for_woocommerce()->max_addresses) {
                     <h4 style="color: white; margin-bottom: 0;">Lista de Direcciones</h4>
 
                     <div>
-                        <button class="button-precor text-white" type="button" id="hiddeModalDirections" style="background-color: #69daf5 !important; max-width: 80px; margin-bottom: 0;">Cerrar</button>
+                        <button class="button-precor text-white" type="button" id="hiddeModalDirections" style="background-color: #69daf5 !important; max-width: 80px; margin-bottom: 0;">Aceptar</button>
                     </div>
                     <!-- <span class="closeModalProducts" id="">&times;</span> -->
                 </div>

@@ -141,9 +141,9 @@ $pesoTotalKg = 0;
 
 	<div class="modalContainerProducts">
 		<div class="modalHeaderProducts">
-			<h4 style="color: white; margin-bottom: 0;">Lista de Productos</h4>
+			<h4 style="color: white !important; margin-bottom: 0;">Lista de Productos</h4>
 			<div>
-				<button class="button-precor text-white" type="button" id="hiddeModalProducts" style="background-color: #69daf5 !important; max-width: 80px; margin-bottom: 0;">Cerrar</button>
+				<button class="button-precor text-white" type="button" id="hiddeModalProducts" style="background-color: #69daf5 !important; max-width: 80px; margin-bottom: 0;">Aceptar</button>
 			</div>
 		</div>
 		<div class="modaltotalKgWoocommerce">
