@@ -49,8 +49,11 @@ function hookNewContentInOrderReview()
       ";
 }
 
-// obtengo categoria del producto por idProduct
-
+/**
+ * Obtengo nombre de categoria por idProduct.
+ *
+ * @return string
+ */
 function getCategoryNameByIdProduct($idProduct): string
 {
      $product = wc_get_product($idProduct);
@@ -58,3 +61,5 @@ function getCategoryNameByIdProduct($idProduct): string
      $term = get_term_by("id", $category_id, "product_cat", "ARRAY_A");
      return $term["name"];
 }
+
+
