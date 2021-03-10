@@ -48,3 +48,13 @@ function hookNewContentInOrderReview()
       <h4 class='text-center'>Elige tu forma de pago</h4>
       ";
 }
+
+// obtengo categoria del producto por idProduct
+
+function getCategoryNameByIdProduct($idProduct): string
+{
+     $product = wc_get_product($idProduct);
+     $category_id = $product->get_category_ids()[0];
+     $term = get_term_by("id", $category_id, "product_cat", "ARRAY_A");
+     return $term["name"];
+}
