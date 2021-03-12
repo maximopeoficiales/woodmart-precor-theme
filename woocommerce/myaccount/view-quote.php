@@ -186,6 +186,13 @@ else :
 	<thead>
 		<tr>
 			<th class="product-name" colspan="<?php echo esc_attr($colspan); ?>"><?php esc_html_e('Product', 'yith-woocommerce-request-a-quote'); ?></th>
+
+			<th class="product-name" colspan=""><?php esc_html_e('Quantity', 'yith-woocommerce-request-a-quote'); ?></th>
+
+			<th class="product-name" colspan=""><?php esc_html_e('Peso', 'yith-woocommerce-request-a-quote'); ?></th>
+
+			<th class="product-name" colspan=""><?php esc_html_e('Peso Total', 'yith-woocommerce-request-a-quote'); ?></th>
+
 			<?php if ($show_total_column && $show_price) : ?>
 				<th class="product-total"><?php esc_html_e('Total', 'yith-woocommerce-request-a-quote'); ?></th>
 			<?php endif ?>
@@ -220,7 +227,7 @@ else :
 								echo apply_filters('woocommerce_order_item_name', sprintf('<a href="%s">%s</a>', esc_url(get_permalink($item['product_id'])), esc_html($title)), $item, true); //phpcs:ignore
 							}
 
-							echo wp_kses_post(apply_filters('woocommerce_order_item_quantity_html', ' <strong class="product-quantity">' . sprintf('&times; %s', esc_html($item['qty'])) . '</strong>', $item));
+
 
 							// Allow other plugins to add additional product information here.
 							do_action('woocommerce_order_item_meta_start', $item_id, $item, $order);
@@ -233,6 +240,26 @@ else :
 
 							// Allow other plugins to add additional product information here.
 							do_action('woocommerce_order_item_meta_end', $item_id, $item, $order);
+							?>
+						</td>
+						<td class="product-total">
+							<?php
+							echo wp_kses_post(apply_filters('woocommerce_order_item_quantity_html', ' <strong class="product-quantity">' . sprintf('&times; %s', esc_html($item['qty'])) . '</strong>', $item));
+
+							?>
+						</td>
+						<td class="product-total">
+							<?php
+
+							echo wp_kses_post($order->get_formatted_line_subtotal($item));
+
+							?>
+						</td>
+						<td class="product-total">
+							<?php
+
+							echo wp_kses_post($order->get_formatted_line_subtotal($item));
+
 							?>
 						</td>
 						<?php if ($show_price) : ?>
@@ -274,15 +301,26 @@ else :
 		}
 
 		$totals = $order->get_order_item_totals();
+		?>
+		<!-- agrego columno de peso total kg -->
+		<tr>
+
+			<th scope="row">Peso Total Kg</th>
+			<td colspan="4">
+				<span class="woocommerce-Price-amount amount">50.00 kg</span>
+			</td>
+		</tr>
+		<?php
 		if ($show_total_column && $totals) {
 			foreach ($totals as $key => $total) {
 				$value = $total['value'];
 
 		?>
+
 				<?php if ($show_price) : ?>
 					<tr>
 						<th scope="row"><?php echo esc_html($total['label']); ?></th>
-						<td><?php echo wp_kses_post($value); ?></td>
+						<td colspan="4"><?php echo wp_kses_post($value); ?></td>
 					</tr>
 				<?php endif ?>
 		<?php
