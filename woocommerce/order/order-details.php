@@ -59,11 +59,16 @@ if ($show_downloads) {
 
 		<tbody>
 			<?php
+			// declaro peso total kg para que sea accedido por el footer
+			$pesoTotalKg = 0;
 			do_action('woocommerce_order_details_before_order_table_items', $order);
 
 			foreach ($order_items as $item_id => $item) {
 				$product = $item->get_product();
-
+				// modificacion para total de kg
+				$simplePeso = doubleval(get_post_meta($item['product_id'], 'peso', true));
+				$peso = $simplePeso * $item['qty'];
+				$pesoTotalKg += doubleval((is_null($peso) || $peso == "") ?   0 : $peso);
 				wc_get_template(
 					'order/order-details-item.php',
 					array(
@@ -73,6 +78,9 @@ if ($show_downloads) {
 						'show_purchase_note' => $show_purchase_note,
 						'purchase_note'      => $product ? $product->get_purchase_note() : '',
 						'product'            => $product,
+						// agrego propidades del peso
+						'simplePeso'            => $simplePeso,
+						'peso'            => $peso,
 					)
 				);
 			}
@@ -85,7 +93,7 @@ if ($show_downloads) {
 			<tr>
 				<th scope="row">Peso Total Kg</th>
 				<td colspan="4">
-					<span class="woocommerce-Price-amount amount">50.00 kg</span>
+					<span class="woocommerce-Price-amount amount"><?= number_format($pesoTotalKg, 2) ?> kg</span>
 				</td>
 			</tr>
 			<?php

@@ -23,6 +23,9 @@ if (!defined('ABSPATH')) {
 if (!apply_filters('woocommerce_order_item_visible', true, $item)) {
 	return;
 }
+
+
+
 ?>
 <tr class="<?php echo esc_attr(apply_filters('woocommerce_order_item_class', 'woocommerce-table__line-item order_item', $item, $order)); ?>">
 
@@ -52,18 +55,21 @@ if (!apply_filters('woocommerce_order_item_visible', true, $item)) {
 			$qty_display = esc_html($qty);
 		}
 
-		echo apply_filters('woocommerce_order_item_quantity_html', ' <strong class="product-quantity">' . sprintf('&times;&nbsp;%s', $qty_display) . '</strong>', $item); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo apply_filters('woocommerce_order_item_quantity_html', ' <strong class="product-quantity">' . sprintf($qty_display) . '</strong>', $item); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 		?>
 	</td>
+	<!-- peso -->
 	<td class="woocommerce-table__product-name product-total">
-		<?php echo $order->get_formatted_line_subtotal($item); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
-		?>
+		<?= number_format($simplePeso,2)?>
 	</td>
+	<!-- peso total por producto-->
 	<td class="woocommerce-table__product-name	 product-total">
-		<?php echo $order->get_formatted_line_subtotal($item); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
-		?>
+		<?= number_format($peso,2)?>
 	</td>
+
+
+	<!-- total -->
 	<td class="woocommerce-table__product-total product-total">
 		<?php echo $order->get_formatted_line_subtotal($item); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
 		?>

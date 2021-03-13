@@ -53,7 +53,7 @@ $pesoTotalKg = 0;
 						// modificacion para total de kg
 						$simplePeso = doubleval(get_post_meta($product_id, 'peso', true));
 						$peso = $simplePeso * $cart_item['quantity'];
-						$espesor = get_post_meta($product_id, 'espesor', true);
+						// $espesor = get_post_meta($product_id, 'espesor', true);
 						$pesoTotalKg += doubleval((is_null($peso) || $peso == "") ?   0 : $peso);
 						// 
 

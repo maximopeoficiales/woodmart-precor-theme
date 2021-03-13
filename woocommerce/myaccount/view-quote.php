@@ -202,9 +202,15 @@ else :
 		<?php
 		if (count($order->get_items()) > 0) {
 
+			//
 			foreach ($order->get_items() as $item_id => $item) {
 				/** @var $_product WC_Product */
 				$_product = $item->get_product();
+
+				// modificacion para total de kg
+				$simplePeso = doubleval(get_post_meta($item['product_id'], 'peso', true));
+				$peso = $simplePeso * $item['qty'];
+				$pesoTotalKg += doubleval((is_null($peso) || $peso == "") ?   0 : $peso);
 
 				// retro compatibility.
 				$item_meta = false;
@@ -242,32 +248,25 @@ else :
 							do_action('woocommerce_order_item_meta_end', $item_id, $item, $order);
 							?>
 						</td>
+						<!-- cantidad del product -->
 						<td class="product-total">
 							<?php
-							echo wp_kses_post(apply_filters('woocommerce_order_item_quantity_html', ' <strong class="product-quantity">' . sprintf('&times; %s', esc_html($item['qty'])) . '</strong>', $item));
+							echo wp_kses_post(apply_filters('woocommerce_order_item_quantity_html', ' <strong class="product-quantity">' . sprintf(esc_html($item['qty'])) . '</strong>', $item));
 
 							?>
 						</td>
+						<!-- peso del producto -->
 						<td class="product-total">
-							<?php
-
-							echo wp_kses_post($order->get_formatted_line_subtotal($item));
-
-							?>
+							<?= number_format($simplePeso, 2) . " kg" ?>
 						</td>
+						<!-- peso total producto -->
 						<td class="product-total">
-							<?php
-
-							echo wp_kses_post($order->get_formatted_line_subtotal($item));
-
-							?>
+							<?= number_format($peso, 2) . " kg" ?>
 						</td>
 						<?php if ($show_price) : ?>
 							<td class="product-total">
 								<?php
-
 								echo wp_kses_post($order->get_formatted_line_subtotal($item));
-
 								?>
 							</td>
 						<?php endif ?>
@@ -307,7 +306,7 @@ else :
 
 			<th scope="row">Peso Total Kg</th>
 			<td colspan="4">
-				<span class="woocommerce-Price-amount amount">50.00 kg</span>
+				<span class="woocommerce-Price-amount amount"><?= number_format($pesoTotalKg, 2) ?> kg</span>
 			</td>
 		</tr>
 		<?php
