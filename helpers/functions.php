@@ -97,3 +97,11 @@ function precor_status_wallet()
 }
 add_action('init', 'precor_pfrx_addshorcode');
 add_action('init', 'precor_status_wallet');
+
+// functions que reemplaza localhost por dominio
+function precor_url_domain_replace($url): string
+{
+     $domain = "tiendaenlinea.precor.pe";
+     $url = str_replace("http", "https", $url);
+     return str_replace("localhost:8080", $domain, $url);
+}

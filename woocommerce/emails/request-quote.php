@@ -32,7 +32,7 @@ $quote_number      = apply_filters( 'ywraq_quote_number', $raq_data['order_id'] 
 do_action( 'woocommerce_email_header', $email_heading, $email );
 
 ?>
-
+<h1>Estoyyyy aquiii</h1>
 <p><?php echo wp_kses_post( $email_description ); ?></p>
 
 
