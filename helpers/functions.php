@@ -102,6 +102,39 @@ add_action('init', 'precor_status_wallet');
 function precor_url_domain_replace($url): string
 {
      $domain = "tiendaenlinea.precor.pe";
-     $url = str_replace("http", "https", $url);
+     if (strpos($url, "https") === false) {
+          $url = str_replace("http", "https", $url);
+     }
      return str_replace("localhost:8080", $domain, $url);
+}
+
+function precor_get_image_url_helper($name): string
+{
+     return precor_url_domain_replace(get_template_directory_uri()) . "/helpers/imgs/$name";
+}
+
+// obtengo imagen y sobre encima el logo de la empresa
+function precor_get_image_header_custom($nameImgDebajo): void
+{
+     $imgLogo = get_option('woocommerce_email_header_image');
+     $imgLogo = precor_url_domain_replace(is_null($imgLogo) ? "https://alpha.sam.gov/assets/img/logo-not-found.png" : $imgLogo);
+     echo '
+     <div style="position: relative;">
+          <img src="' . precor_get_image_url_helper($nameImgDebajo) . '" alt="logo-empresa" class="img-precor-email">
+     </div>
+     ';
+     // <img src="' . $imgLogo . '" alt="" class="img-logo-sobrepuesto">
+
+}
+function precor_create_button_custom($bgcolor, $link, $text): void
+{
+     echo '
+ <table border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor=”' . $bgcolor . '”>
+ <tr>
+      <a href="' . $link . '" class="" style="color: white; !important;  display: block !important;text-decoration: none;padding-top: 18px !important;padding-bottom: 18px !important;margin-top: 10px !important;margin-bottom: 10px !important;border-radius: 10px !important;text-align: center !important;font-weight: 600; !important">
+           ' . $text . '
+      </a>
+ </tr>
+</table>
+ ';
 }

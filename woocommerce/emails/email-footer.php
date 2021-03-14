@@ -36,22 +36,8 @@ defined('ABSPATH') || exit;
 	<td align="center" valign="top">
 		<!-- Footer -->
 		<!--footer custom  -->
-		<style>
-			.footer-parrafo {
-				margin: 0;
-				margin-top: 1px;
-
-				/* font-family: "Open Sans",sans-serif; */
-			}
-
-			.img-red-social {
-				width: 33px;
-				height: 33px;
-				margin: 10px 5px;
-			}
-		</style>
 		<div style="width: 100%; background-color: #E9E9E9; padding: 15px 0; margin-top: 2rem;">
-			<footer style="text-align: center; color: #6f6f6f; font-size: 10px; font-weight: 500; margin: 15px auto;">
+			<footer style="text-align: center; color: #6f6f6f; font-size: 10px; font-weight: 600; margin: 15px auto;">
 				<div style="margin-bottom: 10px;">
 					<span><img src="<?= precor_url_domain_replace(get_template_directory_uri()) . "/helpers/imgs/facebook.png" ?>" alt="" srcset="" class="img-red-social"></span>
 					<span><img src="<?= precor_url_domain_replace(get_template_directory_uri()) . "/helpers/imgs/youtube.png" ?>" alt="" srcset="" class="img-red-social"></span>
