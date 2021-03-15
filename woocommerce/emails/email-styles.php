@@ -281,6 +281,9 @@ border-radius: 10px;
 text-align: center;
 font-weight: 600;
 }
+.precor-text-email{
+color: var(--azul);
+}
 .btn-precor-azul {
 background-color: var(--azul);
 color: white;

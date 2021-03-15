@@ -98,6 +98,27 @@ function precor_status_wallet()
 add_action('init', 'precor_pfrx_addshorcode');
 add_action('init', 'precor_status_wallet');
 
+// obtengo valor de un profile extra field por $user_id,$name_key
+function precor_getPRFXValueByUserID($user_id, $name_key): string
+{
+     global $wpdb;
+     $idProfileExtraField = 0;
+     $results = $wpdb->get_results(
+          "SELECT field_id,field_name FROM wp_prflxtrflds_fields_id"
+     );
+     $wpdb->flush();
+     foreach ($results as $value) {
+          if ($value->field_name == strval($name_key)) {
+               $idProfileExtraField = $value->field_id;
+          }
+     }
+     $results2 = $wpdb->get_results(
+          "SELECT user_value FROM wp_prflxtrflds_user_field_data WHERE user_id=$user_id AND field_id=$idProfileExtraField"
+     );
+     return $results2[0]->user_value != null
+          ? strval($results2[0]->user_value)
+          : null;
+}
 // functions que reemplaza localhost por dominio
 function precor_url_domain_replace($url): string
 {
