@@ -313,16 +313,19 @@ else :
 		if ($show_total_column && $totals) {
 			foreach ($totals as $key => $total) {
 				$value = $total['value'];
+				// oculto el metodo de pago
+				if ($total["value"] != "YITH Request a Quote") {
 
 		?>
 
-				<?php if ($show_price) : ?>
-					<tr>
-						<th scope="row"><?php echo esc_html($total['label']); ?></th>
-						<td colspan="4"><?php echo wp_kses_post($value); ?></td>
-					</tr>
-				<?php endif ?>
+					<?php if ($show_price) : ?>
+						<tr>
+							<th scope="row"><?php echo esc_html($total['label']); ?></th>
+							<td colspan="4"><?php echo wp_kses_post($value); ?></td>
+						</tr>
+					<?php endif ?>
 		<?php
+				}
 			}
 		}
 		?>
