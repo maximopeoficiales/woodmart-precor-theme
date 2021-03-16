@@ -32,14 +32,13 @@ $page_detail_admin = 'editor' === $mail_options['quote_detail_link'];
 $quote_number      = apply_filters('ywraq_quote_number', $raq_data['order_id']);
 do_action('woocommerce_email_header', $email_heading, $email);
 $user_quote = get_user_by("id", $customer);
-$user_quote_name = $user_quote->display_name;
 
 precor_get_image_header_custom("Recurso 2.jpg");
 ?>
 
 <h1 class="precor-title-email">¡Tu Cotizacion ha llegado!</h1>
 <div class="precor-color-texto">
-	<p><strong><?= $user_quote_name ?></strong>, tu cotizacion esta nos ha llegado. Aqui el detalle de la informacion que solicitaste:</p>
+	<p><strong><?= $order->get_billing_first_name() ?></strong>, tu cotizacion nos ha llegado. Aqui el detalle de la informacion que solicitaste:</p>
 	<!-- <p><?php echo wp_kses_post($email_description); ?></p> -->
 </div>
 

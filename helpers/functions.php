@@ -187,3 +187,14 @@ function precor_contact_ejecutivo_byUserid($user_id): void
      </div>
      ';
 }
+
+function precor_get_link_order_quote_byOrder(WC_Order $order): string
+{
+     $order_id = $order->get_id();
+     $mail_options      = get_option('woocommerce_ywraq_email_settings');
+     $page_detail_admin = 'editor' === $mail_options['quote_detail_link'];
+
+     $order = wc_get_order($order_id);
+     $url = $order->get_created_via() == "ywraq" ?  esc_url(YITH_YWRAQ_Order_Request()->get_view_order_url($order_id, $page_detail_admin)) : $order->get_view_order_url();
+     return $url;
+}
