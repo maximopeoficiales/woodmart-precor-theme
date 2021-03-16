@@ -29,8 +29,14 @@ do_action('woocommerce_email_header', $email_heading, $email);
 precor_get_image_header_custom("Recurso 8.jpg");
 ?>
 
-
-<h1 class="precor-title-email">¡Nota importante!</h1>
+<?php
+// solo cuando se acepta porque asi funciona en el webservices
+if ($order->get_status() != "ywraq-accepted") {
+	echo '<h1 class="precor-title-email">¡Nota importante!</h1>';
+} else {
+	echo '<h1 class="precor-title-email">¡Se ha Aceptado su Cotizacion!</h1>';
+}
+?>
 
 <?php /* translators: %s: Customer first name */ ?>
 <p><?php printf(esc_html__('Hi %s,', 'woocommerce'), esc_html($order->get_billing_first_name())); ?></p>
