@@ -132,7 +132,7 @@ function precor_url_domain_replace($url): string
      }
      return str_replace("localhost:8080", $domain, $url);
 }
-
+// obtiene direccion completa de una imagen
 function precor_get_image_url_helper($name): string
 {
      return precor_url_domain_replace(get_template_directory_uri()) . "/helpers/imgs/$name";
@@ -151,6 +151,7 @@ function precor_get_image_header_custom($nameImgDebajo): void
      // <img src="' . $imgLogo . '" alt="" class="img-logo-sobrepuesto">
 
 }
+// crea un boton custom
 function precor_create_button_custom($bgcolor, $link, $text): void
 {
      echo '
@@ -162,4 +163,27 @@ function precor_create_button_custom($bgcolor, $link, $text): void
  </tr>
 </table>
  ';
+}
+
+// imprime un template con el nombre , telefono , email del ejecutivo
+function precor_contact_ejecutivo_byUserid($user_id): void
+{
+     $nombreEjecutivo = precor_getPRFXValueByUserID(
+          $user_id,
+          "nombeje"
+     );
+     $telefonoEjecutivo = precor_getPRFXValueByUserID(
+          $user_id,
+          "telf_eje"
+     );
+     $emailEjecutivo = precor_getPRFXValueByUserID(
+          $user_id,
+          "email_eje"
+     );
+     echo      '
+     <h1 class="precor-title-email" style="text-align: justify;">¿Deseas comunicarte con tu ejecutivo de ventas?</h1>
+     <div class="precor-color-texto">
+          <p>Contacta a tu ejecutivo de ventas <strong class="precor-text-email">' . $nombreEjecutivo . '</strong>, através del <strong class="precor-text-email">' . $telefonoEjecutivo . '</strong> o mediante el correo <strong class="precor-text-email">' . $emailEjecutivo . '</strong>.</p>
+     </div>
+     ';
 }

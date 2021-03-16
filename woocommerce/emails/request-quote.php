@@ -33,18 +33,7 @@ $quote_number      = apply_filters('ywraq_quote_number', $raq_data['order_id']);
 do_action('woocommerce_email_header', $email_heading, $email);
 $user_quote = get_user_by("id", $customer);
 $user_quote_name = $user_quote->display_name;
-$nombreEjecutivo = precor_getPRFXValueByUserID(
-	$customer,
-	"nombeje"
-);
-$telefonoEjecutivo = precor_getPRFXValueByUserID(
-	$customer,
-	"telf_eje"
-);
-$emailEjecutivo = precor_getPRFXValueByUserID(
-	$customer,
-	"email_eje"
-);
+
 precor_get_image_header_custom("Recurso 2.jpg");
 ?>
 
@@ -71,14 +60,14 @@ wc_get_template(
 
 
 <!-- <?php if ((0 !== $customer && (get_option('ywraq_enable_order_creation', 'yes') === 'yes')) || ($page_detail_admin && get_option('ywraq_enable_order_creation', 'yes') === 'yes')) : ?> -->
-	<!-- __('You can see details here:', 'yith-woocommerce-request-a-quote') -->
-	<!-- <p><?php printf('%s <a href="%s">%s</a>', wp_kses_post(__('', 'yith-woocommerce-request-a-quote')), esc_url(YITH_YWRAQ_Order_Request()->get_view_order_url($order_id, $page_detail_admin)), wp_kses_post($quote_number)); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
+<!-- __('You can see details here:', 'yith-woocommerce-request-a-quote') -->
+<!-- <p><?php printf('%s <a href="%s">%s</a>', wp_kses_post(__('', 'yith-woocommerce-request-a-quote')), esc_url(YITH_YWRAQ_Order_Request()->get_view_order_url($order_id, $page_detail_admin)), wp_kses_post($quote_number)); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
 		?>
 	</p> -->
 
 <!-- <?php
-endif
-?> -->
+		endif
+		?> -->
 <?php
 precor_create_button_custom("#003b71", esc_url(YITH_YWRAQ_Order_Request()->get_view_order_url($order_id, $page_detail_admin)), "Ver Cotizacion Aqui"); ?>
 
@@ -88,10 +77,8 @@ precor_create_button_custom("#003b71", esc_url(YITH_YWRAQ_Order_Request()->get_v
 	<p><?php echo wp_kses_post(stripslashes($raq_data['user_message'])); ?></p>
 <?php endif ?>
 <!-- Datos del ejecutivo -->
-<h1 class="precor-title-email" style="text-align: justify;">¿Deseas comunicarte con tu ejecutivo de ventas?</h1>
-<div class="precor-color-texto">
-	<p>Contacta a tu ejecutivo de ventas <strong class="precor-text-email"><?= $nombreEjecutivo ?></strong>, através del <strong class="precor-text-email"><?= $telefonoEjecutivo ?></strong> o mediante el correo <strong class="precor-text-email"><?= $emailEjecutivo ?></strong>.</p>
-</div>
+<?php precor_contact_ejecutivo_byUserid($customer); ?>
+
 
 
 
