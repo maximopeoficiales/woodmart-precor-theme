@@ -5,8 +5,12 @@ add_filter('wpo_wcpdf_filename', 'wpo_wcpdf_custom_filename', 10, 4);
 function wpo_wcpdf_custom_filename($filename, $template_type, $order_ids, $context)
 {
      // prepend your shopname to the file
+     $order = wc_get_order($order_ids[0]);
+     $type_order = $order->get_created_via() == "ywraq" ? "Cotizacion" : "Pedido";
+
+
      $invoice_string = _n('invoice', 'invoices', count($order_ids), 'woocommerce-pdf-invoices-packing-slips');
-     $new_prefix = "Pedido-";
+     $new_prefix = "$type_order-";
      $new_filename = str_replace($invoice_string, $new_prefix, $filename);
 
      return $new_filename;
