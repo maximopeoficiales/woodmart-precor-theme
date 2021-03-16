@@ -128,7 +128,7 @@ function precorEvaluateBadgeQuotes($status)
 			?>
 				<tr class="quotes">
 					<td class="quotes-status" data-title="<?php esc_attr_e('Status', 'yith-woocommerce-request-a-quote'); ?>" style="text-align:<?php echo $text_align; ?>; white-space:nowrap;">
-						<span class="badge-precor <?= $badgePrecorColor ?>"> <?php ywraq_get_order_status_tag($order->get_status()); ?></span>
+						<span class="badge-precor <?= $badgePrecorColor ?>"> <?php ywraq_get_order_status_tag($order->get_status() == "ywraq-accepted" ? "Aceptado" : $order->get_status()); ?></span>
 					</td>
 					<td class="quotes-number" data-title="<?php esc_attr_e('Order Number', 'yith-woocommerce-request-a-quote'); ?>">
 						<a href="<?php echo esc_url(YITH_YWRAQ_Order_Request()->get_view_order_url($order_id)); ?>">
