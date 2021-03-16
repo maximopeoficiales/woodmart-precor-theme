@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Customer completed order email
  *
@@ -15,18 +16,29 @@
  * @version 3.7.0
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
+if (!defined('ABSPATH')) {
 	exit;
 }
 
 /*
  * @hooked WC_Emails::email_header() Output the email header
  */
-do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
+do_action('woocommerce_email_header', $email_heading, $email); ?>
+
+<!-- imagen y titulo de compra realizada -->
+<?php
+precor_get_image_header_custom("Recurso 3.jpg");
+?>
+<h1 class="precor-title-email">¡Tu compra ha sido realizada!</h1>
 
 <?php /* translators: %s: Customer first name */ ?>
-<p><?php printf( esc_html__( 'Hi %s,', 'woocommerce' ), esc_html( $order->get_billing_first_name() ) ); ?></p>
-<p><?php esc_html_e( 'We have finished processing your order.', 'woocommerce' ); ?></p>
+
+<div class="precor-color-texto">
+	<p><strong><?= $order->get_billing_first_name() ?></strong>, estas son tus compras realizadas:</p>
+</div>
+<!-- <p><?php printf(esc_html__('Hi %s,', 'woocommerce'), esc_html($order->get_billing_first_name())); ?></p> -->
+
+<p><?php esc_html_e('We have finished processing your order.', 'woocommerce'); ?></p>
 <?php
 
 /*
@@ -35,27 +47,35 @@ do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
  * @hooked WC_Structured_Data::output_structured_data() Outputs structured data.
  * @since 2.5.0
  */
-do_action( 'woocommerce_email_order_details', $order, $sent_to_admin, $plain_text, $email );
+do_action('woocommerce_email_order_details', $order, $sent_to_admin, $plain_text, $email);
 
 /*
  * @hooked WC_Emails::order_meta() Shows order meta data.
  */
-do_action( 'woocommerce_email_order_meta', $order, $sent_to_admin, $plain_text, $email );
+do_action('woocommerce_email_order_meta', $order, $sent_to_admin, $plain_text, $email);
 
 /*
  * @hooked WC_Emails::customer_details() Shows customer details
  * @hooked WC_Emails::email_address() Shows email address
  */
-do_action( 'woocommerce_email_customer_details', $order, $sent_to_admin, $plain_text, $email );
+
+// do_action('woocommerce_email_customer_details', $order, $sent_to_admin, $plain_text, $email);
 
 /**
  * Show user-defined additional content - this is set in each email's settings.
  */
-if ( $additional_content ) {
-	echo wp_kses_post( wpautop( wptexturize( $additional_content ) ) );
-}
+// GRACIAS POR TU COMPRA
+// if ($additional_content) {
+// 	echo wp_kses_post(wpautop(wptexturize($additional_content)));
+// }
 
 /*
  * @hooked WC_Emails::email_footer() Output the email footer
  */
-do_action( 'woocommerce_email_footer', $email );
+precor_buscas_algun_producto();
+?>
+
+
+<?php
+do_action('woocommerce_email_footer', $email);
+?>

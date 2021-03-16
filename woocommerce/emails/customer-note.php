@@ -26,7 +26,11 @@ if (!defined('ABSPATH')) {
  */
 do_action('woocommerce_email_header', $email_heading, $email);
 //  imagen de relleno 
-precor_get_image_header_custom("Recurso 8.jpg");
+if ($order->get_status() != "ywraq-accepted") {
+	precor_get_image_header_custom("Recurso 8.jpg");
+} else {
+	precor_get_image_header_custom("Recurso 9.jpg");
+}
 ?>
 
 <?php

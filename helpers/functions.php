@@ -198,3 +198,17 @@ function precor_get_link_order_quote_byOrder(WC_Order $order): string
      $url = $order->get_created_via() == "ywraq" ?  esc_url(YITH_YWRAQ_Order_Request()->get_view_order_url($order_id, $page_detail_admin)) : $order->get_view_order_url();
      return $url;
 }
+
+function precor_buscas_algun_producto()
+{
+     echo '
+     <h1 class="precor-title-email">¿Buscando algún producto?</h1>
+     <div class="precor-color-texto">
+          <p>Nuestra amplia lista de productos espera por ti. Haz <strong><a href="' . precor_get_catalog_products() . '" class="precor-text-email">click aquí</a></strong> para dirigirte a nuestro catalogo</p>
+     </div>
+     ';
+}
+function precor_get_catalog_products(): string
+{
+     return get_site_url() . "/mi-cuenta/catalogo-de-productos";
+}
