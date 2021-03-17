@@ -299,3 +299,9 @@ Estilos del Modal
 .item-event-hover:hover > .sub-menu-dropdown {
   left: -18px;
 }
+
+@media(max-width: 576px){
+      .precor-display-none-sm{
+        display: none;
+      }
+}
