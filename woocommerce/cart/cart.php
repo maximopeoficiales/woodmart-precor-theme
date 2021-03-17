@@ -34,6 +34,7 @@ $pesoTotalKg = 0;
 						<th class="product-remove">&nbsp;</th>
 						<th class="product-thumbnail">&nbsp;</th>
 						<th class="product-name texto-precor-azul"><?php esc_html_e('Product', 'woocommerce'); ?></th>
+						<th class="product-name texto-precor-azul">UND</th>
 						<th class="product-name texto-precor-azul">Peso</th>
 						<th class="product-name texto-precor-azul">Peso Total</th>
 						<!-- <th class="product-name">Espesor</th> -->
@@ -51,6 +52,7 @@ $pesoTotalKg = 0;
 						$product_id = apply_filters('woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key);
 
 						// modificacion para total de kg
+						$und = get_post_meta($product_id, 'und', true);
 						$simplePeso = doubleval(get_post_meta($product_id, 'peso', true));
 						$peso = $simplePeso * $cart_item['quantity'];
 						// $espesor = get_post_meta($product_id, 'espesor', true);
@@ -107,6 +109,9 @@ $pesoTotalKg = 0;
 										echo wp_kses_post(apply_filters('woocommerce_cart_item_backorder_notification', '<p class="backorder_notification">' . esc_html__('Available on backorder', 'woocommerce') . '</p>', $product_id));
 									}
 									?>
+								</td>
+								<td class="" data-title="UND">
+									<?= $und ?>
 								</td>
 								<td class="" data-title="Peso">
 									<?= number_format(doubleval($simplePeso), 2) ?> kg
