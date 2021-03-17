@@ -24,6 +24,7 @@ class OrderCustomWoo
          // Set specific data for each item in the array
          $und = null;
          $undValue = null;
+         $unxpaq = null;
          foreach ($product->get_meta_data() as $mt) {
             if ($mt->key == "und") {
                if ($mt->value != "kg") {
@@ -32,6 +33,9 @@ class OrderCustomWoo
             }
             if ($mt->key == "und_value") {
                $undValue = $mt->value;
+            }
+            if ($mt->key == "unxpaq") {
+               $unxpaq = doubleval($mt->value);
             }
          }
          $items_data[] = [
@@ -44,8 +48,10 @@ class OrderCustomWoo
             "subtotal_tax" => $item->get_subtotal_tax(),
             "und" => $und,
             "und_value" => $undValue,
+            "unxpaq" => $unxpaq,
             "meta_data" => $product->get_meta_data(),
             "sku" => $product->get_sku(),
+            "weight" => $product->get_weight(),
             "price" => $product->get_price(),
             // 'parent_name'    => $product->get_parent_name(),
          ];
