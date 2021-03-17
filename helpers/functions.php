@@ -90,9 +90,9 @@ function precor_status_wallet()
      add_shortcode('get_status_wallet', function () {
           // Attributes
           $user_id = get_current_user_id();
-
+          // solo cuando es inactivo te muestra el mesange de desbloqueado
           global $wpdb;
-          $sql = "SELECT IF(wf.status= 'unlocked','Activo','Inactivo') as status FROM wp_fswcwallet wf WHERE wf.user_id = $user_id LIMIT 1";
+          $sql = "SELECT IF(wf.status= 'unlocked','Activo',CONCAT('Inactivo ',wf.lock_message)) as status FROM wp_fswcwallet wf WHERE wf.user_id = $user_id LIMIT 1";
           $results = $wpdb->get_results($wpdb->prepare($sql));
           $wpdb->flush();
           $status = $results[0]->status == null ? "" : $results[0]->status;
