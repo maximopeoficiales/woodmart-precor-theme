@@ -59,6 +59,10 @@ if (!apply_filters('woocommerce_order_item_visible', true, $item)) {
 
 		?>
 	</td>
+	<!-- und -->
+	<td class="woocommerce-table__product-name product-total">
+		<?= $und ?>
+	</td>
 	<!-- peso -->
 	<td class="woocommerce-table__product-name product-total">
 		<?= number_format($simplePeso,2)?>

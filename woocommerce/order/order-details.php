@@ -51,6 +51,7 @@ if ($show_downloads) {
 			<tr>
 				<th class="woocommerce-table__product-name product-name"><?php esc_html_e('Product', 'woocommerce'); ?></th>
 				<th class="woocommerce-table__product-name product-name"><?php esc_html_e('Quantity', 'woocommerce'); ?></th>
+				<th class="woocommerce-table__product-name product-name"><?php esc_html_e('UND', 'woocommerce'); ?></th>
 				<th class="woocommerce-table__product-name product-name"><?php esc_html_e('Peso', 'woocommerce'); ?></th>
 				<th class="woocommerce-table__product-name product-name"><?php esc_html_e('Peso Total', 'woocommerce'); ?></th>
 				<th class="woocommerce-table__product-table product-total"><?php esc_html_e('Total', 'woocommerce'); ?></th>
@@ -67,6 +68,7 @@ if ($show_downloads) {
 				$product = $item->get_product();
 				// modificacion para total de kg
 				$simplePeso = doubleval(get_post_meta($item['product_id'], 'peso', true));
+				$und = get_post_meta($item['product_id'], "und", true);
 				$peso = $simplePeso * $item['qty'];
 				$pesoTotalKg += doubleval((is_null($peso) || $peso == "") ?   0 : $peso);
 				wc_get_template(
@@ -81,6 +83,7 @@ if ($show_downloads) {
 						// agrego propidades del peso
 						'simplePeso'            => $simplePeso,
 						'peso'            => $peso,
+						'und'            => $und,
 					)
 				);
 			}
@@ -90,9 +93,10 @@ if ($show_downloads) {
 		</tbody>
 
 		<tfoot>
+			<?php $ncolumsColspan = 5; ?>
 			<tr>
 				<th scope="row">Peso Total Kg</th>
-				<td colspan="4">
+				<td colspan="<?= $ncolumsColspan ?>">
 					<span class="woocommerce-Price-amount amount"><?= number_format($pesoTotalKg, 2) ?> kg</span>
 				</td>
 			</tr>
@@ -101,7 +105,7 @@ if ($show_downloads) {
 			?>
 				<tr>
 					<th scope="row"><?php echo esc_html($total['label']); ?></th>
-					<td colspan="4"><?php echo ('payment_method' === $key) ? esc_html($total['value']) : wp_kses_post($total['value']); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
+					<td colspan="<?= $ncolumsColspan ?>"><?php echo ('payment_method' === $key) ? esc_html($total['value']) : wp_kses_post($total['value']); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
 									?></td>
 				</tr>
 			<?php
@@ -110,7 +114,7 @@ if ($show_downloads) {
 			<?php if ($order->get_customer_note()) : ?>
 				<tr>
 					<th><?php esc_html_e('Note:', 'woocommerce'); ?></th>
-					<td colspan="4"><?php echo wp_kses_post(nl2br(wptexturize($order->get_customer_note()))); ?></td>
+					<td colspan="<?= $ncolumsColspan ?>"><?php echo wp_kses_post(nl2br(wptexturize($order->get_customer_note()))); ?></td>
 				</tr>
 			<?php endif; ?>
 		</tfoot>
