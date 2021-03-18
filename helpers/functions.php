@@ -212,3 +212,68 @@ function precor_get_catalog_products(): string
 {
      return get_site_url() . "/mi-cuenta/catalogo-de-productos";
 }
+
+add_filter('woocommerce_account_menu_items', 'precor_remove_my_account_links');
+function precor_remove_my_account_links($menu_links)
+{
+
+     // unset($menu_links['edit-address']); // Addresses
+     // unset($menu_links['dashboard']); // Remove Dashboard
+     unset($menu_links['payment-methods']); // Remove Payment Methods
+     unset($menu_links['orders']); // Remove Orders
+     unset($menu_links['downloads']); // Disable Downloads
+     unset($menu_links['edit-account']); // Remove Account details tab
+     unset($menu_links['edit-address']); // Remove Account details tab
+     unset($menu_links['customer-logout']); // Remove Logout link
+     $menu_links['dashboard'] = "Mi Cuenta";
+
+     $new = array(
+          'catalogoProductos' => 'Catalogo de Productos',
+          "misDatos" => "Mis Datos",
+          "editarCuenta" => "Editar Cuenta",
+          "misDirecciones" => "Mis Direcciones",
+          "misPedidos" => "Mis Pedidos",
+          "misCotizaciones" => "Mis Cotizaciones",
+     );
+
+     // or in case you need 2 links
+     // $new = array( 'link1' => 'Link 1', 'link2' => 'Link 2' );
+
+     // array_slice() is good when you want to add an element between the other ones
+     $menu_links = array_slice($menu_links, 0, 1, true)
+          + $new
+          + array_slice($menu_links, 1, NULL, true);
+
+
+     return $menu_links;
+}
+
+add_filter('woocommerce_get_endpoint_url', 'precor_hook_endpoint', 10, 4);
+function precor_hook_endpoint($url, $endpoint, $value, $permalink)
+{
+     switch ($endpoint) {
+          case 'catalogoProductos':
+               $url = site_url("mi-cuenta/catalogo-de-productos");
+               break;
+          case 'misDatos':
+               $url = site_url("mi-cuenta/mis-datos");
+               break;
+          case 'editarCuenta':
+               $url = site_url("mi-cuenta/edit-account");
+               break;
+          case 'misDirecciones':
+               $url = site_url("mi-cuenta/editar-direccion");
+               break;
+          case 'misPedidos':
+               $url = site_url("mi-cuenta/orders");
+               break;
+          case 'misCotizaciones':
+               $url = site_url("mi-cuenta/ver-cotizacion");
+               break;
+          default:
+               break;
+     }
+
+
+     return $url;
+}
