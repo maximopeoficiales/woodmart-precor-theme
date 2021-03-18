@@ -176,7 +176,7 @@ foreach (WC()->cart->get_cart() as $cart_item_key => $cart_item) {
 						if ($paq == "") {
 							$pzas = "";
 						} else {
-							$pzas = number_format($cart_item['quantity'] / $paq, 2);
+							$pzas = $cart_item['quantity'] / $paq;
 						}
 						$peso = doubleval(get_post_meta($_product_id, 'peso', true))  * $cart_item['quantity'];
 						// $pesoTotalKg += doubleval((is_null($peso) || $peso == "") ?   0 : $peso);
