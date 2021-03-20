@@ -95,7 +95,7 @@ $print_button_pdf = get_option('ywraq_pdf_in_myaccount') === 'yes' && $pdf_file;
 ?>
 <?php
 $actions = wc_get_account_orders_actions($order);
-//se agrego enlace en nueva pestaÃ±a al plugin yith
+//se agrego enlace en nueva pestaña al plugin yith
 if (!empty($actions)) {
 	foreach ($actions as $key => $action) { // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 		// solo mostrae el de invoice
