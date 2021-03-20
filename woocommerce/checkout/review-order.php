@@ -121,7 +121,6 @@ foreach (WC()->cart->get_cart() as $cart_item_key => $cart_item) {
 			document.querySelector(".contenedor-tabla").childNodes.forEach(e => {
 				if (e.className != "shop_table woocommerce-checkout-review-order-table") {
 					e.remove();
-					console.log(e.className);
 				}
 			})
 		}, 100);
@@ -233,7 +232,7 @@ foreach (WC()->cart->get_cart() as $cart_item_key => $cart_item) {
 							<td><?php wc_cart_totals_coupon_html($coupon); ?></td>
 						</tr>
 					<?php endforeach; ?>
-
+<!-- 
 					<?php if (WC()->cart->needs_shipping() && WC()->cart->show_shipping()) : ?>
 
 						<?php do_action('woocommerce_review_order_before_shipping'); ?>
@@ -242,7 +241,7 @@ foreach (WC()->cart->get_cart() as $cart_item_key => $cart_item) {
 
 						<?php do_action('woocommerce_review_order_after_shipping'); ?>
 
-					<?php endif; ?>
+					<?php endif; ?> -->
 
 					<?php foreach (WC()->cart->get_fees() as $fee) : ?>
 						<tr class="fee">
