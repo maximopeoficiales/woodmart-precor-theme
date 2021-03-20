@@ -225,15 +225,14 @@ function precor_remove_my_account_links($menu_links)
      unset($menu_links['edit-account']); // Remove Account details tab
      unset($menu_links['edit-address']); // Remove Account details tab
      unset($menu_links['customer-logout']); // Remove Logout link
-    // $menu_links['dashboard'] = "Mi Cuenta";
+     // $menu_links['dashboard'] = "Mi Cuenta";
 
      $new = array(
           'catalogoProductos' => 'Catalogo de Productos',
           "misDatos" => "Mis Datos",
-          "editarCuenta" => "Editar Cuenta",
           "misDirecciones" => "Mis Direcciones",
-          "misPedidos" => "Mis Pedidos",
           "misCotizaciones" => "Mis Cotizaciones",
+          "misPedidos" => "Mis Pedidos",
      );
 
      // or in case you need 2 links
@@ -258,14 +257,11 @@ function precor_hook_endpoint($url, $endpoint, $value, $permalink)
           case 'misDatos':
                $url = site_url("mi-cuenta/mis-datos");
                break;
-          case 'editarCuenta':
-               $url = site_url("mi-cuenta/edit-account");
-               break;
           case 'misDirecciones':
-               $url = site_url("mi-cuenta/editar-direccion");
+               $url = site_url("mi-cuenta/mis-direcciones");
                break;
           case 'misPedidos':
-               $url = site_url("mi-cuenta/orders");
+               $url = site_url("mi-cuenta/mis-pedidos");
                break;
           case 'misCotizaciones':
                $url = site_url("mi-cuenta/ver-cotizacion");
