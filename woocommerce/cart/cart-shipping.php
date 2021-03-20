@@ -25,11 +25,14 @@ $has_calculated_shipping  = !empty($has_calculated_shipping);
 $show_shipping_calculator = !empty($show_shipping_calculator);
 $calculator_text          = '';
 ?>
+<style>
+    #shipping_method {
+        width: 100% !important;
+    }
+</style>
 <tr class="woocommerce-shipping-totals shipping">
     <th><?php echo wp_kses_post($package_name); ?></th>
-    <?php echo get_query_var('pagename') == "carrito" ?  "" : "<td></td>" ?>
-
-    <td data-title="<?php echo esc_attr($package_name); ?>">
+    <td data-title="<?php echo esc_attr($package_name); ?>" colspan="5" style="text-align: right;">
         <?php if ($available_methods) : ?>
             <ul id="shipping_method" class="woocommerce-shipping-methods">
                 <?php foreach ($available_methods as $method) : ?>
