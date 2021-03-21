@@ -46,7 +46,7 @@ precor_get_image_header_custom("Recurso 4.jpg");
 
 
 
-<h1 class="precor-title-email">¡La solicitud de presupuesto a sido contestada!</h1>
+<h1 class="precor-title-email">¡Tu solicitud de presupuesto a sido contestada!</h1>
 
 <h2><?php printf(('%1$s %2$s %3$s'), apply_filters('wpml_translate_single_string', esc_html($email_title), 'admin_texts_woocommerce_ywraq_send_quote_reminder_settings', '[woocommerce_ywraq_send_quote_reminder_settings]email-title', $raq_data['lang']), esc_html(__('in', 'yith-woocommerce-request-a-quote')), esc_html($raq_data['order-number'])); // phpcs:ignore 
 	?></h2>
@@ -81,7 +81,7 @@ precor_get_image_header_custom("Recurso 4.jpg");
 		<?php precor_create_button_custom("#32CC52", esc_url(ywraq_get_accepted_quote_page($order)), ywraq_get_label('accept')) ?>
 	<?php
 	endif;
-
+	echo "<br>";
 	echo (get_option('ywraq_show_accept_link') !== 'no' && get_option('ywraq_show_reject_link') !== 'no') ? '  ' : '';
 	if (get_option('ywraq_show_reject_link') !== 'no') :
 		precor_create_button_custom("#D91023", esc_url(ywraq_get_rejected_quote_page($order)), ywraq_get_label('reject'));

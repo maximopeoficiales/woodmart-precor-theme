@@ -20,8 +20,12 @@ defined( 'ABSPATH' ) || exit;
 /*
  * @hooked WC_Emails::email_header() Output the email header
  */
-do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
+do_action( 'woocommerce_email_header', $email_heading, $email ); 
+precor_get_image_header_custom("Recurso 8.jpg");
 
+?>
+
+<h1 class="precor-title-email">¡Pedido Reembolsado!</h1>
 <?php /* translators: %s: Customer first name */ ?>
 <p><?php printf( esc_html__( 'Hi %s,', 'woocommerce' ), esc_html( $order->get_billing_first_name() ) ); ?></p>
 
@@ -56,6 +60,7 @@ do_action( 'woocommerce_email_order_meta', $order, $sent_to_admin, $plain_text, 
  * @hooked WC_Emails::email_address() Shows email address
  */
 do_action( 'woocommerce_email_customer_details', $order, $sent_to_admin, $plain_text, $email );
+precor_contact_ejecutivo_byUserid($order->get_customer_id());
 
 /**
  * Show user-defined additional content - this is set in each email's settings.

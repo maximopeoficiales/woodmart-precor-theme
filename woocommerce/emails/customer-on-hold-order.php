@@ -20,9 +20,12 @@ defined( 'ABSPATH' ) || exit;
 /*
  * @hooked WC_Emails::email_header() Output the email header
  */
-do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
+do_action( 'woocommerce_email_header', $email_heading, $email ); 
+precor_get_image_header_custom("Recurso 7.jpg");
+?>
 
 <?php /* translators: %s: Customer first name */ ?>
+<h1 class="precor-title-email">¡Pedido en Espera!</h1>
 <p><?php printf( esc_html__( 'Hi %s,', 'woocommerce' ), esc_html( $order->get_billing_first_name() ) ); ?></p>
 <p><?php esc_html_e( 'Thanks for your order. It’s on-hold until we confirm that payment has been received. In the meantime, here’s a reminder of what you ordered:', 'woocommerce' ); ?></p>
 
@@ -46,6 +49,7 @@ do_action( 'woocommerce_email_order_meta', $order, $sent_to_admin, $plain_text, 
  * @hooked WC_Emails::email_address() Shows email address
  */
 do_action( 'woocommerce_email_customer_details', $order, $sent_to_admin, $plain_text, $email );
+precor_contact_ejecutivo_byUserid($order->get_customer_id());
 
 /**
  * Show user-defined additional content - this is set in each email's settings.

@@ -71,10 +71,8 @@ $type_order = $order->get_created_via() == "ywraq" ? "Cotizacion" : "Pedido";
 
 
 precor_create_button_custom("#003b71", precor_get_link_order_quote_byOrder($order), "Ver $type_order aqui");
-if ($order->get_created_via() == "ywraq") {
-	// Se agregara contacto con ejecutivo solo se mostrara si es una cotizacion
-	precor_contact_ejecutivo_byUserid($order->get_customer_id());
-}
+// Se agregara contacto con ejecutivo solo se mostrara si es una cotizacion
+precor_contact_ejecutivo_byUserid($order->get_customer_id());
 
 
 

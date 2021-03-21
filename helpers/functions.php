@@ -121,7 +121,7 @@ function precor_getPRFXValueByUserID($user_id, $name_key): string
      );
      return $results2[0]->user_value != null
           ? strval($results2[0]->user_value)
-          : null;
+          : "";
 }
 // functions que reemplaza localhost por dominio
 function precor_url_domain_replace($url): string
