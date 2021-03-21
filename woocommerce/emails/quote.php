@@ -94,7 +94,10 @@ $after_list = yit_get_prop($order, '_ywraq_request_response_after', true);
 if ('' !== $after_list) :
 ?>
 	<p><?php echo esc_html(apply_filters('ywraq_quote_after_list', nl2br($after_list), $order_id)); ?></p>
-<?php endif; ?>
+<?php endif;
+
+precor_contact_ejecutivo_byUserid($order->get_customer_id());
+?>
 
 
 
