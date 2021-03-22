@@ -102,13 +102,16 @@ if ($show_downloads) {
 			</tr>
 			<?php
 			foreach ($order->get_order_item_totals() as $key => $total) {
+				if ($total["value"] != "YITH Request a Quote") {
+
 			?>
-				<tr>
-					<th scope="row"><?php echo esc_html($total['label']); ?></th>
-					<td colspan="<?= $ncolumsColspan ?>"><?php echo ('payment_method' === $key) ? esc_html($total['value']) : wp_kses_post($total['value']); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
-									?></td>
-				</tr>
+					<tr>
+						<th scope="row"><?php echo esc_html($total['label']); ?></th>
+						<td colspan="<?= $ncolumsColspan ?>"><?php echo ('payment_method' === $key) ? esc_html($total['value']) : wp_kses_post($total['value']); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
+																?></td>
+					</tr>
 			<?php
+				}
 			}
 			?>
 			<?php if ($order->get_customer_note()) : ?>
