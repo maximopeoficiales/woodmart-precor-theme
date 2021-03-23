@@ -47,9 +47,12 @@ precor_get_image_header_custom("Recurso 4.jpg");
 
 
 <h1 class="precor-title-email">¡Tu solicitud de presupuesto a sido contestada!</h1>
-
-<h2><?php printf(('%1$s %2$s %3$s'), apply_filters('wpml_translate_single_string', esc_html($email_title), 'admin_texts_woocommerce_ywraq_send_quote_reminder_settings', '[woocommerce_ywraq_send_quote_reminder_settings]email-title', $raq_data['lang']), esc_html(__('in', 'yith-woocommerce-request-a-quote')), esc_html($raq_data['order-number'])); // phpcs:ignore 
-	?></h2>
+<!-- 
+<h2><?php printf(('%1$s %2$s %3$s'),
+ apply_filters('wpml_translate_single_string', esc_html($email_title), 'admin_texts_woocommerce_ywraq_send_quote_reminder_settings', '[woocommerce_ywraq_send_quote_reminder_settings]email-title', $raq_data['lang']), 
+ esc_html(__('in', 'yith-woocommerce-request-a-quote')),
+	esc_html($raq_data['order-number'])); // phpcs:ignore 
+	?></h2> -->
 
 <p><?php echo apply_filters('wpml_translate_single_string', wp_kses_post($email_description), 'admin_texts_woocommerce_ywraq_send_quote_settings', '[woocommerce_ywraq_send_quote_settings]email-description', $raq_data['lang']); // phpcs:ignore 
 	?></p>

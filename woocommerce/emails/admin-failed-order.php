@@ -32,7 +32,7 @@ precor_get_image_header_custom("Recurso 6.jpg");
 <h1 class="precor-title-email">¡El Pedido ha fallado!</h1>
 
 <?php /* translators: %1$s: Order number. %2$s: Customer full name. */ ?>
-<p><?php printf(esc_html__('Payment for order #%1$s from %2$s has failed. The order was as follows:', 'woocommerce'), esc_html($order->get_order_number()), esc_html($order->get_billing_first_name())); ?></p>
+<p><?php printf(esc_html__('Payment for order #%1$s from %2$s has failed. The order was as follows:', 'woocommerce'), esc_html(precor_getIDSAPbyOrderID($order->get_order_number())), esc_html($order->get_billing_first_name())); ?></p>
 
 <?php
 

@@ -5,12 +5,15 @@ add_filter('wpo_wcpdf_filename', 'wpo_wcpdf_custom_filename', 10, 4);
 function wpo_wcpdf_custom_filename($filename, $template_type, $order_ids, $context)
 {
      // prepend your shopname to the file
-     $order = wc_get_order($order_ids[0]);
+     $order_id = $order_ids[0];
+     $order = wc_get_order($order_id);
+     $IDSAP = get_post_meta($order_id, "id_ped", true);
+     $IDSAP = $IDSAP != "" ? "$IDSAP-" : "";
      $type_order = $order->get_created_via() == "ywraq" ? "Cotizacion" : "Pedido";
 
 
      $invoice_string = _n('invoice', 'invoices', count($order_ids), 'woocommerce-pdf-invoices-packing-slips');
-     $new_prefix = "$type_order-";
+     $new_prefix = "$type_order-$IDSAP";
      $new_filename = str_replace($invoice_string, $new_prefix, $filename);
 
      return $new_filename;
@@ -230,6 +233,7 @@ function precor_remove_my_account_links($menu_links)
      $new = array(
           'catalogoProductos' => 'Catalogo de Productos',
           "misDatos" => "Mis Datos",
+          "miCredito" => "Mi Credito",
           "misDirecciones" => "Mis Direcciones",
           "misCotizaciones" => "Mis Cotizaciones",
           "misPedidos" => "Mis Pedidos",
@@ -266,6 +270,9 @@ function precor_hook_endpoint($url, $endpoint, $value, $permalink)
           case 'misCotizaciones':
                $url = site_url("mi-cuenta/ver-cotizacion");
                break;
+          case 'miCredito':
+               $url = site_url("mi-cuenta/mi-credito");
+               break;
           default:
                break;
      }
@@ -283,3 +290,15 @@ function precor_style_header_noLogin()
 }
 
 add_action('wp_head', 'precor_style_header_noLogin');
+
+function precor_getIDSAPbyOrderID($order_id): string
+{
+     $IDSAP = get_post_meta($order_id, "id_ped", true);
+     $format = "";
+     if ($IDSAP != "") {
+          $format = $IDSAP . " (#" . $order_id . ")";
+     } else {
+          $format = "#" . $order_id;
+     }
+     return $format;
+}

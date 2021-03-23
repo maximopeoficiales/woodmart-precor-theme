@@ -83,7 +83,7 @@ $calculator_text          = '';
         <?php endif; ?>
 
         <?php if ($show_shipping_calculator) : ?>
-            <?php woocommerce_shipping_calculator($calculator_text); ?>
+            <!-- <?php woocommerce_shipping_calculator($calculator_text); ?> -->
         <?php endif; ?>
     </td>
 </tr>

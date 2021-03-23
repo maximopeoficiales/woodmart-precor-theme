@@ -95,7 +95,7 @@ function precorEvaluateBadge($status)
 
 							<?php elseif ('order-number' === $column_id) : ?>
 								<a href="<?php echo esc_url($order->get_view_order_url()); ?>">
-									<?php echo esc_html(_x('#', 'hash before order number', 'woocommerce') . $order->get_order_number()); ?>
+									<?= get_post_meta($order->get_order_number(), "id_ped", true) ?> (<?php echo esc_html(_x('#', 'hash before order number', 'woocommerce') . $order->get_order_number()); ?>)
 								</a>
 
 							<?php elseif ('order-date' === $column_id) : ?>

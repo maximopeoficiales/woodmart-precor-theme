@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Admin cancelled order email
  *
@@ -15,21 +16,21 @@
  * @version 4.1.0
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
+if (!defined('ABSPATH')) {
 	exit;
 }
 
 /*
  * @hooked WC_Emails::email_header() Output the email header
 */
-do_action( 'woocommerce_email_header', $email_heading, $email );
+do_action('woocommerce_email_header', $email_heading, $email);
 precor_get_image_header_custom("Recurso 8.jpg");
 
 ?>
 
 <h1 class="precor-title-email">¡Pedido Cancelado!</h1>
 <?php /* translators: %1$s: Order number, %2$s: Customer full name.  */ ?>
-<p><?php printf( esc_html__( 'Notification to let you know &mdash; order #%1$s belonging to %2$s has been cancelled:', 'woocommerce' ), esc_html( $order->get_order_number() ), esc_html( $order->get_billing_first_name() ) ); ?></p>
+<p><?php printf(esc_html__('Notification to let you know &mdash; order #%1$s belonging to %2$s has been cancelled:', 'woocommerce'), esc_html(precor_getIDSAPbyOrderID($order->get_order_number())), esc_html($order->get_billing_first_name())); ?></p>
 
 <?php
 /*
@@ -38,29 +39,29 @@ precor_get_image_header_custom("Recurso 8.jpg");
  * @hooked WC_Structured_Data::output_structured_data() Outputs structured data.
  * @since 2.5.0
  */
-do_action( 'woocommerce_email_order_details', $order, $sent_to_admin, $plain_text, $email );
+do_action('woocommerce_email_order_details', $order, $sent_to_admin, $plain_text, $email);
 
 /*
  * @hooked WC_Emails::order_meta() Shows order meta data.
  */
-do_action( 'woocommerce_email_order_meta', $order, $sent_to_admin, $plain_text, $email );
+do_action('woocommerce_email_order_meta', $order, $sent_to_admin, $plain_text, $email);
 
 /*
  * @hooked WC_Emails::customer_details() Shows customer details
  * @hooked WC_Emails::email_address() Shows email address
  */
-do_action( 'woocommerce_email_customer_details', $order, $sent_to_admin, $plain_text, $email );
+do_action('woocommerce_email_customer_details', $order, $sent_to_admin, $plain_text, $email);
 precor_contact_ejecutivo_byUserid($order->get_customer_id());
 
 
 /**
  * Show user-defined additional content - this is set in each email's settings.
  */
-if ( $additional_content ) {
-	echo wp_kses_post( wpautop( wptexturize( $additional_content ) ) );
+if ($additional_content) {
+	echo wp_kses_post(wpautop(wptexturize($additional_content)));
 }
 
 /*
  * @hooked WC_Emails::email_footer() Output the email footer
  */
-do_action( 'woocommerce_email_footer', $email );
+do_action('woocommerce_email_footer', $email);

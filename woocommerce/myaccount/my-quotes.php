@@ -132,7 +132,7 @@ function precorEvaluateBadgeQuotes($status)
 					</td>
 					<td class="quotes-number" data-title="<?php esc_attr_e('Order Number', 'yith-woocommerce-request-a-quote'); ?>">
 						<a href="<?php echo esc_url(YITH_YWRAQ_Order_Request()->get_view_order_url($order_id)); ?>">
-							#<?php echo esc_html($order->get_order_number()); ?>
+							<strong><?= get_post_meta($order_id, "id_ped", true) ?> (#<?php echo esc_html($order->get_order_number()); ?>)</strong>
 						</a>
 					</td>
 					<td class="quotes-date" data-title="<?php esc_attr_e('Date', 'yith-woocommerce-request-a-quote'); ?>">
