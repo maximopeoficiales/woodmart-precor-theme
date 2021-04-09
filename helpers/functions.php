@@ -284,8 +284,15 @@ function precor_hook_endpoint($url, $endpoint, $value, $permalink)
 // añadire css cuando no este logueado el usuario
 function precor_style_header_noLogin()
 {
-     if (shortcode_exists("woocommerce_my_account") && get_current_user_id() == 0) {
+     // global $wp;
+     // $current_url = home_url(add_query_arg(array(), $wp->request));
+     if (
+          shortcode_exists("woocommerce_my_account") &&
+          get_current_user_id() == 0 &&
+          strpos($_SERVER['REQUEST_URI'], "/mi-cuenta")
+     ) {
           wp_enqueue_style('login-styles', get_template_directory_uri() . '/helpers/css/login-style.css', array());
+          // echo ;
      }
 }
 
