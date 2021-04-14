@@ -309,3 +309,35 @@ function precor_getIDSAPbyOrderID($order_id): string
      }
      return $format;
 }
+
+
+// se agrego endpoint para actualizar rate en woocommerce currency
+add_action('rest_api_init', function () {
+     register_rest_route('webservices_precor/v1', '/update_currency_rate/', array(
+          'methods' => 'POST',
+          'callback' => 'precor_update_currency_rate',
+          'args' => array(),
+     ));
+});
+
+function precor_update_currency_rate(WP_REST_Request $request)
+{
+     //obtengo el id_country del parametros
+     $rate = $request->get_json_params()["rate"];
+     $user = $request->get_json_params()["user"];
+     $pass = $request->get_json_params()["pass"];
+     // $ubigeos = query_getUbigeo($id_country);
+     if ($user == "PRECOR" && $pass == "PRECOR2") {
+          if (empty($rate)) {
+               return new WP_Error('rate_empty', "Por favor rellene el tipo de cambio", array('status' => 404));
+          } else {
+               $current = get_option('woocs');
+               $current['PEN']['rate'] = $rate;
+               update_option('woocs', $current);
+
+               return ["code" => "updated_rate", "message" => "El tipo de cambio se ha actualizado", "data" => ["status" => 200]];
+          }
+     } else {
+          return new WP_Error('not_authentication', "Por favor rellene el tipo de cambio", array('status' => 404));
+     }
+}
