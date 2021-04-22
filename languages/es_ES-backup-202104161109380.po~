@@ -8,7 +8,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2021-02-23 02:58+0000\n"
+"PO-Revision-Date: 2021-03-30 01:59+0000\n"
 "Last-Translator: admin\n"
 "Language-Team: Español\n"
 "X-Generator: Loco https://localise.biz/\n"
@@ -10964,7 +10964,7 @@ msgstr "Agregar a lista de deseos"
 #: inc/integrations/woocommerce/template-tags.php:1746
 #: inc/shortcodes/user-panel.php:42
 msgid "Logout"
-msgstr ""
+msgstr "Cerrar sesión"
 
 #: inc/integrations/woocommerce/modules/wishlist/class-wc-wishlist.php:345
 msgid ""
@@ -12611,7 +12611,7 @@ msgstr ""
 #: inc/modules/search.php:87
 msgctxt "submit button"
 msgid "Search for products"
-msgstr "¿Qué estás buscando?"
+msgstr "Buscar producto"
 
 #: inc/modules/search.php:92
 msgctxt "submit button"

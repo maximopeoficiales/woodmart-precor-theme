@@ -18,62 +18,74 @@
 
 defined('ABSPATH') || exit;
 $realizarPedidos = false;
-if (!is_ajax()) {
-	do_action('woocommerce_review_order_before_payment');
-}
-?>
-<?php
-if (!is_ajax()) {
-?>
-	<h3 class="text-center " style="color: black; font-size: 16px;">Metodo de pago Actual : <b class="texto-precor-azul" id="methodPaymentTitlePrecor"></b></h3>
-	<button class=' button-precor bg-precor-azul' type='button' id='btnShowModalMethodPayment'>Elegir otro Metodo de Pago</button>
-<?php } ?>
-<?php
-if (!is_ajax()) {
-?>
-	<div id="myModalMethodPayment" class="modalProducts">
 
-		<div class="modalContainerProducts">
-			<div class="modalHeaderProducts">
-				<h4 style="color: white !important; margin-bottom: 0; ">Metodos de Pago</h4>
-				<div>
-					<button class="button-precor text-white btn-cerrar-method-payment" type="button" id="hiddeModalMethodPayment" style="background-color: #69daf5 !important; max-width: 80px; margin-bottom: 0;">Aceptar</button>
+?>
+<!-- inicio de metodo de pago -->
+<div style="display: none;">
+	<?php
+	if (!is_ajax()) {
+		do_action('woocommerce_review_order_before_payment');
+	}
+	?>
+	<?php
+	if (!is_ajax()) {
+	?>
+		<h3 class="text-center " style="color: black; font-size: 16px;">Metodo de pago Actual : <b class="texto-precor-azul" id="methodPaymentTitlePrecor"></b></h3>
+		<button class=' button-precor bg-precor-azul' type='button' id='btnShowModalMethodPayment'>Elegir otro Metodo de Pago</button>
+
+	<?php }
+	?>
+	<?php
+	if (!is_ajax()) {
+	?>
+		<div id="myModalMethodPayment" class="modalProducts">
+
+			<div class="modalContainerProducts">
+				<div class="modalHeaderProducts">
+					<h4 style="color: white !important; margin-bottom: 0; ">Metodos de Pago</h4>
+					<div>
+						<button class="button-precor text-white btn-cerrar-method-payment" type="button" id="hiddeModalMethodPayment" style="background-color: #69daf5 !important; max-width: 80px; margin-bottom: 0;">Aceptar</button>
+					</div>
 				</div>
-			</div>
-			<!-- <div class="modaltotalKgWoocommerce">
+				<!-- <div class="modaltotalKgWoocommerce">
 			<p></p>
 			<p>Peso Total: kg</p>
 		</div> -->
 
-			<!-- de aqui para abajo se autogenera con la peticion ajax -->
-			<div class="modalContentProducts">
-			<?php } ?>
-			<div id="payment" class="woocommerce-checkout-payment">
+				<!-- de aqui para abajo se autogenera con la peticion ajax -->
+				<div class="modalContentProducts">
+				<?php } ?>
+				<div id="payment" class="woocommerce-checkout-payment">
 
-				<?php
-				if (WC()->cart->needs_payment()) : ?>
-					<ul class="wc_payment_methods payment_methods methods">
-						<?php
-						if (!empty($available_gateways)) {
-							foreach ($available_gateways as $gateway) {
-								wc_get_template('checkout/payment-method.php', array('gateway' => $gateway));
+					<?php
+					if (WC()->cart->needs_payment()) : ?>
+						<ul class="wc_payment_methods payment_methods methods">
+							<?php
+							if (!empty($available_gateways)) {
+								foreach ($available_gateways as $gateway) {
+									wc_get_template('checkout/payment-method.php', array('gateway' => $gateway));
+								}
+							} else {
+								echo '<li class="woocommerce-notice woocommerce-notice--info woocommerce-info">' . apply_filters('woocommerce_no_available_payment_methods_message', WC()->customer->get_billing_country() ? esc_html__('Sorry, it seems that there are no available payment methods for your state. Please contact us if you require assistance or wish to make alternate arrangements.', 'woocommerce') : esc_html__('Please fill in your details above to see available payment methods.', 'woocommerce')) . '</li>'; // @codingStandardsIgnoreLine
 							}
-						} else {
-							echo '<li class="woocommerce-notice woocommerce-notice--info woocommerce-info">' . apply_filters('woocommerce_no_available_payment_methods_message', WC()->customer->get_billing_country() ? esc_html__('Sorry, it seems that there are no available payment methods for your state. Please contact us if you require assistance or wish to make alternate arrangements.', 'woocommerce') : esc_html__('Please fill in your details above to see available payment methods.', 'woocommerce')) . '</li>'; // @codingStandardsIgnoreLine
-						}
-						?>
-					</ul>
-				<?php endif; ?>
+							?>
+						</ul>
+					<?php endif; ?>
 
+				</div>
+				<?php
+				if (!is_ajax()) {
+				?>
+				</div>
 			</div>
-			<?php
-			if (!is_ajax()) {
-			?>
-			</div>
+
 		</div>
+	<?php } ?>
 
-	</div>
-<?php } ?>
+
+</div>
+<!-- fin de metodos de pagos -->
+
 <?php
 if (!is_ajax()) {
 ?>
@@ -144,3 +156,4 @@ if (!is_ajax()) {
 if (!is_ajax()) {
 	do_action('woocommerce_review_order_after_payment');
 }
+?>

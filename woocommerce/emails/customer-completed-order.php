@@ -72,6 +72,12 @@ do_action('woocommerce_email_order_meta', $order, $sent_to_admin, $plain_text, $
 /*
  * @hooked WC_Emails::email_footer() Output the email footer
  */
+?>
+<p><strong>Gracias por tu compra.</strong></p>
+<div class="precor-color-texto">
+	<p>Tu pedido será entregado en un plazo desde 24 a 48 horas. El equipo de programación de Precor se contactará con usted para coordinar el día y hora exacta de entrega.</p>
+</div>
+<?php
 precor_buscas_algun_producto();
 ?>
 
