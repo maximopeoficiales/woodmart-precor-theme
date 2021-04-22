@@ -342,4 +342,3 @@ function precor_update_currency_rate(WP_REST_Request $request)
           return new WP_Error('not_authentication', "Por favor rellene el tipo de cambio", array('status' => 404));
      }
 }
-
