@@ -1,6 +1,6 @@
 <?php
 /* 
-* Template Name: Template Calculadora Precor
+* Template Name: Tabiqueria Drywall 16p
 */
 get_header("calculadora");
 ?>
@@ -9,7 +9,7 @@ get_header("calculadora");
 
      <!-- Page Heading -->
      <h1 class="h3 mb-2 text-gray-800">Tabiqueria Drywall</h1>
-     <p class="mb-4">Distancia entre parantes de 24 Pulgadas</p>
+     <p class="mb-4">Distancia entre parantes de 16 Pulgadas</p>
      <div class="row">
           <div class="col-xl-4 col-md-4 mb-4">
                <div class="card border-left-primary shadow h-100 py-2">
@@ -118,15 +118,15 @@ get_header("calculadora");
                               <tr>
                                    <th>SKU</th>
                                    <th class="text-center" style="min-height: 80px; min-width: 80px;"><i class="fas fa-image h6"></i></th>
-                                   <th >Material</th>
-                                   <th >Unid. x M2</th>
-                                   <th >Cantidad</th>
-                                   <th >Redondeo</th>
-                                   <th >Unidad</th>
-                                   <th >Accion</th>
+                                   <th>Material</th>
+                                   <th>Unid. x M2</th>
+                                   <th>Cantidad</th>
+                                   <th>Redondeo</th>
+                                   <th>Unidad</th>
+                                   <th>Accion</th>
                               </tr>
                          </thead>
-                        
+
                          <tbody>
                          </tbody>
                     </table>
@@ -182,4 +182,4 @@ get_header("calculadora");
 
 
 
-          <?php get_footer("calculadora"); ?>
+          <?php get_footer("calculadora-P16"); ?>

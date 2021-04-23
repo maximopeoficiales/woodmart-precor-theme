@@ -8,7 +8,7 @@
 <script src="<?php echo get_template_directory_uri(); ?>/layouts/js/sweetalert2@9.js"></script>
 <script src="<?php echo get_template_directory_uri(); ?>/layouts/js/select2.min.js"></script>
 <!-- mi custom scripts -->
-<script src="<?php echo get_template_directory_uri(); ?>/layouts/js/app.js"></script>
+<script src="<?php echo get_template_directory_uri(); ?>/layouts/js/app-P16.js"></script>
 
 <?php if ( woodmart_needs_footer() ): ?>
 	<?php if ( ! woodmart_is_woo_ajax() ): ?>

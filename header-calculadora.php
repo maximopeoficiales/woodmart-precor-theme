@@ -1,49 +1,47 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="es">
 
 <head>
-  <!-- Required meta tags -->
   <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-  <!-- para datatables -->
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
-  <!-- --- -->
-  <script src="https://kit.fontawesome.com/b5b7f00aae.js" crossorigin="anonymous"></script>
-  <!-- sweet alert2 -->
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-  <!-- font family -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-
-  <title>Calculadora Precor</title>
+  <meta name="description" content="Calculadoras Maxco">
+  <meta name="author" content="Maxco S.A">
+  <link rel="shortcut icon" href="<?php echo get_template_directory_uri(); ?>/layouts/img/logo.png" type="image/x-icon">
+  <title>Maxco Ventas </title>
+  <!-- Custom fonts for this template -->
+  <?php wp_head(); ?>
+  <link href="<?php echo get_template_directory_uri(); ?>/layouts/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="<?php echo get_template_directory_uri(); ?>/layouts/css/sb-admin-2.css" rel="stylesheet">
+  <!-- Custom styles for this page -->
+  <link href="<?php echo get_template_directory_uri(); ?>/layouts/css/select2.min.css" rel="stylesheet" />
+  <link href="<?php echo get_template_directory_uri(); ?>/layouts/css/select2-bootstrap4.min.css" rel="stylesheet" />
+  <link href="<?php echo get_template_directory_uri(); ?>/layouts/css/styles.css" rel="stylesheet">
 </head>
-<style>
-  body {
-    font-family: 'Montserrat', sans-serif;
-  }
 
-  .container2 {
-    width: 95%;
-    margin: 1rem auto;
-  }
+<body <?php body_class(); ?>>
+  <?php do_action('woodmart_after_body_open'); ?>
 
-  header {
-    height: 8rem;
-    background-color: black;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+  <div class="website-wrapper">
 
-  header h1 {
-    font-size: 3rem;
-    font-weight: 900;
+    <?php if (woodmart_needs_header()) : ?>
 
-  }
-</style>
+      <!-- HEADER -->
+      <header <?php woodmart_get_header_classes(); // location: inc/functions.php 
+              ?>>
 
-<body>
+        <?php
+        whb_generate_header();
+        ?>
+
+      </header>
+      <!--END MAIN HEADER-->
+
+      <?php/*  woodmart_page_top_part(); */ ?>
+
+    <?php endif ?>
+    <div>
+      <div class="d-flex flex-column">
+        <div>
