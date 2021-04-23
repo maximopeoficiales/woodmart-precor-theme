@@ -67,9 +67,9 @@ class Observer {
 }
 class WoocommerceApi {
   constructor() {
-    this.consumerKey = "ck_46074d5b97e88e95473f51d0620ef469e42648ba";
-    this.consumerSecret = "cs_2a63f42024b0758efb7033d0ebbe17a9cea5b27c";
-    this.dominio = "https://maxco.punkuhr.com/";
+    this.consumerKey = "ck_8f55a46b8cd9bdb4323eb5a139cc0ecc2a598f68";
+    this.consumerSecret = "cs_21ab0989bffd0c32d3fbe447b5849dc78444dffa";
+    this.dominio = "https://maxco.pe/";
     /* datos en duro */
     this.data = [
       /* accesorios */
