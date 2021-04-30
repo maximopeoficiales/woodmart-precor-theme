@@ -68,7 +68,14 @@ function getCategoryNameByIdProduct($idProduct): string
 
 // shortcode
 // Add Shortcode
-
+function precor_pfrx_custom_addshorcode()
+{
+     add_shortcode('prflx_format', function ($atts) {
+          $field_id = $atts["field_id"];
+          $valor = do_shortcode("[prflxtrflds_field field_id=$field_id]");
+          return number_format($valor, 2);
+     });
+}
 function precor_pfrx_addshorcode()
 {
      add_shortcode('prflxtrflds_get_value', function ($atts) {
@@ -103,6 +110,7 @@ function precor_status_wallet()
      });
 }
 add_action('init', 'precor_pfrx_addshorcode');
+add_action('init', 'precor_pfrx_custom_addshorcode');
 add_action('init', 'precor_status_wallet');
 
 // obtengo valor de un profile extra field por $user_id,$name_key
