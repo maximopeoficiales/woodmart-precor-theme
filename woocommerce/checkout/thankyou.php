@@ -60,7 +60,7 @@ if (woodmart_get_opt('thank_you_page_extra_content')) {
 
 					<li class="woocommerce-order-overview__order order">
 						<?php esc_html_e('Order number:', 'woocommerce'); ?>
-						<strong><?php echo $order->get_order_number(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
+						<strong><?php echo precor_getIDSAPbyOrderID($order->get_order_number()); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
 								?></strong>
 					</li>
 

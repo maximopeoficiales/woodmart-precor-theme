@@ -36,16 +36,26 @@ precor_get_image_header_custom("Recurso 1.jpg");
 			?></p> -->
 
 	<p>
-		Tu registro ha sido realizado con exito, ahora podras acceder a la plataforma.
+		Tu registro ha sido realizado con exito, ahora podras acceder a la plataforma, pero primero cambie su contraseña.
 	</p>
-	<p>
-		Tu contraseña por defecto es: <strong>123456789</strong>, para cambiarla:
-	</p>
+
+	<?php
+	$user = get_user_by('login', $user_login);
+
+	$adt_rp_key = get_password_reset_key($user);
+	$user_login = $user->user_login;
+	$link_reset_password = network_site_url("wp-login.php?action=rp&key=$adt_rp_key&login=" . rawurlencode($user_login), 'login');
+
+	?>
+	<!-- <h2><?php _e('Your account is now active!'); ?></h2> -->
+
 	<?php if ('yes' === get_option('woocommerce_registration_generate_password') && $password_generated) : ?>
 		<?php /* translators: %s: Auto generated password */ ?>
 		<p><?php printf(esc_html__('Your password has been automatically generated: %s', 'woocommerce'), '<strong>' . esc_html($user_pass) . '</strong>'); ?></p>
 	<?php endif;
-	precor_create_button_custom("#003b71", esc_url(wc_get_page_permalink('myaccount')), "Ingrese Aqui");
+
+	// se imprira el boton
+	precor_create_button_custom("#003b71", esc_url($link_reset_password), "Cambie su contraseña aqui");
 	?>
 
 
