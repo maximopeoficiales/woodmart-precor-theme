@@ -80,7 +80,7 @@ if ($order->get_status() === 'ywraq-new') {
 ?>
 
 <p>
-	<strong><?php esc_html_e('Request date', 'yith-woocommerce-request-a-quote'); ?></strong>: <?php echo esc_html(date_i18n(wc_date_format(), $order_date)); ?>
+	<strong><?php esc_html_e('Request date', 'yith-woocommerce-request-a-quote'); ?></strong>: <?php echo esc_html(precor_get_fecha_correcta($order)); ?>
 </p>
 <?php
 
@@ -95,7 +95,7 @@ $print_button_pdf = get_option('ywraq_pdf_in_myaccount') === 'yes' && $pdf_file;
 ?>
 <?php
 $actions = wc_get_account_orders_actions($order);
-//se agrego enlace en nueva pestaña al plugin yith
+//se agrego enlace en nueva pestaï¿½a al plugin yith
 if (!empty($actions)) {
 	foreach ($actions as $key => $action) { // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 		// solo mostrae el de invoice

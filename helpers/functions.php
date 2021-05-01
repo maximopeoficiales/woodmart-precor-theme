@@ -350,3 +350,8 @@ function precor_update_currency_rate(WP_REST_Request $request)
           return new WP_Error('not_authentication', "Por favor rellene el tipo de cambio", array('status' => 404));
      }
 }
+// Obtiene fecha Correcta respecto al timezone
+function precor_get_fecha_correcta($order)
+{
+     return $order->get_date_created()->date("d/m/Y g:i A");
+}
