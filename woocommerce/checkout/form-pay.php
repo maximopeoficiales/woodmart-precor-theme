@@ -72,12 +72,14 @@ $totals = $order->get_order_item_totals(); // phpcs:ignore WordPress.WP.GlobalVa
 						</tr>
 				<?php }
 				endforeach; ?>
-			<?php endif; ?>
+			<?php endif;
+			?>
+			
 		</tfoot>
 	</table>
 	<!-- boton de cambio a dolares -->
 	<?php
-	precor_show_button_change_currency();
+	precor_show_button_change_currency($order);
 	?>
 
 	<div id="payment">

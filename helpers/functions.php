@@ -356,7 +356,7 @@ function precor_get_fecha_correcta($order)
      return $order->get_date_created()->date("d/m/Y g:i A");
 }
 // boton de cambio de moneda en order pay
-function precor_show_button_change_currency(): void
+function precor_show_button_change_currency($order = null): void
 {
 
      global $WOOCS;
@@ -368,6 +368,10 @@ function precor_show_button_change_currency(): void
      $_GET["_currency"] = $moneda;
      $params = http_build_query($_GET);
      $enlace = $urlPagina . $params;
+     $tipoDeCambio = get_option('woocs')['PEN']['rate'];
+     $precioAprox = !$isDolar ? number_format($order->total / $tipoDeCambio, 2) : number_format($order->total * $tipoDeCambio, 2);
+     $textoAprox = $isDolar ?  "S/. $precioAprox aprox" : $precioAprox . "$ aprox";
+
 ?>
      <style>
           .btn-precor-change-currency {
@@ -386,9 +390,12 @@ function precor_show_button_change_currency(): void
           }
      </style>
      <!-- Boton de cambio de moneda -->
-     <div class="d-flex flex-row-reverse">
-          <a class="button alt btn-precor-change-currency" style="padding: 8px;" href="<?= $enlace ?>">
-               <i class="fa fa-money" style="margin-right: 5px;"></i><?= !$isDolar ? "Convertir a USD" : "Convertir a PEN" ?></a>
+     <div class="d-flex flex-row-reverse align-items-center">
+          <div class="d-flex">
+               <h4 style="margin-bottom: 0; margin-right: 10px;"><?= $textoAprox ?> </h4>
+               <a class="button alt btn-precor-change-currency" style="padding: 8px;" href="<?= $enlace ?>">
+                    <i class="fa fa-money" style="margin-right: 5px;"></i><?= !$isDolar ? "Convertir a USD" : "Convertir a PEN" ?></a>
+          </div>
      </div>
 
 <?php
