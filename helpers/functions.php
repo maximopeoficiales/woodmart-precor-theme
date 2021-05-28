@@ -355,3 +355,29 @@ function precor_get_fecha_correcta($order)
 {
      return $order->get_date_created()->date("d/m/Y g:i A");
 }
+// cuando no sea checkout que siempre sea dolares
+// add_filter('wp_head', function () {
+//      if (!is_checkout()) {
+//           global $WOOCS;
+//           $WOOCS->set_currency('USD');
+//      }
+// });
+
+// cuando sea checkout siempre la moneda sera dolar
+// add_filter('wp_head', function () {
+//      if (is_checkout()) {
+//           global $wp;
+//           global $WOOCS;
+//           if (isset($wp->query_vars['order-pay']) && absint($wp->query_vars['order-pay']) > 0) {
+//                $order_id = absint($wp->query_vars['order-pay']); // The order ID
+//                $order    = wc_get_order($order_id); // Get the WC_Order Object instance
+//                if ($order) {
+//                     // $moneda = "PEN";
+//                     $moneda = "USD";
+//                     $WOOCS->recalculate_order($order_id, $moneda);
+//                     $order->set_currency($moneda);
+//                     $order->save();
+//                }
+//           }
+//      }
+// });
