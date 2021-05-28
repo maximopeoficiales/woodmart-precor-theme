@@ -355,29 +355,70 @@ function precor_get_fecha_correcta($order)
 {
      return $order->get_date_created()->date("d/m/Y g:i A");
 }
+// boton de cambio de moneda en order pay
+function precor_show_button_change_currency(): void
+{
+
+     global $WOOCS;
+     global $wp;
+     $currency = $WOOCS->current_currency;
+     $isDolar = $currency == "USD" ? true : false;
+     $urlPagina = home_url($wp->request) . "?";
+     $moneda = !$isDolar ? "USD" : "PEN";
+     $_GET["_currency"] = $moneda;
+     $params = http_build_query($_GET);
+     $enlace = $urlPagina . $params;
+?>
+     <style>
+          .btn-precor-change-currency {
+               cursor: pointer;
+               background-color: #00396E;
+               color: white;
+               padding: 10px;
+               font-weight: bold;
+               margin-bottom: 10px;
+               border-radius: 10px;
+          }
+
+          .btn-precor-change-currency:hover {
+               color: white;
+               background-color: #FFC107;
+          }
+     </style>
+     <!-- Boton de cambio de moneda -->
+     <div class="d-flex flex-row-reverse">
+          <a class="button alt btn-precor-change-currency" style="padding: 8px;" href="<?= $enlace ?>">
+               <i class="fa fa-money" style="margin-right: 5px;"></i><?= !$isDolar ? "Convertir a USD" : "Convertir a PEN" ?></a>
+     </div>
+
+<?php
+} ?>
+<?php
 // cuando no sea checkout que siempre sea dolares
-// add_filter('wp_head', function () {
-//      if (!is_checkout()) {
-//           global $WOOCS;
-//           $WOOCS->set_currency('USD');
-//      }
-// });
+add_filter('wp_head', function () {
+     if (!is_checkout()) {
+          global $WOOCS;
+          $WOOCS->set_currency('USD');
+     }
+});
 
 // cuando sea checkout siempre la moneda sera dolar
-// add_filter('wp_head', function () {
-//      if (is_checkout()) {
-//           global $wp;
-//           global $WOOCS;
-//           if (isset($wp->query_vars['order-pay']) && absint($wp->query_vars['order-pay']) > 0) {
-//                $order_id = absint($wp->query_vars['order-pay']); // The order ID
-//                $order    = wc_get_order($order_id); // Get the WC_Order Object instance
-//                if ($order) {
-//                     // $moneda = "PEN";
-//                     $moneda = "USD";
-//                     $WOOCS->recalculate_order($order_id, $moneda);
-//                     $order->set_currency($moneda);
-//                     $order->save();
-//                }
-//           }
-//      }
-// });
+add_filter('wp_head', function () {
+     if (is_checkout()) {
+          global $wp;
+          global $WOOCS;
+          if (isset($wp->query_vars['order-pay']) && absint($wp->query_vars['order-pay']) > 0) {
+               $order_id = absint($wp->query_vars['order-pay']); // The order ID
+               $order = wc_get_order($order_id); // Get the WC_Order Object instance
+               if ($order) {
+                    // $moneda = "PEN";
+                    if (!is_null($_GET["_currency"] && $_GET["_currency"] != "")) {
+                         $moneda = $_GET["_currency"];
+                         $WOOCS->recalculate_order($order_id, $moneda);
+                         $order->set_currency($moneda);
+                         $order->save();
+                    }
+               }
+          }
+     }
+});
