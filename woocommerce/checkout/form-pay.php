@@ -17,7 +17,11 @@
  */
 
 defined('ABSPATH') || exit;
-
+// solucion a bug de descuento
+if ($order->get_discount_total() == "0.01") {
+	$order->set_discount_total(0);
+	$order->save();
+}
 $totals = $order->get_order_item_totals(); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 ?>
 <form id="order_review" method="post">
