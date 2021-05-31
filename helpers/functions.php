@@ -419,7 +419,7 @@ add_filter('wp_head', function () {
                $order = wc_get_order($order_id); // Get the WC_Order Object instance
                if ($order) {
                     if ( $_GET["currency"] != "") {
-                         print_r("me estoy ejecutando");
+                         // print_r("me estoy ejecutando");
                          $moneda = $_GET["currency"];
                          $WOOCS->recalculate_order($order_id, $moneda);
                          update_post_meta($order_id, '_order_currency', $moneda);
