@@ -418,13 +418,13 @@ add_filter('wp_head', function () {
                $order_id = absint($wp->query_vars['order-pay']); // The order ID
                $order = wc_get_order($order_id); // Get the WC_Order Object instance
                if ($order) {
-                    if (!is_null($_GET["currency"] && $_GET["currency"] != "")) {
-
+                    if ( $_GET["currency"] != "") {
+                         print_r("me estoy ejecutando");
                          $moneda = $_GET["currency"];
                          $WOOCS->recalculate_order($order_id, $moneda);
-                         $order->set_currency($moneda);
-                         $order->save();
                          update_post_meta($order_id, '_order_currency', $moneda);
+                         // $order->set_currency($moneda);
+                         // $order->save();
                     }
                }
           }
