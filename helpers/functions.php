@@ -365,7 +365,7 @@ function precor_show_button_change_currency($order = null): void
      $isDolar = $currency == "USD" ? true : false;
      $urlPagina = home_url($wp->request) . "?";
      $moneda = !$isDolar ? "USD" : "PEN";
-     $_GET["_currency"] = $moneda;
+     $_GET["currency"] = $moneda;
      $params = http_build_query($_GET);
      $enlace = $urlPagina . $params;
      $tipoDeCambio = get_option('woocs')['PEN']['rate'];
@@ -401,7 +401,7 @@ function precor_show_button_change_currency($order = null): void
 <?php
 } ?>
 <?php
-// cuando no sea checkout que siempre sea dolares
+//cuando no sea checkout que siempre sea dolares
 add_filter('wp_head', function () {
      if (!is_checkout()) {
           global $WOOCS;
@@ -409,7 +409,7 @@ add_filter('wp_head', function () {
      }
 });
 
-// cuando sea checkout siempre la moneda sera dolar
+//cuando sea checkout siempre la moneda sera dolar
 add_filter('wp_head', function () {
      if (is_checkout()) {
           global $wp;
@@ -418,12 +418,13 @@ add_filter('wp_head', function () {
                $order_id = absint($wp->query_vars['order-pay']); // The order ID
                $order = wc_get_order($order_id); // Get the WC_Order Object instance
                if ($order) {
-                    // $moneda = "PEN";
-                    if (!is_null($_GET["_currency"] && $_GET["_currency"] != "")) {
-                         $moneda = $_GET["_currency"];
+                    if (!is_null($_GET["currency"] && $_GET["currency"] != "")) {
+
+                         $moneda = $_GET["currency"];
                          $WOOCS->recalculate_order($order_id, $moneda);
                          $order->set_currency($moneda);
                          $order->save();
+                         update_post_meta($order_id, '_order_currency', $moneda);
                     }
                }
           }
