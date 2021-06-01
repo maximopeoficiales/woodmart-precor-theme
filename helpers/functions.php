@@ -393,7 +393,8 @@ function precor_show_button_change_currency($order = null): void
      <div class="d-flex flex-row-reverse align-items-center">
           <div class="d-flex">
                <h4 style="margin-bottom: 0; margin-right: 10px;"><?= $textoAprox ?> </h4>
-               <a class="button alt btn-precor-change-currency" style="padding: 8px;" href="<?= $enlace ?>">
+               
+               <a class="button alt btn-precor-change-currency" style="padding: 8px; display: none;" href="<?= $enlace ?>">
                     <i class="fa fa-money" style="margin-right: 5px;"></i><?= !$isDolar ? "Convertir a USD" : "Convertir a PEN" ?></a>
           </div>
      </div>
