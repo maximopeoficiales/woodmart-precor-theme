@@ -111,6 +111,7 @@ function precor_status_wallet()
 }
 add_action('init', 'precor_pfrx_addshorcode');
 add_action('init', 'precor_pfrx_custom_addshorcode');
+add_action('init', 'precor_shortcode_get_currency');
 add_action('init', 'precor_status_wallet');
 
 // obtengo valor de un profile extra field por $user_id,$name_key
@@ -393,7 +394,7 @@ function precor_show_button_change_currency($order = null): void
      <div class="d-flex flex-row-reverse align-items-center">
           <div class="d-flex">
                <h4 style="margin-bottom: 0; margin-right: 10px;"><?= $textoAprox ?> </h4>
-               
+
                <a class="button alt btn-precor-change-currency" style="padding: 8px; display: none;" href="<?= $enlace ?>">
                     <i class="fa fa-money" style="margin-right: 5px;"></i><?= !$isDolar ? "Convertir a USD" : "Convertir a PEN" ?></a>
           </div>
@@ -419,7 +420,7 @@ add_filter('wp_head', function () {
                $order_id = absint($wp->query_vars['order-pay']); // The order ID
                $order = wc_get_order($order_id); // Get the WC_Order Object instance
                if ($order) {
-                    if ( $_GET["currency"] != "") {
+                    if ($_GET["currency"] != "") {
                          // print_r("me estoy ejecutando");
                          $moneda = $_GET["currency"];
                          $WOOCS->recalculate_order($order_id, $moneda);
@@ -430,4 +431,12 @@ add_filter('wp_head', function () {
                }
           }
      }
+});
+
+// shorcode obtiene el tipo de cambio por moneda
+
+add_shortcode('precor_get_type_rate_currency', function ($atts) {
+     $currency = $atts["currency"] ?? "PEN";
+     $typeRate = get_option('woocs')[$currency]['rate'];
+     return $typeRate;
 });
