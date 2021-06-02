@@ -68,7 +68,14 @@ function getCategoryNameByIdProduct($idProduct): string
 
 // shortcode
 // Add Shortcode
-
+function precor_pfrx_custom_addshorcode()
+{
+     add_shortcode('prflx_format', function ($atts) {
+          $field_id = $atts["field_id"];
+          $valor = do_shortcode("[prflxtrflds_field field_id=$field_id]");
+          return number_format($valor, 2);
+     });
+}
 function precor_pfrx_addshorcode()
 {
      add_shortcode('prflxtrflds_get_value', function ($atts) {
@@ -103,6 +110,8 @@ function precor_status_wallet()
      });
 }
 add_action('init', 'precor_pfrx_addshorcode');
+add_action('init', 'precor_pfrx_custom_addshorcode');
+add_action('init', 'precor_shortcode_get_currency');
 add_action('init', 'precor_status_wallet');
 
 // obtengo valor de un profile extra field por $user_id,$name_key
@@ -342,3 +351,92 @@ function precor_update_currency_rate(WP_REST_Request $request)
           return new WP_Error('not_authentication', "Por favor rellene el tipo de cambio", array('status' => 404));
      }
 }
+// Obtiene fecha Correcta respecto al timezone
+function precor_get_fecha_correcta($order)
+{
+     return $order->get_date_created()->date("d/m/Y g:i A");
+}
+// boton de cambio de moneda en order pay
+function precor_show_button_change_currency($order = null): void
+{
+
+     global $WOOCS;
+     global $wp;
+     $currency = $WOOCS->current_currency;
+     $isDolar = $currency == "USD" ? true : false;
+     $urlPagina = home_url($wp->request) . "?";
+     $moneda = !$isDolar ? "USD" : "PEN";
+     $_GET["currency"] = $moneda;
+     $params = http_build_query($_GET);
+     $enlace = $urlPagina . $params;
+     $tipoDeCambio = get_option('woocs')['PEN']['rate'];
+     $precioAprox = !$isDolar ? number_format($order->total / $tipoDeCambio, 2) : number_format($order->total * $tipoDeCambio, 2);
+     $textoAprox = $isDolar ?  "S/. $precioAprox aprox" : $precioAprox . "$ aprox";
+
+?>
+     <style>
+          .btn-precor-change-currency {
+               cursor: pointer;
+               background-color: #00396E;
+               color: white;
+               padding: 10px;
+               font-weight: bold;
+               margin-bottom: 10px;
+               border-radius: 10px;
+          }
+
+          .btn-precor-change-currency:hover {
+               color: white;
+               background-color: #FFC107;
+          }
+     </style>
+     <!-- Boton de cambio de moneda -->
+     <div class="d-flex flex-row-reverse align-items-center">
+          <div class="d-flex">
+               <h4 style="margin-bottom: 0; margin-right: 10px;"><?= $textoAprox ?> </h4>
+
+               <a class="button alt btn-precor-change-currency" style="padding: 8px; display: none;" href="<?= $enlace ?>">
+                    <i class="fa fa-money" style="margin-right: 5px;"></i><?= !$isDolar ? "Convertir a USD" : "Convertir a PEN" ?></a>
+          </div>
+     </div>
+
+<?php
+} ?>
+<?php
+//cuando no sea checkout que siempre sea dolares
+add_filter('wp_head', function () {
+     if (!is_checkout()) {
+          global $WOOCS;
+          $WOOCS->set_currency('USD');
+     }
+});
+
+//cuando sea checkout siempre la moneda sera dolar
+add_filter('wp_head', function () {
+     if (is_checkout()) {
+          global $wp;
+          global $WOOCS;
+          if (isset($wp->query_vars['order-pay']) && absint($wp->query_vars['order-pay']) > 0) {
+               $order_id = absint($wp->query_vars['order-pay']); // The order ID
+               $order = wc_get_order($order_id); // Get the WC_Order Object instance
+               if ($order) {
+                    if ($_GET["currency"] != "") {
+                         // print_r("me estoy ejecutando");
+                         $moneda = $_GET["currency"];
+                         $WOOCS->recalculate_order($order_id, $moneda);
+                         update_post_meta($order_id, '_order_currency', $moneda);
+                         // $order->set_currency($moneda);
+                         // $order->save();
+                    }
+               }
+          }
+     }
+});
+
+// shorcode obtiene el tipo de cambio por moneda
+
+add_shortcode('precor_get_type_rate_currency', function ($atts) {
+     $currency = $atts["currency"] ?? "PEN";
+     $typeRate = get_option('woocs')[$currency]['rate'];
+     return $typeRate;
+});

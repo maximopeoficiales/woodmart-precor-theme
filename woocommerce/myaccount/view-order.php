@@ -28,7 +28,7 @@ $notes = $order->get_customer_order_notes();
         /* translators: 1: order number 2: order date 3: order status */
         esc_html__('El pedido %1$s se realizó el %2$s y está actualmente %3$s.'),
         '<mark class="order-number">' . get_post_meta($order->get_order_number(), "id_ped", true) . ' (#' . $order->get_order_number() . ')</mark>',
-        '<mark class="order-date">' . wc_format_datetime($order->get_date_created()) . '</mark>', // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        '<mark class="order-date">' . precor_get_fecha_correcta($order) . '</mark>', // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         '<mark class="order-status">' . wc_get_order_status_name($order->get_status()) . '</mark>' // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     );
     ?>
