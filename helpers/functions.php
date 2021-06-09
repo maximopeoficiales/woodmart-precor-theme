@@ -395,7 +395,7 @@ function precor_show_button_change_currency($order = null): void
           <div class="d-flex">
                <h4 style="margin-bottom: 0; margin-right: 10px;"><?= $textoAprox ?> </h4>
 
-               <a class="button alt btn-precor-change-currency" style="padding: 8px;" href="<?= $enlace ?>">
+               <a class="button alt btn-precor-change-currency" style="padding: 8px; display: none;" href="<?= $enlace ?>">
                     <i class="fa fa-money" style="margin-right: 5px;"></i><?= !$isDolar ? "Convertir a USD" : "Convertir a PEN" ?></a>
           </div>
      </div>
@@ -443,7 +443,7 @@ add_shortcode('precor_get_type_rate_currency', function ($atts) {
 
 
 // filtro para excluir metodos de pago donde tenga tal moneda
-add_filter('woocommerce_available_payment_gateways', 'woocs_filter_gateways', 1);
+// add_filter('woocommerce_available_payment_gateways', 'woocs_filter_gateways', 1);
 function woocs_filter_gateways($gateway_list)
 {
      $exclude = array(
