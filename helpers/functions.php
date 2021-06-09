@@ -395,7 +395,7 @@ function precor_show_button_change_currency($order = null): void
           <div class="d-flex">
                <h4 style="margin-bottom: 0; margin-right: 10px;"><?= $textoAprox ?> </h4>
 
-               <a class="button alt btn-precor-change-currency" style="padding: 8px; display: none;" href="<?= $enlace ?>">
+               <a class="button alt btn-precor-change-currency" style="padding: 8px;" href="<?= $enlace ?>">
                     <i class="fa fa-money" style="margin-right: 5px;"></i><?= !$isDolar ? "Convertir a USD" : "Convertir a PEN" ?></a>
           </div>
      </div>
@@ -440,3 +440,30 @@ add_shortcode('precor_get_type_rate_currency', function ($atts) {
      $typeRate = get_option('woocs')[$currency]['rate'];
      return $typeRate;
 });
+
+
+// filtro para excluir metodos de pago donde tenga tal moneda
+add_filter('woocommerce_available_payment_gateways', 'woocs_filter_gateways', 1);
+function woocs_filter_gateways($gateway_list)
+{
+     $exclude = array(
+          'Mi crédito PRECOR' => array('PEN'),
+     );
+     // recibe el metodo de pago , y los exclude
+     foreach ($gateway_list as $key => $gateway) {
+          if (precor_verifyExcludesCurrency($gateway->title, $exclude)) {
+               unset($gateway_list[$key]);
+          }
+     }
+     return $gateway_list;
+}
+function precor_verifyExcludesCurrency($methodTitle, $exclude): bool
+{
+     global $WOOCS;
+     foreach ($exclude as $key => $currency) {
+          if ($methodTitle == $key && in_array($WOOCS->current_currency, $currency)) {
+               return true;
+          }
+     }
+     return false;
+}
