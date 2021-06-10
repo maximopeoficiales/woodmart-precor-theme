@@ -17,11 +17,12 @@
  */
 
 defined('ABSPATH') || exit;
-$realizarPedidos = false;
-
+$realizarPedidos = true;
+$activarMetodoDePago = true;
+$activarMetodoDePago = $activarMetodoDePago ? "" : "display: none;";
 ?>
 <!-- inicio de metodo de pago -->
-<div style="display: none;">
+<div style="<?= $activarMetodoDePago ?>">
 	<?php
 	if (!is_ajax()) {
 		do_action('woocommerce_review_order_before_payment');

@@ -422,26 +422,30 @@ function precor_show_button_change_currency($order = null): void
 add_filter('wp_head', function () {
      if (!is_checkout()) {
           global $WOOCS;
-          $WOOCS->set_currency('USD');
+          if ($WOOCS) {
+               $WOOCS->set_currency('USD');
+          }
      }
 });
 
-//cuando sea checkout siempre la moneda sera dolar
+// cuando sea checkout siempre la moneda sera dolar
 add_filter('wp_head', function () {
      if (is_checkout()) {
           global $wp;
           global $WOOCS;
-          if (isset($wp->query_vars['order-pay']) && absint($wp->query_vars['order-pay']) > 0) {
-               $order_id = absint($wp->query_vars['order-pay']); // The order ID
-               $order = wc_get_order($order_id); // Get the WC_Order Object instance
-               if ($order) {
-                    if ($_GET["currency"] != "") {
-                         // print_r("me estoy ejecutando");
-                         $moneda = $_GET["currency"];
-                         $WOOCS->recalculate_order($order_id, $moneda);
-                         update_post_meta($order_id, '_order_currency', $moneda);
-                         // $order->set_currency($moneda);
-                         // $order->save();
+          if ($WOOCS) {
+               if (isset($wp->query_vars['order-pay']) && absint($wp->query_vars['order-pay']) > 0) {
+                    $order_id = absint($wp->query_vars['order-pay']); // The order ID
+                    $order = wc_get_order($order_id); // Get the WC_Order Object instance
+                    if ($order) {
+                         if ($_GET["currency"] != "") {
+                              // print_r("me estoy ejecutando");
+                              $moneda = $_GET["currency"];
+                              $WOOCS->recalculate_order($order_id, $moneda);
+                              update_post_meta($order_id, '_order_currency', $moneda);
+                              // $order->set_currency($moneda);
+                              // $order->save();
+                         }
                     }
                }
           }
