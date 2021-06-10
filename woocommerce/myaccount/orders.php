@@ -99,7 +99,8 @@ function precorEvaluateBadge($status)
 								</a>
 
 							<?php elseif ('order-date' === $column_id) : ?>
-								<time datetime="<?php echo esc_attr($order->get_date_created()->date('c')); ?>"><?php echo esc_html(wc_format_datetime($order->get_date_created())); ?></time>
+								<!-- <time datetime="<?php echo esc_attr($order->get_date_created()->date('c')); ?>"><?php echo esc_html(wc_format_datetime($order->get_date_created())); ?></time> -->
+								<?php echo precor_get_fecha_correcta($order); ?>
 
 							<?php elseif ('order-status' === $column_id) : ?>
 

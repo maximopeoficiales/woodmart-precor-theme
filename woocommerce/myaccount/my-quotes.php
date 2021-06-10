@@ -136,7 +136,8 @@ function precorEvaluateBadgeQuotes($status)
 						</a>
 					</td>
 					<td class="quotes-date" data-title="<?php esc_attr_e('Date', 'yith-woocommerce-request-a-quote'); ?>">
-						<time datetime="<?php echo esc_attr(gmdate('Y-m-d', strtotime($order_date))); ?>" title="<?php echo esc_attr(strtotime($order_date)); ?>"><?php echo wp_kses_post(date_i18n(get_option('date_format'), strtotime($order_date))); ?></time>
+						<!-- <time datetime="<?php echo esc_attr(gmdate('Y-m-d', strtotime($order_date))); ?>" title="<?php echo esc_attr(strtotime($order_date)); ?>"><?php echo wp_kses_post(date_i18n(get_option('date_format'), strtotime($order_date))); ?></time> -->
+						<?php echo precor_get_fecha_correcta($order); ?>
 					</td>
 
 					<td class="quotes-actions" data-order_id="<?php echo esc_attr($order_id); ?>">
