@@ -342,3 +342,18 @@ function precor_update_currency_rate(WP_REST_Request $request)
           return new WP_Error('not_authentication', "Por favor rellene el tipo de cambio", array('status' => 404));
      }
 }
+
+
+/**
+ * script para igresar el chatbot de wolkvox
+ */
+
+/* Inline script printed out in the header */
+add_action('wp_head', 'tutsplus_add_script_wp_head');
+function tutsplus_add_script_wp_head()
+{
+?>
+     <script id="prodId" type="text/javascript" src="https://chat01.ipdialbox.com/chat/?prodId=cG1wLXRlbGV2ZW50YXM=" async>
+     </script>
+<?php
+}
