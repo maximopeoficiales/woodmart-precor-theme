@@ -459,3 +459,9 @@ add_shortcode('precor_get_type_rate_currency', function ($atts) {
      $typeRate = get_option('woocs')[$currency]['rate'];
      return $typeRate;
 });
+
+function precor_db_remove_new_site_notification_email($blog_id, $user_id, $password, $title, $meta)
+{
+     return false;
+}
+add_filter('wpmu_welcome_notification', 'precor_db_remove_new_site_notification_email');
