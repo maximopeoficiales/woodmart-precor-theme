@@ -117,15 +117,15 @@ class WoocommerceApi {
         unidad: "Piezas",
         detalle: "3m", accesorio: true,
         activado: false,
-      },
+      },*/
       {
-        sku: 403047,
+        sku: 452806, // recien creado en el portal 2021/05/13
         nombre: "CUMBRERA ALZN 0.30x3.00M",
         cantidad: 0,
         unidad: "Piezas",
-        detalle: "3m", accesorio: true,
+        detalle: "", accesorio: true,
         activado: false,
-      }, */
+      }, 
       {
         sku: 452807,
         nombre: "CENEFA ALZN 0.30x3.00M",
