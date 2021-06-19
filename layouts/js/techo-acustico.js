@@ -105,15 +105,16 @@ class WoocommerceApi {
         unidad: "Piezas",
         activado: false,
       },
-      {
-        sku: 449833,
-        nombre: "Angulo Perimetral M7 12",
-        precio_unidad: 0, // falta ponerle precio , unidad y activado
-        cantidad: 0,
-        redondeo: 0,
-        unidad: "Piezas",
-        activado: false,
-      },
+      // necesito esos datos por lo que necesito el excel
+      // {
+      //   sku: 449833,
+      //   nombre: "Angulo Perimetral M7 12",
+      //   precio_unidad: 0, // falta ponerle precio , unidad y activado
+      //   cantidad: 0,
+      //   redondeo: 0,
+      //   unidad: "Piezas",
+      //   activado: false,
+      // },
 
 
 
