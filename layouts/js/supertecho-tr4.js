@@ -83,7 +83,7 @@ class WoocommerceApi {
         activado: false,
       },
       /* {
-        sku: 403047,
+        sku: 453087,
         nombre: "SUJETADOR GALV X 0.90 mm X 005/200",
         cantidad: 0,
         unidad: "Unidad",
@@ -91,28 +91,28 @@ class WoocommerceApi {
         activado: false,
       },
       {
-        sku: 448790,
+        sku: 453089,
         nombre: "SOPORTE CANALETA 2A GALV2B0.90MMX005/200",
         cantidad: 0,
         unidad: "Piezas",
         detalle: "3m", accesorio: true,
         activado: false,
       }, {
-        sku: 403047,
+        sku: 453090,
         nombre: "SOPORTE CANALETA 2B GALV2B0.90MMX005/200",
         cantidad: 0,
         unidad: "Piezas",
         detalle: "3m", accesorio: true,
         activado: false,
       }, {
-        sku: 403047,
+        sku: 453091,
         nombre: "SOPORTE CANALETA 2C GALV2C0.90MMX005/200",
         cantidad: 0,
         unidad: "Piezas",
         detalle: "3m", accesorio: true,
         activado: false,
       }, {
-        sku: 403047,
+        sku: 453088,
         nombre: "SOPORTE CANALETA 2D GALV2B0.90MMX005/200",
         cantidad: 0,
         unidad: "Piezas",
@@ -120,7 +120,7 @@ class WoocommerceApi {
         activado: false,
       },
       {
-        sku: 403047,
+        sku: 453092,
         nombre: "SOPORTE CANALETA 2E GALV2B0.90MMX005/200",
         cantidad: 0,
         unidad: "Piezas",
@@ -146,14 +146,14 @@ class WoocommerceApi {
 
       /* materiales generales */
       // {
-      //   sku: 449071,
+      //   sku: 452809,
       //   nombre: "TORNILLO1/4X7/8PNTA BROCA STITCH RUSPERT",
       //   cantidad: 0,
       //   unidad: "Cto",
       //   detalle: "", accesorio: false,
       //   activado: true,
       // }, {
-      //   sku: 449071,
+      //   sku: 451468,
       //   nombre: "TORNILLO # 10x3/4 Recubrimiento Ruspert",
       //   cantidad: 0,
       //   unidad: "Cto",
@@ -161,7 +161,7 @@ class WoocommerceApi {
       //   activado: true,
       // },
       // {
-      //   sku: 449071,
+      //   sku: 452811,
       //   nombre: "TORNILLO TAPPER 1/4 X 3 3 / 4 RUSPERT",
       //   cantidad: 0,
       //   unidad: "Cto",
@@ -169,15 +169,7 @@ class WoocommerceApi {
       //   activado: true,
       // },
       // {
-      //   sku: 449071,
-      //   nombre: "TORNILLO1/4X7/8PNTA BROCA STITCH RUSPERT",
-      //   cantidad: 0,
-      //   unidad: "Cto",
-      //   detalle: "", accesorio: false,
-      //   activado: true,
-      // },
-      // {
-      //   sku: 449071,
+      //   sku: 453180,
       //   nombre: "TORNILLO WAFER #8 X 3/4 PNTA BROCA GALVA",
       //   cantidad: 0,
       //   unidad: "Cto",
@@ -710,7 +702,7 @@ class UI {
     const E7 = this.getValueInput("#caida1A");
     const E11 = this.calcularAreaCubierta();
     let G30 = 0; //cantidad de 452806 CUMBRERA ALZN 0.30x3.00M
-    let G23 = 0; //cantidad de 452804 CANALETA ALZN 0.30x3.00M
+    let G23 = 0; //cantidad de 452804 453087 ALZN 0.30x3.00M
     let G24 = 0; //cantidad de 453087 SUJETADOR GALV X 0.90 mm X 005/200
     let G25 = 0; //cantidad de 453089 SOPORTE CANALETA 2A GALV2B0.90MMX005/200
     // let G30 = 0; //cantidad de 452806 CUMBRERA ALZN 0.30x3.00M
@@ -718,7 +710,7 @@ class UI {
 
     woo.materiales.filter(e => {
       if (e.activado) {
-        //calcular uno por uno material
+        //calcular uno por uno 453089
         let sku = parseInt(e.sku);
 
         /* ACCESORIOS */
@@ -737,7 +729,7 @@ class UI {
           }
           G31 = e.cantidad;
         }
-        // SUJETADOR GALV X 0.90 mm X 005/200
+        // 453087 SUJETADOR GALV X 0.90 mm X 005/200
         // 452804 CANALETA ALZN 0.30x3.00M
         if (sku == 452804) {
           e.cantidad = (E5 == 1) ? Math.ceil((E6 / 2.9) * 1.05) : G30 * 2;
@@ -745,7 +737,7 @@ class UI {
         }
         if (sku == 453087) {
           e.cantidad = (E5 == 1) ? Math.ceil(E6 / 6) : Math.ceil(E6 / 6 * 2) * 5;
-          G24 = e.cantidad;
+          453089= e.cantidad;
         }
         //SOPORTE CANALETA 2A GALV2B0.90MMX005/200
         if (sku == 453089) {

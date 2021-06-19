@@ -74,7 +74,7 @@ class WoocommerceApi {
         activado: false,
       },
       /* {
-        sku: 403047,
+        sku: 453087,
         nombre: "SUJETADOR GALV X 0.90 mm X 005/200",
         cantidad: 0,
         unidad: "Unidad",
@@ -82,28 +82,28 @@ class WoocommerceApi {
         activado: false,
       },
       {
-        sku: 448790,
+        sku: 453089,
         nombre: "SOPORTE CANALETA 2A GALV2B0.90MMX005/200",
         cantidad: 0,
         unidad: "Piezas",
         detalle: "3m", accesorio: true,
         activado: false,
       }, {
-        sku: 403047,
+        sku: 453090,
         nombre: "SOPORTE CANALETA 2B GALV2B0.90MMX005/200",
         cantidad: 0,
         unidad: "Piezas",
         detalle: "3m", accesorio: true,
         activado: false,
       }, {
-        sku: 403047,
+        sku: 453091,
         nombre: "SOPORTE CANALETA 2C GALV2C0.90MMX005/200",
         cantidad: 0,
         unidad: "Piezas",
         detalle: "3m", accesorio: true,
         activado: false,
       }, {
-        sku: 403047,
+        sku: 453088,
         nombre: "SOPORTE CANALETA 2D GALV2B0.90MMX005/200",
         cantidad: 0,
         unidad: "Piezas",
@@ -111,7 +111,7 @@ class WoocommerceApi {
         activado: false,
       },
       {
-        sku: 403047,
+        sku: 453092,
         nombre: "SOPORTE CANALETA 2E GALV2B0.90MMX005/200",
         cantidad: 0,
         unidad: "Piezas",
@@ -153,7 +153,7 @@ class WoocommerceApi {
         activado: true,
       },
       // {
-      //   sku: 449071,
+      //   sku: 452811,
       //   nombre: "TORNILLO TAPPER 1/4 X 3 3 / 4 RUSPERT",
       //   cantidad: 0,
       //   unidad: "Cto",
@@ -161,7 +161,7 @@ class WoocommerceApi {
       //   activado: true,
       // },
       // {
-      //   sku: 449071,
+      //   sku: 452809,
       //   nombre: "TORNILLO1/4X7/8PNTA BROCA STITCH RUSPERT",
       //   cantidad: 0,
       //   unidad: "Cto",
@@ -170,7 +170,7 @@ class WoocommerceApi {
       // }
       // ,
       // {
-      //   sku: 449071,
+      //   sku: 453180,
       //   nombre: "TORNILLO WAFER #8 X 3/4 PNTA BROCA GALVA",
       //   cantidad: 0,
       //   unidad: "Cto",
@@ -180,7 +180,7 @@ class WoocommerceApi {
       // ,
 
       // {
-      //   sku: 449071,
+      //   sku: 429983,
       //   nombre: "PERFIL PEG. CLIP TR5 X 0.8 005/200",
       //   cantidad: 0,
       //   unidad: "und",

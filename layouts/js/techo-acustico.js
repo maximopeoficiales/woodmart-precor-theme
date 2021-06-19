@@ -12,7 +12,7 @@ class WoocommerceApi {
     this.dominio = "https://maxco.pe/";
     /* datos en duro */
     this.data = [
-      { /* tabla 1 999991 falta especificar producto */
+      { /* tabla 1 999991 falta especificar producto de clavos */
         sku: 449055,
         nombre: "PRINCIPAL DONN 12' 15/16",
         precio_unidad: 0.25,
@@ -95,7 +95,7 @@ class WoocommerceApi {
         unidad: "Piezas",
         activado: false,
       },
-      /* tabla 3  falta 449833 angulo perimetrial m7 12*/
+      /* tabla 3  */
       {
         sku: 449059,
         nombre: "PRINCIPAL DONN 10' 9/16",
