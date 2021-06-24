@@ -465,3 +465,18 @@ add_shortcode('precor_get_type_rate_currency', function ($atts) {
 //      return false;
 // }
 // add_filter('wpmu_welcome_notification', 'precor_db_remove_new_site_notification_email');
+
+// filtro para modificar algunos campos en checkout fields de woocommerce
+function custom_override_checkout_fields($fields)
+{
+     // modifico los atributos de los checkout fields
+     $fields['shipping']['shipping_company']['maxlength'] = '20';
+     $fields['shipping']['shipping_company']['placeholder'] = 'Ingrese su RUC';
+     $fields['shipping']['shipping_first_name']['maxlength'] = '150';
+     $fields['shipping']['shipping_first_name']['placeholder'] = 'Ingrese su Razon social';
+     $fields['shipping']['shipping_address_2']['placeholder'] = 'Ingrese su Direccion Fiscal';
+     $fields['shipping']['shipping_address_2']['maxlength'] = '200';
+     return $fields;
+} // End custom_override_checkout_fields()
+
+add_filter('woocommerce_checkout_fields', 'custom_override_checkout_fields', 10);
