@@ -135,7 +135,7 @@ if (!is_ajax()) {
 		const getCheckedPaymentMethodPrecor = () => {
 			// solucion rapida
 			setInterval(() => {
-				let inputRadioAddressPrecorList = document.querySelectorAll('.input-radio-payment-method-precor');
+				let inputRadioAddressPrecorList = document.querySelectorAll('.input-radio-payment-method-precor');  
 				inputRadioAddressPrecorList.forEach(e => {
 					let addressChecked = document.querySelector(`label[for=${e.id}]`)
 					if (e.checked) {
