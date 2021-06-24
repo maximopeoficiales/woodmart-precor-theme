@@ -292,7 +292,7 @@ if( ! function_exists( 'woodmart_woo_wrapper_end' ) ) {
  */
 
 if( ! function_exists( 'woodmart_before_my_account_navigation' ) ) {
-	function woodmart_before_my_account_navigation() {
+	function woodmart_before_my_account_navigation() { 
 		echo '<div class="woodmart-my-account-sidebar">';
 		if(!function_exists('woodmart_my_account_title')) {
 			?>
