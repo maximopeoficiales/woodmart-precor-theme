@@ -75,7 +75,7 @@ do_action('woocommerce_email_order_meta', $order, $sent_to_admin, $plain_text, $
 ?>
 <p><strong>Gracias por tu compra.</strong></p>
 <div class="precor-color-texto">
-	<p>Tu pedido será entregado en un plazo desde 24 a 48 horas. El equipo de programación de Maxco se contactará con usted para coordinar el día y hora exacta de entrega.</p>
+	<p>Tu pedido será entregado en un plazo desde 24 a 48 horas. El equipo de programación de Precor se contactará con usted para coordinar el día y hora exacta de entrega.</p>
 </div>
 <?php
 precor_buscas_algun_producto();
