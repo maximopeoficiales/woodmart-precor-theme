@@ -474,8 +474,8 @@ function custom_override_checkout_fields($fields)
      $fields['shipping']['shipping_company']['placeholder'] = 'Ingrese su RUC';
      $fields['shipping']['shipping_first_name']['maxlength'] = '150';
      $fields['shipping']['shipping_first_name']['placeholder'] = 'Ingrese su Razon social';
-     $fields['shipping']['shipping_address_2']['placeholder'] = 'Ingrese su Direccion Fiscal';
-     $fields['shipping']['shipping_address_2']['maxlength'] = '200';
+     $fields['shipping']['direccion_fiscal']['placeholder'] = 'Ingrese su Direccion Fiscal';
+     $fields['shipping']['direccion_fiscal']['maxlength'] = '200';
      return $fields;
 } // End custom_override_checkout_fields()
 
