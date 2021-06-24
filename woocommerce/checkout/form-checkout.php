@@ -48,7 +48,9 @@ $get_checkout_url = apply_filters('woocommerce_get_checkout_url', wc_get_checkou
 				<div class="col-12">
 					<?php do_action('woocommerce_checkout_billing'); ?>
 				</div>
-
+				<div class="col-12 " >
+					<?php do_action('woocommerce_checkout_shipping'); ?>
+				</div>
 
 			</div>
 
@@ -59,9 +61,7 @@ $get_checkout_url = apply_filters('woocommerce_get_checkout_url', wc_get_checkou
 	</div>
 
 	<div class="col-12 col-md-7 col-lg-6">
-		<div class="col-12 " style="margin-bottom: 50px;">
-			<?php do_action('woocommerce_checkout_shipping'); ?>
-		</div>
+
 		<div class="checkout-order-review">
 			<h3 id="order_review_heading"><?php esc_html_e('Your order', 'woocommerce'); ?></h3>
 
