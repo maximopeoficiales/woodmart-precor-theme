@@ -158,8 +158,8 @@ foreach (WC()->cart->get_cart() as $cart_item_key => $cart_item) {
 							<th class="product-name"><?php esc_html_e('Product', 'woocommerce'); ?></th>
 							<th class="product-name precor-display-none-sm">UND</th>
 							<th class="product-name">Peso Total</th>
-							<th class="product-name precor-display-none-sm">PZAS</th>
 							<th class="product-name precor-display-none-sm">PAQ</th>
+							<th class="product-name precor-display-none-sm">PZAS</th>
 							<th class="product-total" style="text-align: right;"><?php esc_html_e('Subtotal', 'woocommerce'); ?></th>
 						</tr>
 					</thead>
