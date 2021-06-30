@@ -186,6 +186,7 @@ class WoocommerceApi {
       try {
         const url = `${this.dominio}wp-json/wc/v3/products/?per_page=100&page=${page}&consumer_key=${this.consumerKey}&consumer_secret=${this.consumerSecret}`;
         let materiales = await (await fetch(url)).json();
+        console.log(url);
         if (materiales.length !== 0) {
           materiales.forEach((element) => {
             materialsComplete.push(element);
@@ -195,10 +196,10 @@ class WoocommerceApi {
           page = false;
         }
       } catch (error) {
-        if (llamados > 10)
-          return `HTTP-Error: ${response.status}, volviendo a intentar`;
-        console.warn(error);
-        return this.getAllMaterials(llamados + 1);
+        // if (llamados > 10)
+        //   return `HTTP-Error: ${response.status}, volviendo a intentar`;
+        // console.warn(error);
+        // return this.getAllMaterials(llamados + 1);
       }
     } while (page != false);
     return materialsComplete;

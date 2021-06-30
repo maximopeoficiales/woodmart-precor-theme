@@ -120,7 +120,7 @@ class Ui extends Singleton {
 		<?php endif; ?>
 
 		<?php if ( is_user_logged_in() && $this->is_editable() && woodmart_get_opt( 'my_account_wishlist' ) ) : ?>
-			<?php do_action( 'woocommerce_account_navigation' ); ?>
+			<!-- <?php do_action( 'woocommerce_account_navigation' ); ?> -->
 		<?php endif; ?>
 
 		<div class="<?php echo ( is_user_logged_in() && $this->is_editable() && woodmart_get_opt( 'my_account_wishlist' ) ) ? 'woocommerce-MyAccount-content' : ''; ?>">

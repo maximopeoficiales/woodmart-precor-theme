@@ -19,6 +19,7 @@
   <link href="<?php echo get_template_directory_uri(); ?>/layouts/css/select2.min.css" rel="stylesheet" />
   <link href="<?php echo get_template_directory_uri(); ?>/layouts/css/select2-bootstrap4.min.css" rel="stylesheet" />
   <link href="<?php echo get_template_directory_uri(); ?>/layouts/css/styles.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
 
 <body <?php body_class(); ?>>
