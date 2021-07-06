@@ -5,6 +5,23 @@
  */
 const getElement = (selector) => document.querySelector(selector);
 
+/**
+ * Retorna un redondeo de 100 en 100 .
+ * @param {number} value - Numero a redondear.
+ * @returns {number}
+ */
+const roundUp100 = (value) => {
+  return (~~((parseInt(value) + 99) / 100) * 100);
+}
+/**
+ * Retorna un redondeo de 1000 en 1000 .
+ * @param {number} value - Numero a redondear.
+ * @returns {number}
+ */
+const roundUp1000 = (value) => {
+  return (~~((parseInt(value) + 999) / 1000) * 1000);
+}
+
 class WoocommerceApi {
   constructor() {
     this.consumerKey = "ck_8f55a46b8cd9bdb4323eb5a139cc0ecc2a598f68";
@@ -62,7 +79,7 @@ class WoocommerceApi {
       {
         sku: 449112,
         nombre: "Tornillo DRYWALL 7 x 7/16 PF",
-        precio_unidad: 9.7,
+        precio_unidad: 13.1,
         cantidad: 0,
         redondeo: 0,
         unidad: "Millar",
@@ -96,7 +113,7 @@ class WoocommerceApi {
         activado: true,
       },
       {
-        sku: 450743,
+        sku: 450744, // se cambio sku 450743 -> 450744  
         nombre: "MASILLA MAXROCK BOLSA X 5 KG",
         precio_unidad: 1.1,
         cantidad: 0,
@@ -240,9 +257,12 @@ class WoocommerceApi {
           e.unidad.toLowerCase().includes("rollos") == true
         ) {
           if (e.unidad.toLowerCase() == "cientos") {
+            e.cantidad = roundUp100(e.cantidad);
+            // console.log(e.cantidad);
             e.redondeo = Math.ceil(e.cantidad / 100);
           }
           if (e.unidad.toLowerCase() == "millar") {
+            e.cantidad = roundUp1000(e.cantidad);
             e.redondeo = Math.ceil(e.cantidad / 100);
           }
           if (e.unidad.toLowerCase().includes("cajas")) {
@@ -547,26 +567,26 @@ class UI {
                 document
                   .querySelectorAll(".swal2-styled")[1]
                   .classList.add("d-none");
-                  let respuesta = await woo.agregarCarrito();
-                  if (respuesta) {
-                    this.mostrarMensajeCustom(
-                      "success",
-                      "Felicitaciones",
-                      "Materiales agregados al carrito 😎"
-                    );
-                    setTimeout(() => {
-                      location.reload();
-                    }, 2000);
-                  } else if (respuesta == false) {
-                    this.mostrarMensajeCustom(
-                      "info",
-                      "Materiales Sin Stock",
-                      "No es posible agregar al carrito"
-                    );
-                    setTimeout(() => {
-                      location.reload();
-                    }, 2000);
-                  }
+                let respuesta = await woo.agregarCarrito();
+                if (respuesta) {
+                  this.mostrarMensajeCustom(
+                    "success",
+                    "Felicitaciones",
+                    "Materiales agregados al carrito 😎"
+                  );
+                  setTimeout(() => {
+                    location.reload();
+                  }, 2000);
+                } else if (respuesta == false) {
+                  this.mostrarMensajeCustom(
+                    "info",
+                    "Materiales Sin Stock",
+                    "No es posible agregar al carrito"
+                  );
+                  setTimeout(() => {
+                    location.reload();
+                  }, 2000);
+                }
               })();
             }
           );

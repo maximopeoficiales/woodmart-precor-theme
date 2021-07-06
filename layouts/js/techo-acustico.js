@@ -3,6 +3,7 @@
  * @param {string} selector - The selector html.
  * @returns {HTMLElement}
  */
+ var contador=0;
 const getElement = (selector) => document.querySelector(selector);
 
 class WoocommerceApi {
@@ -148,9 +149,9 @@ class WoocommerceApi {
       let materiales = await (await fetch(url)).json();
       return materiales;
     } catch (error) {
-      if (llamados > 10) return `HTTP-Error: En la peticion al servidor`;
-      console.warn(error);
-      return this.getDatosBase(llamados + 1);
+        // if (llamados > 10) return `HTTP-Error: En la peticion al servidor`;
+        // console.warn(error);
+        // return this.getDatosBase(llamados + 1);
     }
   }
   async agregarCarrito() {
@@ -196,6 +197,8 @@ class WoocommerceApi {
 
 
   }
+  
+
   async getAllMaterials(llamados = 0) {
     let materialsComplete = [],
       page = 1;
@@ -203,6 +206,7 @@ class WoocommerceApi {
       try {
         const url = `${this.dominio}wp-json/wc/v3/products/?per_page=100&page=${page}&consumer_key=${this.consumerKey}&consumer_secret=${this.consumerSecret}`;
         let materiales = await (await fetch(url)).json();
+        contador++;
         if (materiales.length !== 0) {
           materiales.forEach((element) => {
             materialsComplete.push(element);
@@ -211,11 +215,12 @@ class WoocommerceApi {
         } else {
           page = false;
         }
+        console.log(contador);
       } catch (error) {
-        if (llamados > 10)
-          return `HTTP-Error: ${response.status}, volviendo a intentar`;
-        console.warn(error);
-        return this.getAllMaterials(llamados + 1);
+        // if (llamados > 10)
+        //   return `HTTP-Error: ${response.status}, volviendo a intentar`;
+        // console.warn(error);
+        // return this.getAllMaterials(llamados + 1);
       }
     } while (page != false);
     return materialsComplete;
