@@ -106,7 +106,7 @@ class WoocommerceApi {
         precio_unidad: 2.05,
         cantidad: 0,
         redondeo: 0,
-        unidad: "Cajas de 5 Kg",
+        unidad: "Cajas de 20 Kg",
         activado: true,
       },
       {
