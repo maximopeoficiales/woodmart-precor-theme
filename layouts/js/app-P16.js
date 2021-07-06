@@ -5,6 +5,22 @@
  */
 const getElement = (selector) => document.querySelector(selector);
 
+/**
+ * Retorna un redondeo de 100 en 100 .
+ * @param {number} value - Numero a redondear.
+ * @returns {number}
+ */
+ const roundUp100 = (value) => {
+  return (~~((parseInt(value) + 99) / 100) * 100);
+}
+/**
+ * Retorna un redondeo de 1000 en 1000 .
+ * @param {number} value - Numero a redondear.
+ * @returns {number}
+ */
+const roundUp1000 = (value) => {
+  return (~~((parseInt(value) + 999) / 1000) * 1000);
+}
 class WoocommerceApi {
   constructor() {
     this.consumerKey = "ck_8f55a46b8cd9bdb4323eb5a139cc0ecc2a598f68";
@@ -90,7 +106,7 @@ class WoocommerceApi {
         precio_unidad: 2.05,
         cantidad: 0,
         redondeo: 0,
-        unidad: "Cajas de 5 Kg",
+        unidad: "Cajas de 20 Kg",
         activado: true,
       },
       {
@@ -237,9 +253,11 @@ class WoocommerceApi {
           e.unidad.toLowerCase().includes("rollos") == true
         ) {
           if (e.unidad.toLowerCase() == "cientos") {
+            e.cantidad=roundUp100(e.cantidad);
             e.redondeo = Math.ceil(e.cantidad / 100);
           }
           if (e.unidad.toLowerCase() == "millar") {
+            e.cantidad=roundUp1000(e.cantidad);
             e.redondeo = Math.ceil(e.cantidad / 100);
           }
           if (e.unidad.toLowerCase().includes("cajas")) {

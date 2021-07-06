@@ -482,10 +482,10 @@ function custom_override_checkout_fields($fields)
 add_filter('woocommerce_checkout_fields', 'custom_override_checkout_fields', 10);
 
 
-function maximum_api_filter_custom($query_params)
-{
-     $query_params['per_page']["maximum"] = 100000;
-     return $query_params;
-}
+// function maximum_api_filter_custom($query_params)
+// {
+//      $query_params['per_page']["maximum"] = 100000;
+//      return $query_params;
+// }
 
-add_filter('rest_product_collection_params', 'maximum_api_filter_custom');
+// add_filter('rest_product_collection_params', 'maximum_api_filter_custom');

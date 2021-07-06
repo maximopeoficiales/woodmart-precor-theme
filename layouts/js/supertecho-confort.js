@@ -7,6 +7,22 @@ const getElement = (selector) => document.querySelector(selector);
 // data variable  segun cada separacion viguetas 
 //
 
+/**
+ * Retorna un redondeo de 100 en 100 .
+ * @param {number} value - Numero a redondear.
+ * @returns {number}
+ */
+ const roundUp100 = (value) => {
+  return (~~((parseInt(value) + 99) / 100) * 100);
+}
+/**
+ * Retorna un redondeo de 1000 en 1000 .
+ * @param {number} value - Numero a redondear.
+ * @returns {number}
+ */
+const roundUp1000 = (value) => {
+  return (~~((parseInt(value) + 999) / 1000) * 1000);
+}
 let dataPanel = [
   {
     name: "p305",
