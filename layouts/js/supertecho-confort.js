@@ -214,7 +214,7 @@ class WoocommerceApi {
       }
       ,
       {
-        sku: 456081,
+        sku: 403863,
         nombre: "REMACHE POP 5/32 X 12",
         cantidad: 0,
         unidad: "Cto",
@@ -949,6 +949,7 @@ async function init() {
     // console.log(woo.materiales);
     ui.showOrHideSpinner();
     ui.llenarTablas();
+    ui.calculoTotal();
   } catch (error) {
     console.log(error);
   }
