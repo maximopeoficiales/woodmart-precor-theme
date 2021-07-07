@@ -3,7 +3,7 @@
  * @param {string} selector - The selector html.
  * @returns {HTMLElement}
  */
- var contador=0;
+var contador = 0;
 const getElement = (selector) => document.querySelector(selector);
 
 /**
@@ -11,7 +11,7 @@ const getElement = (selector) => document.querySelector(selector);
  * @param {number} value - Numero a redondear.
  * @returns {number}
  */
- const roundUp100 = (value) => {
+const roundUp100 = (value) => {
   return (~~((parseInt(value) + 99) / 100) * 100);
 }
 /**
@@ -57,7 +57,7 @@ class WoocommerceApi {
         activado: true,
       },
       {
-        sku: 449040,
+        sku: 449039,
         nombre: "BALDOSA RADAR CLIMAPLUS 2X4X5/8 ",
         precio_unidad: 1.35,
         cantidad: 0,
@@ -123,15 +123,15 @@ class WoocommerceApi {
         activado: false,
       },
       // necesito esos datos por lo que necesito el excel
-      // {
-      //   sku: 449833,
-      //   nombre: "Angulo Perimetral M7 12",
-      //   precio_unidad: 0, // falta ponerle precio , unidad y activado
-      //   cantidad: 0,
-      //   redondeo: 0,
-      //   unidad: "Piezas",
-      //   activado: false,
-      // },
+      {
+        sku: 449833,
+        nombre: "Angulo Perimetral M7 12",
+        precio_unidad: 0.25, // falta ponerle precio , unidad y activado
+        cantidad: 0,
+        redondeo: 0,
+        unidad: "Piezas",
+        activado: false,
+      },
 
 
 
@@ -165,9 +165,9 @@ class WoocommerceApi {
       let materiales = await (await fetch(url)).json();
       return materiales;
     } catch (error) {
-        // if (llamados > 10) return `HTTP-Error: En la peticion al servidor`;
-        // console.warn(error);
-        // return this.getDatosBase(llamados + 1);
+      // if (llamados > 10) return `HTTP-Error: En la peticion al servidor`;
+      // console.warn(error);
+      // return this.getDatosBase(llamados + 1);
     }
   }
   async agregarCarrito() {
@@ -213,7 +213,7 @@ class WoocommerceApi {
 
 
   }
-  
+
 
   async getAllMaterials(llamados = 0) {
     let materialsComplete = [],
@@ -269,6 +269,10 @@ class WoocommerceApi {
       //si esta activados
       if (e.activado) {
         e.cantidad = parseFloat(e.precio_metro2 * metraje).toFixed(2);
+
+        if (e.sku == "449109" || e.sku == "449108") {
+          e.cantidad = parseFloat(1.05 * metraje).toFixed(2);
+        }
         if (
           /* si es uno de estos casos */
           e.unidad.toLowerCase().includes("cajas") == true ||
@@ -277,9 +281,11 @@ class WoocommerceApi {
           e.unidad.toLowerCase().includes("rollos") == true
         ) {
           if (e.unidad.toLowerCase() == "cientos") {
+            e.cantidad = roundUp100(e.cantidad);
             e.redondeo = Math.ceil(e.cantidad / 100);
           }
           if (e.unidad.toLowerCase() == "millar") {
+            e.cantidad = roundUp1000(e.cantidad);
             e.redondeo = Math.ceil(e.cantidad / 100);
           }
           if (e.unidad.toLowerCase().includes("cajas")) {
@@ -736,21 +742,28 @@ class UI {
       });
     getElement("#checkbox-esModelado").addEventListener("change", e => {
       if (e.target.checked) {
-        // desabilita a 449040 
+        // desabilita a 449039 
         woo.materiales = woo.materiales.filter((m) => {
-          if (m.sku == 449040) {
+          if (m.sku == 449039) {
             m.activado = false;
+          }
+          if (m.sku == 449056 || m.sku == 449045) {
+            m.activado = true;
           }
           return m;
         });
         this.llenarTabla(woo.materiales);
       }
       else {
-        // habilita a 449040
+        // habilita a 449039
         woo.materiales = woo.materiales.filter((m) => {
-          if (m.sku == 449040) {
+          if (m.sku == 449039) {
             m.activado = true;
           }
+          if (m.sku == 449056 || m.sku == 449045) {
+            m.activado = false;
+          }
+
           return m;
         });
         this.llenarTabla(woo.materiales);
@@ -760,9 +773,11 @@ class UI {
       if (e.target.checked) {
         // desabilita a 449055 - 449056 
         woo.materiales = woo.materiales.filter((m) => {
-          if (m.sku == 449055 || m.sku == 449056) {
+          if (m.sku == 449055 || m.sku == 449057
+          ) {
             m.activado = false;
-          } else if (m.sku == 449050) {
+          }
+          else if (m.sku == 449059 || m.sku == 449833) {
             // habilita 449050
             m.activado = true;
           }
@@ -771,12 +786,13 @@ class UI {
         this.llenarTabla(woo.materiales);
       }
       else {
-        // habilita a 449055 - 449056 
+        // habilita a 449055 - 449057 
         woo.materiales = woo.materiales.filter((m) => {
-          if (m.sku == 449055 || m.sku == 449056) {
+          if (m.sku == 449055 || m.sku == 449057
+          ) {
             m.activado = true;
-          } else if (m.sku == 449050) {
-            // desabilita 449050
+          }
+          else if (m.sku == 449059 || m.sku == 449833) {
             m.activado = false;
           }
           return m;

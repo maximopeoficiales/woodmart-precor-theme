@@ -258,7 +258,6 @@ class WoocommerceApi {
         ) {
           if (e.unidad.toLowerCase() == "cientos") {
             e.cantidad = roundUp100(e.cantidad);
-            // console.log(e.cantidad);
             e.redondeo = Math.ceil(e.cantidad / 100);
           }
           if (e.unidad.toLowerCase() == "millar") {
