@@ -10,7 +10,7 @@ const getElement = (selector) => document.querySelector(selector);
  * @param {number} value - Numero a redondear.
  * @returns {number}
  */
- const roundUp100 = (value) => {
+const roundUp100 = (value) => {
   return (~~((parseInt(value) + 99) / 100) * 100);
 }
 /**
@@ -28,15 +28,15 @@ class WoocommerceApi {
     this.dominio = "https://maxco.pe/";
     /* datos en duro */
     this.data = [
-      {
-        sku: 449071,
-        nombre: "Planchas de 1,22m x 2,44m (4' x 8') DUROCK",
-        precio_unidad: 0.35,
-        cantidad: 0,
-        redondeo: 0,
-        unidad: "Planchas",
-        activado: true,
-      },
+      // {
+      //   sku: 449071,
+      //   nombre: "Planchas de 1,22m x 2,44m (4' x 8') DUROCK",
+      //   precio_unidad: 0.35,
+      //   cantidad: 0,
+      //   redondeo: 0,
+      //   unidad: "Planchas",
+      //   activado: true,
+      // },
       {
         sku: 403047,
         nombre: "PERFIL PARANTE 89 X 38 X 0.9 X 3 GALV",
@@ -82,15 +82,15 @@ class WoocommerceApi {
         unidad: "Millar",
         activado: true,
       },
-      {
-        sku: 449123,
-        nombre: "TYVEK STUCCO WRAP DE 5 X 200",
-        precio_unidad: 0.011,
-        cantidad: 0,
-        redondeo: 0,
-        unidad: "Rollos",
-        activado: true,
-      },
+      // {
+      //   sku: 449123,
+      //   nombre: "TYVEK STUCCO WRAP DE 5 X 200",
+      //   precio_unidad: 0.011,
+      //   cantidad: 0,
+      //   redondeo: 0,
+      //   unidad: "Rollos",
+      //   activado: true,
+      // },
       {
         sku: 449069,
         nombre: "CINTA DUROCK USG 4",
@@ -225,7 +225,6 @@ class WoocommerceApi {
           );
           if (respuesta.ok) {
             respuesta = respuesta.json();
-            console.log(respuesta);
             count++;
           } else if (respuesta.status == 403) {
             return false;
@@ -302,9 +301,11 @@ class WoocommerceApi {
           e.unidad.toLowerCase().includes("rollos") == true
         ) {
           if (e.unidad.toLowerCase() == "cientos") {
+            e.cantidad = roundUp100(e.cantidad);
             e.redondeo = Math.ceil(e.cantidad / 100);
           }
           if (e.unidad.toLowerCase() == "millar") {
+            e.cantidad = roundUp1000(e.cantidad);
             e.redondeo = Math.ceil(e.cantidad / 100);
           }
           if (e.unidad.toLowerCase().includes("cajas")) {
