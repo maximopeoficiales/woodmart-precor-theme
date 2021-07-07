@@ -12,7 +12,7 @@ const getElement = (selector) => document.querySelector(selector);
  * @param {number} value - Numero a redondear.
  * @returns {number}
  */
- const roundUp100 = (value) => {
+const roundUp100 = (value) => {
   return (~~((parseInt(value) + 99) / 100) * 100);
 }
 /**
@@ -141,7 +141,7 @@ class WoocommerceApi {
         unidad: "Piezas",
         detalle: "", accesorio: true,
         activado: false,
-      }, 
+      },
       {
         sku: 452807,
         nombre: "CENEFA ALZN 0.30x3.00M",
@@ -748,48 +748,35 @@ class UI {
     const E8 = this.getValueInput("#caida2B");
     const E7 = this.getValueInput("#caida1A");
     const E11 = this.calcularAreaCubierta();
-    let G30 = 0; //cantidad de 452806 CUMBRERA ALZN 0.30x3.00M
-    let G23 = 0; //cantidad de 452804 CANALETA ALZN 0.30x3.00M
-    let G24 = 0; //cantidad de 453087 SUJETADOR GALV X 0.90 mm X 005/200
-    let G25 = 0; //cantidad de 453089 SOPORTE CANALETA 2A GALV2B0.90MMX005/200
+    let G18 = 0; //cantidad de 452804 CANALETA ALZN 0.30x3.00M
+    let G19 = 0; //cantidad de 453087 SUJETADOR GALV X 0.90 mm X 005/200
+    let G20 = 0; //cantidad de 453089 SOPORTE CANALETA 2A GALV2B0.90MMX005/200
+    let G25 = 0; //cantidad de 452806 CUMBRERA ALZN 0.30x3.00M
+    let G26 = 0; //cantidad de 452807 CENEFA ALZN 0.30x3.00M
+    let G27 = 0; //cantidad de 452809    TORNILLO1/4X7/8PNTA BROCA STITCH RUSPERT
     let G28 = 0; //cantidad de 456078 TORNILLO 14X5 P. BROCA CON ARANDELA DG
-    // let G30 = 0; //cantidad de 452806 CUMBRERA ALZN 0.30x3.00M
-    let G31 = 0; //cantidad de 452807 CENEFA ALZN 0.30x3.00M
+    let G30 = 0; //cantidad de 429983    PERFIL PEG. CLIP TR5 X 0.8 005/200
 
     woo.materiales.filter(e => {
       if (e.activado) {
         //calcular uno por uno material
         let sku = parseInt(e.sku);
         /* ACCESORIOS */
-        // 452806 CUMBRERA ALZN 0.30x3.00M
-        if (sku == 452804) {
-          e.cantidad = (E5 == 1) ? 0 : Math.ceil((E6 / 2.9) * 1.05);
-          G30 = e.cantidad;
-        }
 
-        // CENEFA ALZN 0.30x3.00M
-        if (sku == 452807) {
-          if (E5 == 1) {
-            e.cantidad = Math.ceil((E7 / 2.9) * 2 * 1.05) + Math.ceil((E6 / 2.9) * 2 * 1.05);
-          } else {
-            e.cantidad = Math.ceil(((E7 + E8) / 2.9) * 2 * 1.05)
-          }
-          G31 = e.cantidad;
-        }
         // SUJETADOR GALV X 0.90 mm X 005/200
         // 452804 CANALETA ALZN 0.30x3.00M
         if (sku == 452804) {
-          e.cantidad = (E5 == 1) ? Math.ceil((E6 / 2.9) * 1.05) : G30 * 2;
-          G23 = e.cantidad
+          e.cantidad = (E5 == 1) ? Math.ceil((E6 / 2.9) * 1.05) : G25 * 2;
+          G18 = e.cantidad
         }
         if (sku == 453087) {
           e.cantidad = (E5 == 1) ? Math.ceil(E6 / 6) : Math.ceil(E6 / 6 * 2) * 5;
-          G24 = e.cantidad;
+          G19 = e.cantidad;
         }
         //SOPORTE CANALETA 2A GALV2B0.90MMX005/200
         if (sku == 453089) {
-          e.cantidad = G24 / 5;
-          G25 = e.cantidad;
+          e.cantidad = G19 / 5;
+          G20 = e.cantidad;
         }
 
         //SOPORTE CANALETA 2C GALV2C0.90MMX005/200
@@ -797,53 +784,68 @@ class UI {
         // SOPORTE CANALETA 2D GALV2B0.90MMX005/200
         //SOPORTE CANALETA 2E GALV2B0.90MMX005/200
         if (sku == 453091 || sku == 453090 || sku == 453088 || sku == 453092) {
-          e.cantidad = G25;
+          e.cantidad = G20;
+        }
+        // 452806 CUMBRERA ALZN 0.30x3.00M
+        if (sku == 452806) {
+          e.cantidad = (E5 == 1) ? 0 : Math.ceil((E6 / 2.9) * 1.05);
+          G25 = e.cantidad;
         }
 
+        // CENEFA ALZN 0.30x3.00M
+        if (sku == 452807) {
+          if (E5 == 1) {
+            e.cantidad = Math.ceil((E7 / 2.9) * 2 * 1.05) + Math.ceil((E6 / 2.9) * 1.05);
+          } else {
+            e.cantidad = Math.ceil(((E7 + E8) / 2.9) * 2 * 1.05)
+          }
+          G26 = e.cantidad;
+        }
         /* FIN DE ACCESORIOS */
 
         /* MATERIALES */
 
         //452809 TORNILLO1/4X7/8PNTA BROCA STITCH RUSPERT
         if (sku == 452809) {
-          e.cantidad = Math.ceil((E11 * 1.4652 / 100) * 1.05)
+          G27 = e.cantidad = Math.ceil((E11 * 1.5 / 100) * 1.05)
 
         }
         // este es la diferencia con supertecho tr4 
-        //456078 TORNILLO 14X5 P. BROCA CON ARANDELA DG
+        //456078  TORNILLO 14X5 P. BROCA CON ARANDELA DG -> 408721 este es el real
         if (sku == 456078) {
-          G28 = Math.ceil((E11 * 4.57 / 100) * 1.05);
+          G28 = Math.ceil((E11 * 1.67 / 100) * 1.05);
           e.cantidad = G28;
         }
-        // no existe este sku PERFIL PEG. CLIP TR5 X 0.8 005/200
-        if (sku == 429983) {
-          e.cantidad = G28 * 100;
-        }
+
         //452811 TORNILLO TAPPER 1/4" X 3 3/4" RUSPERT
         if (sku == 452811) {
 
-          e.cantidad = Math.ceil((E11 * 4.57 / 100) * 1.05)
-        }
-        //452809 TORNILLO1/4X7/8PNTA BROCA STITCH RUSPERT
-        if (sku == 452809) {
-
-          e.cantidad = Math.ceil((E11 * 4.57 / 100) * 1.05)
+          e.cantidad = Math.ceil((E11 * 1.67 / 100) * 1.05)
         }
 
+        // no existe este sku PERFIL PEG. CLIP TR5 X 0.8 005/200
+        if (sku == 429983) {
+          G30 = e.cantidad = G28 * 100;
+        }
+        // //452809 TORNILLO1/4X7/8PNTA BROCA STITCH RUSPERT
+        // if (sku == 452809) {
+
+        //   e.cantidad = Math.ceil((E11 * 4.57 / 100) * 1.05)
+        // }
+
         //452809 TORNILLO1/4X7/8PNTA BROCA STITCH RUSPERT
         if (sku == 452809) {
-          e.cantidad = Math.ceil((G30 * 24 * 1.05 / 100)) + Math.ceil((G24 * 2 * 1.05) / 100) + Math.ceil((G31 * 18 * 1.05) / 100)
+          e.cantidad = Math.ceil((G25 * 30 * 1.05 / 100)) + Math.ceil((G19 * 2 * 1.05) / 100) + Math.ceil((G26 * 18 * 1.05) / 100)
         }
 
         //  453180 TORNILLO WAFER #8 X 3/4 PNTA BROCA GALVA
-        if (sku == 456081) {
-
-          e.cantidad = Math.ceil((G23 * 6 * 1.05) / 100)
+        if (sku == 456180) {
+          e.cantidad = Math.ceil((G27 * 6 * 1.05) / 100)
         }
         //  403863 REMACHE POP 5/32 X 12
-        if (sku == 453878) {
+        if (sku == 403863) {
 
-          e.cantidad = Math.ceil((G23 * 20 * 1.05) / 100)
+          e.cantidad = Math.ceil((G18 * 20 * 1.05) / 100)
         }
 
         //  402664 CINTA BUTIL 3/8
@@ -851,11 +853,10 @@ class UI {
 
           e.cantidad = Math.ceil(E11 * 1.1 / 14)
         }
-        //  402657 CINTA BUTIL 7/8*
+        //  402657 CINTA BUTIL 7/8* -> existe uno con sku 402657
         if (sku == 453877) {
-          // console.log("si existo");
           let E14 = dataPanel.filter(e => e.name == "p305")[0].cantTotal;
-          e.cantidad = Math.ceil(((E14 * 1.25) / 8) * 1.05);
+          e.cantidad = Math.ceil(((G30 * 0.06 / 8) + (E14 * 1.25 / 8)) * 1.05);
         }
         // 402660 CINTA SELLADORA P/FOIL ANTIHUMEDAD
         if (sku == 402660) {

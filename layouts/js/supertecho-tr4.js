@@ -730,21 +730,8 @@ class UI {
         let sku = parseInt(e.sku);
 
         /* ACCESORIOS */
-        // 452806 CUMBRERA ALZN 0.30x3.00M
-        if (sku == 452804) {
-          e.cantidad = (E5 == 1) ? 0 : Math.ceil((E6 / 2.9) * 1.05);
-          G30 = e.cantidad;
-        }
+        
 
-        // CENEFA ALZN 0.30x3.00M
-        if (sku == 452807) {
-          if (E5 == 1) {
-            e.cantidad = Math.ceil((E7 / 2.9) * 2 * 1.05) + Math.ceil((E6 / 2.9) * 2 * 1.05);
-          } else {
-            e.cantidad = Math.ceil(((E7 + E8) / 2.9) * 2 * 1.05)
-          }
-          G31 = e.cantidad;
-        }
         // 453087 SUJETADOR GALV X 0.90 mm X 005/200
         // 452804 CANALETA ALZN 0.30x3.00M
         if (sku == 452804) {
@@ -768,7 +755,22 @@ class UI {
         if (sku == 453091 || sku == 453090 || sku == 453088 || sku == 453092) {
           e.cantidad = G25;
         }
+        // 452806 CUMBRERA ALZN 0.30x3.00M
+        if (sku == 452806) {
+          e.cantidad = (E5 == 1) ? 0 : Math.ceil((E6 / 2.9) * 1.05);
+          G30 = e.cantidad;
+        }
 
+        
+        // CENEFA ALZN 0.30x3.00M
+        if (sku == 452807) {
+          if (E5 == 1) {
+            e.cantidad = Math.ceil((E7 / 2.9) * 2 * 1.05) + Math.ceil((E6 / 2.9) * 1.05);
+          } else {
+            e.cantidad = Math.ceil(((E7 + E8) / 2.9) * 2 * 1.05)
+          }
+          G31 = e.cantidad;
+        }
         /* FIN DE ACCESORIOS */
 
         /* MATERIALES */
