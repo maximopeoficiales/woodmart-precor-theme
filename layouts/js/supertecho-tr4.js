@@ -12,7 +12,7 @@ const getElement = (selector) => document.querySelector(selector);
  * @param {number} value - Numero a redondear.
  * @returns {number}
  */
- const roundUp100 = (value) => {
+const roundUp100 = (value) => {
   return (~~((parseInt(value) + 99) / 100) * 100);
 }
 /**
@@ -150,7 +150,7 @@ class WoocommerceApi {
         unidad: "Piezas",
         detalle: "", accesorio: true,
         activado: false,
-      }, 
+      },
       {
         sku: 452807,
         nombre: "CENEFA ALZN 0.30x3.00M",
@@ -753,7 +753,7 @@ class UI {
         }
         if (sku == 453087) {
           e.cantidad = (E5 == 1) ? Math.ceil(E6 / 6) : Math.ceil(E6 / 6 * 2) * 5;
-          453089= e.cantidad;
+          G24 = e.cantidad;
         }
         //SOPORTE CANALETA 2A GALV2B0.90MMX005/200
         if (sku == 453089) {
@@ -912,6 +912,7 @@ async function init() {
     woo.materiales = await woo.getDatosBaseFormateados(); //guardo los datos en una propiedad
     ui.showOrHideSpinner();
     ui.llenarTablas();
+    ui.calculoTotal();
   } catch (error) {
     console.log(error);
   }

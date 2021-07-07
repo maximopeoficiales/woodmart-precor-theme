@@ -105,7 +105,7 @@ get_header("calculadora");
                     <div class="col-md-4">
                          <div class="form-group">
                               <label for="caida1A">Longitud de caida 1 (A)</label>
-                              <input type="number" value="4" id="caida1A" class="form-control" placeholder="Ingrese Longitud Caida 1 (m)" aria-describedby="caida1a">
+                              <input type="number" value="10" id="caida1A" class="form-control" placeholder="Ingrese Longitud Caida 1 (m)" aria-describedby="caida1a">
                          </div>
                     </div>
                     <div class="col-md-4">
