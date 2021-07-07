@@ -643,7 +643,8 @@ class UI {
       } else {
         panel.cantB = 0;
       }
-      panel.cantTotal = Math.ceil(cubiertaL / 1.05) * (panel.cantA + panel.cantB)
+      // en super techo tr4 era asi Math.ceil(cubiertaL / 1.5) * (panel.cantA + panel.cantB)
+      panel.cantTotal = Math.ceil(cubiertaL / 1.025) * (panel.cantA + panel.cantB)
       switch (panel.name) {
         case "p305":
           panel.areaPanel = (panel.cantTotal * 1.025 * 3.05).toFixed(2);
