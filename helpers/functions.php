@@ -490,7 +490,7 @@ add_filter('woocommerce_checkout_fields', 'custom_override_checkout_fields', 10)
 
 // add_filter('rest_product_collection_params', 'maximum_api_filter_custom');
 // add_action('woocommerce_resume_order', 'hpWooNewOrder');
-add_action('woocommerce_new_order', 'maxcoDescuentosOrder');
+add_action('woocommerce_checkout_order_processed', 'maxcoDescuentosOrder');
 function maxcoDescuentosOrder($id_order)
 {
      $woo = wc_get_order($id_order);
