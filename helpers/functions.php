@@ -489,3 +489,42 @@ add_filter('woocommerce_checkout_fields', 'custom_override_checkout_fields', 10)
 // }
 
 // add_filter('rest_product_collection_params', 'maximum_api_filter_custom');
+// add_action('woocommerce_resume_order', 'hpWooNewOrder');
+add_action('woocommerce_new_order', 'maxcoDescuentosOrder');
+function maxcoDescuentosOrder($id_order)
+{
+     $woo = wc_get_order($id_order);
+     $arrayProducts = [];
+     foreach ($woo->get_items() as $product) {
+          $productReal = wc_get_product(intval($product["product_id"]));
+          $precioProductoReal = number_format($productReal->get_price(), 2);
+          $precioProductoVendido = number_format($product["total"] / intval($product["quantity"]), 2);
+          $cantidadProductoVendido = intval($product["quantity"]);
+
+          // precios totales
+          $precioTotalDelProductoOriginal = $precioProductoReal * $cantidadProductoVendido;
+          $precioTotalDelProductoVendido = $precioProductoVendido * $cantidadProductoVendido;
+
+          // descuento total
+          $descuentoTotal = number_format($precioTotalDelProductoOriginal - $precioTotalDelProductoVendido, 2);
+
+          // porcentaje de descuento
+          $porcentajeDescuento = number_format(($descuentoTotal * 100) / $precioTotalDelProductoOriginal, 2);
+
+          array_push($arrayProducts, [
+               "product_id" => $productReal->get_id(),
+               "sku" => $productReal->get_sku(),
+               "name" => $productReal->get_name(),
+               "sale_price" => $precioProductoReal,
+               "sale_price_order" => $precioProductoVendido,
+               "quantity" => $cantidadProductoVendido,
+               "total_original" => $precioTotalDelProductoOriginal,
+               "total_sale" => $precioTotalDelProductoVendido,
+               "discount" => $descuentoTotal,
+               "percentage_discount" => $porcentajeDescuento
+          ]);
+          // echo $product[""];
+     }
+     $serializado = (maybe_serialize($arrayProducts));
+     add_post_meta($id_order, "descuentos_precor", $serializado);
+}
