@@ -43,7 +43,7 @@ $type = $isQuote ? "Cotizacion " : "Pedido";
 <body>
 	<div>
 		<div class="p-2">
-			<img src="http://tiendaenlinea.precor.pe/wp-content/uploads/2020/07/LOGO-PRECOR-SIN-PMP.jpg" class="rounded-lg" style="max-width: 150px;">
+			<img src="https://tiendaqa.maxco.pe/wp-content/uploads/2021/logomaxco.png" class="rounded-lg" style="max-width: 150px;">
 			<div class=" text-uppercase float-right mb-2">
 				<p class=" p-2  my-1"><b><?= $type ?>:</b> <?= precor_getIDSAPbyOrderID($this->order_id) ?></p>
 				<p class=" p-2  my-1"><b>Fecha:</b> <?= $data["date_created"] ?></p>
