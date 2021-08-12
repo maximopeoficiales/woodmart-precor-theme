@@ -31,12 +31,6 @@ if (!defined('ABSPATH')) {
 YITH_YWRAQ_Order_Request()->is_expired($order_id);
 
 $order = wc_get_order($order_id);
-
-// bug de descuento solucionado
-if ($order->get_discount_total() == "0.01") {
-	$order->set_discount_total(0);
-	$order->save();
-}
 add_filter('woocommerce_is_attribute_in_product_name', '__return_false');
 
 if (!$order) {

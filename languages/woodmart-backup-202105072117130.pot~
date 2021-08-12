@@ -6,15 +6,12 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://xtemos.com\n"
 "POT-Creation-Date: 2020-04-14 14:02:17+00:00\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2021-02-23 03:05+0000\n"
-"Last-Translator: admin\n"
-"Language-Team: Español\n"
-"X-Generator: Loco https://localise.biz/\n"
-"Language: es_ES\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Loco-Version: 2.4.0; wp-5.6.2"
+"PO-Revision-Date: 2020-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Xtemos Studio\n"
+"X-Generator: grunt-wp-i18n 0.5.4\n"
 
 #: 404.php:11
 msgid "Not Found"
@@ -177,11 +174,11 @@ msgstr ""
 #: inc/integrations/woocommerce/template-tags.php:31
 #: inc/integrations/woocommerce/template-tags.php:1666
 msgid "Shopping cart"
-msgstr "Carrito de compras"
+msgstr ""
 
 #: header-elements/categories.php:46
 msgid "Browse Categories"
-msgstr "Nuestras categorías"
+msgstr ""
 
 #: header-elements/compare.php:20
 #: inc/integrations/woocommerce/modules/compare.php:151
@@ -199,7 +196,7 @@ msgstr ""
 #: inc/modules/sticky-toolbar.php:46 inc/modules/sticky-toolbar.php:85
 #: inc/modules/sticky-toolbar.php:294
 msgid "Compare"
-msgstr "Comparar"
+msgstr ""
 
 #: header-elements/main-menu.php:46
 msgid ""
@@ -850,8 +847,8 @@ msgstr ""
 #: inc/admin/redux/settings/product-page.php:184
 #: inc/admin/settings/product.php:318
 msgid ""
-"You can choose different page layout depending on the product image size you "
-"need"
+"You can choose different page layout depending on the product image size "
+"you need"
 msgstr ""
 
 #: inc/admin/metaboxes/products.php:97
@@ -934,8 +931,8 @@ msgstr ""
 
 #: inc/admin/metaboxes/products.php:269
 msgid ""
-"You can create some extra content with WPBakery Page Builder (in Admin panel "
-"/ HTML Blocks / Add new) and add it to this product"
+"You can create some extra content with WPBakery Page Builder (in Admin "
+"panel / HTML Blocks / Add new) and add it to this product"
 msgstr ""
 
 #: inc/admin/metaboxes/products.php:270 inc/admin/metaboxes/products.php:282
@@ -1962,8 +1959,8 @@ msgstr ""
 
 #: inc/admin/redux/settings/footer.php:96 inc/admin/settings/footer.php:138
 msgid ""
-"Widgets added to the footer will be collapsed by default and opened when you "
-"click on their titles."
+"Widgets added to the footer will be collapsed by default and opened when "
+"you click on their titles."
 msgstr ""
 
 #: inc/admin/redux/settings/footer.php:103 inc/admin/settings/footer.php:150
@@ -1984,8 +1981,7 @@ msgid "Footer background"
 msgstr ""
 
 #: inc/admin/redux/settings/footer.php:120 inc/admin/settings/footer.php:172
-msgid ""
-"You can set your footer section background color or upload some graphic."
+msgid "You can set your footer section background color or upload some graphic."
 msgstr ""
 
 #: inc/admin/redux/settings/footer.php:131
@@ -2140,9 +2136,9 @@ msgstr ""
 #: inc/admin/redux/settings/general.php:34 inc/admin/settings/general.php:61
 #: inc/integrations/visual-composer/maps/google-map.php:55
 msgid ""
-"Obtain API key <a href=\"https://developers.google."
-"com/maps/documentation/javascript/get-api-key\" target=\"_blank\">here</a> "
-"to use our Google Map VC element."
+"Obtain API key <a "
+"href=\"https://developers.google.com/maps/documentation/javascript/get-api-"
+"key\" target=\"_blank\">here</a> to use our Google Map VC element."
 msgstr ""
 
 #: inc/admin/redux/settings/general.php:40 inc/admin/settings/general.php:73
@@ -2166,8 +2162,7 @@ msgid "Enable Sticky navbar"
 msgstr ""
 
 #: inc/admin/redux/settings/general.php:65 inc/admin/settings/general.php:168
-msgid ""
-"Sticky navigation toolbar will be shown at the bottom on mobile devices."
+msgid "Sticky navigation toolbar will be shown at the bottom on mobile devices."
 msgstr ""
 
 #: inc/admin/redux/settings/general.php:71 inc/admin/settings/general.php:179
@@ -2228,7 +2223,7 @@ msgstr ""
 #: inc/admin/redux/settings/login-register.php:6
 #: inc/admin/settings/login.php:12
 msgid "Login/Register"
-msgstr "Ingresa a tu cuenta"
+msgstr ""
 
 #: inc/admin/redux/settings/login-register.php:13
 #: inc/admin/settings/login.php:21
@@ -2366,8 +2361,8 @@ msgstr ""
 
 #: inc/admin/redux/settings/other.php:20 inc/admin/settings/other.php:35
 msgid ""
-"If you enable this option, a new post type for sliders will be added to your "
-"Dashboard menu. You will be able to create sliders with WPBakery Page "
+"If you enable this option, a new post type for sliders will be added to "
+"your Dashboard menu. You will be able to create sliders with WPBakery Page "
 "Builder and place them on any page on your website."
 msgstr ""
 
@@ -2476,8 +2471,8 @@ msgstr ""
 #: inc/admin/redux/settings/page-title.php:102
 #: inc/admin/redux/settings/page-title.php:110
 msgid ""
-"You need to enable and configure it in Dashboard -> SEO -> Search Appearance "
-"-> Breadcrumbs."
+"You need to enable and configure it in Dashboard -> SEO -> Search "
+"Appearance -> Breadcrumbs."
 msgstr ""
 
 #: inc/admin/redux/settings/page-title.php:108
@@ -2587,8 +2582,8 @@ msgstr ""
 #: inc/admin/redux/settings/perfomance.php:60
 #: inc/admin/settings/performance.php:253
 msgid ""
-"Enable this option to optimize your images loading on the website. They will "
-"be loaded only when user will scroll the page."
+"Enable this option to optimize your images loading on the website. They "
+"will be loaded only when user will scroll the page."
 msgstr ""
 
 #: inc/admin/redux/settings/perfomance.php:66
@@ -2599,9 +2594,9 @@ msgstr ""
 #: inc/admin/redux/settings/perfomance.php:67
 #: inc/admin/settings/performance.php:280
 msgid ""
-"When enabled, your images will be replaced with their blurred small previews."
-" And when the visitor will scroll the page to that image, it will be "
-"replaced with an original image."
+"When enabled, your images will be replaced with their blurred small "
+"previews. And when the visitor will scroll the page to that image, it will "
+"be replaced with an original image."
 msgstr ""
 
 #: inc/admin/redux/settings/perfomance.php:70
@@ -3015,9 +3010,9 @@ msgstr ""
 #: inc/admin/redux/settings/product-page.php:98
 #: inc/admin/settings/product.php:162
 msgid ""
-"If you turn on this option, the section with description will be sticky when "
-"you scroll the page. In case when the description is higher than images, the "
-"images section will be fixed instead."
+"If you turn on this option, the section with description will be sticky "
+"when you scroll the page. In case when the description is higher than "
+"images, the images section will be fixed instead."
 msgstr ""
 
 #: inc/admin/redux/settings/product-page.php:104
@@ -3047,8 +3042,8 @@ msgstr ""
 #: inc/admin/redux/settings/product-page.php:119
 #: inc/admin/settings/product.php:201
 msgid ""
-"Useful when you set background color for the single product page to gray for "
-"example."
+"Useful when you set background color for the single product page to gray "
+"for example."
 msgstr ""
 
 #: inc/admin/redux/settings/product-page.php:126
@@ -3067,8 +3062,9 @@ msgstr ""
 #: inc/admin/settings/product.php:216
 msgid ""
 "Turn on the size guide feature on the website. Read more information about "
-"this function in <a href=\"https://xtemos.com/docs/woodmart/faq-"
-"guides/create-size-guide-table/\" target=\"_blank\">our documentation</a>."
+"this function in <a "
+"href=\"https://xtemos.com/docs/woodmart/faq-guides/create-size-guide-table/\""
+" target=\"_blank\">our documentation</a>."
 msgstr ""
 
 #: inc/admin/redux/settings/product-page.php:138
@@ -3355,8 +3351,8 @@ msgstr ""
 #: inc/admin/redux/settings/product-page.php:389
 #: inc/admin/settings/product.php:650
 msgid ""
-"Related Products is a section that pulls products from your store that share "
-"the same tags or categories as the current product."
+"Related Products is a section that pulls products from your store that "
+"share the same tags or categories as the current product."
 msgstr ""
 
 #: inc/admin/redux/settings/product-page.php:395
@@ -3408,8 +3404,7 @@ msgstr ""
 
 #: inc/admin/redux/settings/product-page.php:443
 #: inc/admin/settings/product.php:755
-msgid ""
-"You can switch between share and follow buttons on the single product page."
+msgid "You can switch between share and follow buttons on the single product page."
 msgstr ""
 
 #: inc/admin/redux/settings/product-page.php:445
@@ -3522,8 +3517,8 @@ msgstr ""
 
 #: inc/admin/redux/settings/shop.php:27 inc/admin/settings/shop.php:76
 msgid ""
-"If you enable this option the shop filters will be always opened on the shop "
-"page."
+"If you enable this option the shop filters will be always opened on the "
+"shop page."
 msgstr ""
 
 #: inc/admin/redux/settings/shop.php:36 inc/admin/settings/shop.php:113
@@ -3561,8 +3556,8 @@ msgstr ""
 
 #: inc/admin/redux/settings/shop.php:61 inc/admin/settings/shop.php:95
 msgid ""
-"This option will prevent filters area from closing when you click on certain "
-"filter links."
+"This option will prevent filters area from closing when you click on "
+"certain filter links."
 msgstr ""
 
 #: inc/admin/redux/settings/shop.php:70 inc/admin/settings/shop.php:161
@@ -3608,8 +3603,7 @@ msgid "Hide widget automatically"
 msgstr ""
 
 #: inc/admin/redux/settings/shop.php:107 inc/admin/settings/shop.php:215
-msgid ""
-"After adding to cart the shopping cart widget will be hidden automatically"
+msgid "After adding to cart the shopping cart widget will be hidden automatically"
 msgstr ""
 
 #: inc/admin/redux/settings/shop.php:117 inc/admin/settings/shop.php:233
@@ -3618,8 +3612,8 @@ msgstr ""
 
 #: inc/admin/redux/settings/shop.php:118 inc/admin/settings/shop.php:234
 msgid ""
-"Set the number of seconds for the shopping cart widget to be displayed after "
-"adding to cart"
+"Set the number of seconds for the shopping cart widget to be displayed "
+"after adding to cart"
 msgstr ""
 
 #: inc/admin/redux/settings/shop.php:132 inc/admin/settings/shop.php:272
@@ -3627,8 +3621,7 @@ msgid "\"Quick Shop\" for variable products"
 msgstr ""
 
 #: inc/admin/redux/settings/shop.php:133 inc/admin/settings/shop.php:273
-msgid ""
-"Allow your users to purchase variable products directly from the shop page."
+msgid "Allow your users to purchase variable products directly from the shop page."
 msgstr ""
 
 #: inc/admin/redux/settings/shop.php:139 inc/admin/settings/shop.php:284
@@ -3806,9 +3799,9 @@ msgstr ""
 
 #: inc/admin/redux/settings/shop.php:332 inc/admin/settings/shop.php:730
 msgid ""
-"If you disable this option, when user click on the product on mobile devices,"
-" it will see its description text and add to cart button. The product page "
-"will be opened on second click."
+"If you disable this option, when user click on the product on mobile "
+"devices, it will see its description text and add to cart button. The "
+"product page will be opened on second click."
 msgstr ""
 
 #: inc/admin/redux/settings/shop.php:341 inc/admin/settings/shop.php:748
@@ -3903,8 +3896,7 @@ msgstr ""
 #: inc/admin/redux/settings/shop.php:490 inc/admin/redux/settings/shop.php:500
 #: inc/admin/redux/settings/shop.php:510 inc/admin/settings/shop.php:1030
 #: inc/admin/settings/shop.php:1049 inc/admin/settings/shop.php:1068
-msgid ""
-"You can can hide sidebar and show nicely on button click on the shop page."
+msgid "You can can hide sidebar and show nicely on button click on the shop page."
 msgstr ""
 
 #: inc/admin/redux/settings/shop.php:499 inc/admin/settings/shop.php:1048
@@ -3921,7 +3913,8 @@ msgstr ""
 
 #: inc/admin/redux/settings/shop.php:520 inc/admin/settings/shop.php:1087
 msgid ""
-"Display the filters button fixed on the screen for mobile and tablet devices."
+"Display the filters button fixed on the screen for mobile and tablet "
+"devices."
 msgstr ""
 
 #: inc/admin/redux/settings/shop.php:527 inc/admin/settings/shop.php:1100
@@ -4063,11 +4056,10 @@ msgstr ""
 #: inc/admin/settings/shop.php:1312
 #: inc/integrations/woocommerce/modules/quick-view.php:93
 msgid "Quick view"
-msgstr "Vista rápida"
+msgstr ""
 
 #: inc/admin/redux/settings/shop.php:663 inc/admin/settings/shop.php:1313
-msgid ""
-"Enable Quick view option. Ability to see the product information with AJAX."
+msgid "Enable Quick view option. Ability to see the product information with AJAX."
 msgstr ""
 
 #: inc/admin/redux/settings/shop.php:669 inc/admin/settings/shop.php:1324
@@ -4085,8 +4077,7 @@ msgid "Quick view layout"
 msgstr ""
 
 #: inc/admin/redux/settings/shop.php:680 inc/admin/settings/shop.php:1344
-msgid ""
-"Choose between horizontal and vertical layouts for the quick view window."
+msgid "Choose between horizontal and vertical layouts for the quick view window."
 msgstr ""
 
 #: inc/admin/redux/settings/shop.php:683 inc/admin/settings/shop.php:1350
@@ -4169,13 +4160,11 @@ msgstr ""
 #: inc/admin/redux/settings/shop.php:776 inc/admin/settings/shop.php:1497
 #: inc/integrations/woocommerce/template-tags.php:1349
 msgid "Login to see prices"
-msgstr "Inicia sesión para ver los precios"
+msgstr ""
 
 #: inc/admin/redux/settings/shop.php:783 inc/admin/settings/shop.php:1505
 msgid "Login to see add to cart and prices"
 msgstr ""
-"Inicia sesión para poder agregar tu producto al carro de compras y ver los "
-"precios"
 
 #: inc/admin/redux/settings/shop.php:784 inc/admin/settings/shop.php:1506
 msgid "You can restrict shopping functions only for logged in customers."
@@ -4218,8 +4207,7 @@ msgid "Page with details"
 msgstr ""
 
 #: inc/admin/redux/settings/shop.php:813 inc/admin/settings/shop.php:1552
-msgid ""
-"Choose page that will contain detailed information about your Privacy Policy"
+msgid "Choose page that will contain detailed information about your Privacy Policy"
 msgstr ""
 
 #: inc/admin/redux/settings/shop.php:819 inc/admin/settings/shop.php:1564
@@ -4249,8 +4237,7 @@ msgid "Promo popup text"
 msgstr ""
 
 #: inc/admin/redux/settings/shop.php:842 inc/admin/settings/shop.php:1599
-msgid ""
-"Place here some promo text or use HTML block and place here it's shortcode"
+msgid "Place here some promo text or use HTML block and place here it's shortcode"
 msgstr ""
 
 #: inc/admin/redux/settings/shop.php:848 inc/admin/settings/shop.php:1610
@@ -4296,8 +4283,7 @@ msgid "Show after number of pages visited"
 msgstr ""
 
 #: inc/admin/redux/settings/shop.php:890 inc/admin/settings/shop.php:1687
-msgid ""
-"You can choose how much pages user should change before popup will be shown."
+msgid "You can choose how much pages user should change before popup will be shown."
 msgstr ""
 
 #: inc/admin/redux/settings/shop.php:900 inc/admin/settings/shop.php:1702
@@ -4476,8 +4462,7 @@ msgid "\"Hot\" label on products"
 msgstr ""
 
 #: inc/admin/redux/settings/shop.php:1092 inc/admin/settings/shop.php:2000
-msgid ""
-"Your products marked as \"Featured\" will have a badge with \"Hot\" label."
+msgid "Your products marked as \"Featured\" will have a badge with \"Hot\" label."
 msgstr ""
 
 #: inc/admin/redux/settings/social.php:6 inc/admin/settings/social.php:14
@@ -4651,8 +4636,7 @@ msgstr ""
 
 #: inc/admin/redux/settings/styles-colors.php:20
 #: inc/admin/settings/colors.php:24
-msgid ""
-"Pick a background color for the theme buttons and other colored elements."
+msgid "Pick a background color for the theme buttons and other colored elements."
 msgstr ""
 
 #: inc/admin/redux/settings/styles-colors.php:28
@@ -4672,8 +4656,8 @@ msgstr ""
 #: inc/admin/redux/settings/styles-colors.php:39
 #: inc/admin/settings/colors.php:55
 msgid ""
-"Define color for the browser top bar on Android devices. <a href=\"https:"
-"//developers.google.com/web/fundamentals/design-and-ux/browser-"
+"Define color for the browser top bar on Android devices. <a "
+"href=\"https://developers.google.com/web/fundamentals/design-and-ux/browser-"
 "customization/#color_browser_elements\">[Read more]</a>"
 msgstr ""
 
@@ -4816,8 +4800,8 @@ msgstr ""
 #: inc/admin/redux/settings/styles-colors.php:177
 #: inc/admin/settings/colors.php:245
 msgid ""
-"Shopping buttons like \"Add to cart\", \"Checkout\", \"Login\", \"Register\" "
-"etc."
+"Shopping buttons like \"Add to cart\", \"Checkout\", \"Login\", "
+"\"Register\" etc."
 msgstr ""
 
 #: inc/admin/redux/settings/styles-colors.php:201
@@ -4872,8 +4856,7 @@ msgid "Shop buttons color "
 msgstr ""
 
 #: inc/admin/redux/settings/styles-colors.php:274
-msgid ""
-"Set background and color schemes for shop buttons in idle and hover states."
+msgid "Set background and color schemes for shop buttons in idle and hover states."
 msgstr ""
 
 #: inc/admin/redux/settings/styles-colors.php:279
@@ -4902,7 +4885,8 @@ msgstr ""
 
 #: inc/admin/redux/settings/styles-colors.php:321
 msgid ""
-"Set background and color schemes for accent buttons in idle and hover states."
+"Set background and color schemes for accent buttons in idle and hover "
+"states."
 msgstr ""
 
 #: inc/admin/redux/settings/styles-colors.php:326
@@ -5048,10 +5032,10 @@ msgstr ""
 msgid ""
 "To use your Typekit font, you need to create an account on the <a "
 "href=\"https://typekit.com/\" target=\"_blank\">service</a> and obtain your "
-"key ID here. Then, you need to enter all custom fonts you will use separated "
-"with coma. After this, save Theme Settings and reload this page to be able "
-"to select your fonts in the list under the Theme Settings -> Typography "
-"section."
+"key ID here. Then, you need to enter all custom fonts you will use "
+"separated with coma. After this, save Theme Settings and reload this page "
+"to be able to select your fonts in the list under the Theme Settings -> "
+"Typography section."
 msgstr ""
 
 #: inc/admin/redux/settings/typography.php:158
@@ -5076,11 +5060,12 @@ msgid ""
 "compatibility in all browsers you would better upload your fonts in all "
 "available formats. \n"
 "<br><strong>IMPORTANT NOTE</strong>: After uploading all files and entering "
-"the font name, you will have to save Theme Settings and <strong>"
-"RELOAD</strong> this page. Then, you will be able to go to Theme Settings -> "
-"Typography and select the custom font from the list. Find more information "
-"in our documentation <a href=\"https://xtemos.com/docs/woodmart/faq-"
-"guides/upload-custom-fonts/\" target=\"_blank\">here</a>."
+"the font name, you will have to save Theme Settings and "
+"<strong>RELOAD</strong> this page. Then, you will be able to go to Theme "
+"Settings -> Typography and select the custom font from the list. Find more "
+"information in our documentation <a "
+"href=\"https://xtemos.com/docs/woodmart/faq-guides/upload-custom-fonts/\" "
+"target=\"_blank\">here</a>."
 msgstr ""
 
 #: inc/admin/redux/settings/typography.php:189
@@ -5318,8 +5303,7 @@ msgid "Popup message"
 msgstr ""
 
 #: inc/admin/settings/general.php:337
-msgid ""
-"Write a message warning your visitors about age restriction on your website"
+msgid "Write a message warning your visitors about age restriction on your website"
 msgstr ""
 
 #: inc/admin/settings/general.php:350
@@ -5400,7 +5384,8 @@ msgstr ""
 #: inc/admin/settings/performance.php:141
 msgid ""
 "You can choose to load Font Awesome 5 library on all pages or use our "
-"special light version with social icons only that are required for our theme."
+"special light version with social icons only that are required for our "
+"theme."
 msgstr ""
 
 #: inc/admin/settings/performance.php:146
@@ -5618,8 +5603,8 @@ msgid ""
 "href=\"https://typekit.com/\" target=\"_blank\"><u>service</u></a> and "
 "obtain your key ID here. Then, you need to enter all custom fonts you will "
 "use separated with coma. After this, save Theme Settings and reload this "
-"page to be able to select your fonts in the list under the Theme Settings -> "
-"Typography section."
+"page to be able to select your fonts in the list under the Theme Settings "
+"-> Typography section."
 msgstr ""
 
 #: inc/admin/settings/typography.php:168
@@ -5636,8 +5621,8 @@ msgstr ""
 
 #: inc/builder/Backend.php:62
 msgid ""
-"Here you can manage your header layouts, create new ones, import and export. "
-"You can set which header to use for all pages by default."
+"Here you can manage your header layouts, create new ones, import and "
+"export. You can set which header to use for all pages by default."
 msgstr ""
 
 #: inc/builder/Backend.php:63
@@ -5878,7 +5863,7 @@ msgstr ""
 #: inc/builder/Backend.php:125
 #: inc/integrations/woocommerce/modules/quick-shop.php:53
 msgid "Close"
-msgstr "Cerrar"
+msgstr ""
 
 #: inc/builder/Backend.php:126 woocommerce/wishlist-view.php:41
 msgid "Save"
@@ -6073,7 +6058,7 @@ msgstr ""
 #: inc/shortcodes/categories.php:13 inc/shortcodes/product-filters.php:60
 #: inc/template-tags.php:1585
 msgid "Categories"
-msgstr "Categorias"
+msgstr ""
 
 #: inc/builder/elements/Categories.php:24
 msgid "Categories dropdown"
@@ -6409,8 +6394,9 @@ msgstr ""
 #: inc/builder/elements/Row.php:51
 msgid ""
 "Determine the \"flex layout\" for this row. More information about both "
-"options read in our <a href=\"https://xtemos.com/docs/woodmart/header-"
-"builder/header-rows-flex-layouts/\" target=\"_blank\">documentation here</a>."
+"options read in our <a "
+"href=\"https://xtemos.com/docs/woodmart/header-builder/header-rows-flex-"
+"layouts/\" target=\"_blank\">documentation here</a>."
 msgstr ""
 
 #: inc/builder/elements/Row.php:55
@@ -6528,8 +6514,7 @@ msgid "Post"
 msgstr ""
 
 #: inc/builder/elements/Search.php:139
-msgid ""
-"You can set up the search for posts, projects or for products (woocommerce)."
+msgid "You can set up the search for posts, projects or for products (woocommerce)."
 msgstr ""
 
 #: inc/builder/elements/Social.php:15
@@ -6604,8 +6589,8 @@ msgstr ""
 
 #: inc/classes/Import.php:48
 msgid ""
-"To import data properly we recommend you to install <strong><a href=\"%s\">"
-"WooCommerce</a></strong> plugin"
+"To import data properly we recommend you to install <strong><a "
+"href=\"%s\">WooCommerce</a></strong> plugin"
 msgstr ""
 
 #: inc/classes/Import.php:58
@@ -6832,8 +6817,7 @@ msgid "Sidebars"
 msgstr ""
 
 #: inc/configs/base-options.php:91
-msgid ""
-"You can create additional custom sidebar and use them in Visual Composer"
+msgid "You can create additional custom sidebar and use them in Visual Composer"
 msgstr ""
 
 #: inc/configs/base-options.php:93
@@ -6923,13 +6907,13 @@ msgstr ""
 msgid "Install Plugins"
 msgstr ""
 
-#. translators: %s: plugin name.
 #: inc/integrations/tgm-plugin-activation.php:337
+#. translators: %s: plugin name.
 msgid "Installing Plugin: %s"
 msgstr ""
 
-#. translators: %s: plugin name.
 #: inc/integrations/tgm-plugin-activation.php:339
+#. translators: %s: plugin name.
 msgid "Updating Plugin: %s"
 msgstr ""
 
@@ -6937,8 +6921,8 @@ msgstr ""
 msgid "Something went wrong with the plugin API."
 msgstr ""
 
-#. translators: 1: plugin name(s).
 #: inc/integrations/tgm-plugin-activation.php:377 inc/theme-setup.php:356
+#. translators: 1: plugin name(s).
 msgid "Begin installing plugin"
 msgid_plural "Begin installing plugins"
 msgstr[0] ""
@@ -6977,20 +6961,20 @@ msgstr ""
 msgid "The following plugin was activated successfully:"
 msgstr ""
 
-#. translators: 1: plugin name.
 #: inc/integrations/tgm-plugin-activation.php:397
+#. translators: 1: plugin name.
 msgid "No action taken. Plugin %1$s was already active."
 msgstr ""
 
-#. translators: 1: plugin name.
 #: inc/integrations/tgm-plugin-activation.php:399
+#. translators: 1: plugin name.
 msgid ""
 "Plugin not activated. A higher version of %s is needed for this theme. "
 "Please update the plugin."
 msgstr ""
 
-#. translators: 1: dashboard link.
 #: inc/integrations/tgm-plugin-activation.php:401
+#. translators: 1: dashboard link.
 msgid "All plugins installed and activated successfully. %1$s"
 msgstr ""
 
@@ -7035,8 +7019,8 @@ msgid ""
 "not packaged in a folder."
 msgstr ""
 
-#. translators: %s: version number
 #: inc/integrations/tgm-plugin-activation.php:2067
+#. translators: %s: version number
 msgid "TGMPA v%s"
 msgstr ""
 
@@ -7076,22 +7060,22 @@ msgstr ""
 msgid "Update recommended"
 msgstr ""
 
-#. translators: 1: number of plugins.
 #: inc/integrations/tgm-plugin-activation.php:2477
+#. translators: 1: number of plugins.
 msgid "To Install <span class=\"count\">(%s)</span>"
 msgid_plural "To Install <span class=\"count\">(%s)</span>"
 msgstr[0] ""
 msgstr[1] ""
 
-#. translators: 1: number of plugins.
 #: inc/integrations/tgm-plugin-activation.php:2481
+#. translators: 1: number of plugins.
 msgid "Update Available <span class=\"count\">(%s)</span>"
 msgid_plural "Update Available <span class=\"count\">(%s)</span>"
 msgstr[0] ""
 msgstr[1] ""
 
-#. translators: 1: number of plugins.
 #: inc/integrations/tgm-plugin-activation.php:2485
+#. translators: 1: number of plugins.
 msgid "To Activate <span class=\"count\">(%s)</span>"
 msgid_plural "To Activate <span class=\"count\">(%s)</span>"
 msgstr[0] ""
@@ -7134,18 +7118,18 @@ msgstr ""
 msgid "Status"
 msgstr ""
 
-#. translators: %2$s: plugin name in screen reader markup
 #: inc/integrations/tgm-plugin-activation.php:2688
+#. translators: %2$s: plugin name in screen reader markup
 msgid "Install %2$s"
 msgstr ""
 
-#. translators: %2$s: plugin name in screen reader markup
 #: inc/integrations/tgm-plugin-activation.php:2693
+#. translators: %2$s: plugin name in screen reader markup
 msgid "Update %2$s"
 msgstr ""
 
-#. translators: %2$s: plugin name in screen reader markup
 #: inc/integrations/tgm-plugin-activation.php:2699
+#. translators: %2$s: plugin name in screen reader markup
 msgid "Activate %2$s"
 msgstr ""
 
@@ -7189,29 +7173,29 @@ msgstr ""
 msgid "Plugin activation failed."
 msgstr ""
 
-#. translators: 1: plugin name, 2: action number 3: total number of actions.
 #: inc/integrations/tgm-plugin-activation.php:3583
+#. translators: 1: plugin name, 2: action number 3: total number of actions.
 msgid "Updating Plugin %1$s (%2$d/%3$d)"
 msgstr ""
 
-#. translators: 1: plugin name, 2: error message.
 #: inc/integrations/tgm-plugin-activation.php:3586
+#. translators: 1: plugin name, 2: error message.
 msgid "An error occurred while installing %1$s: <strong>%2$s</strong>."
 msgstr ""
 
-#. translators: 1: plugin name.
 #: inc/integrations/tgm-plugin-activation.php:3588
+#. translators: 1: plugin name.
 msgid "The installation of %1$s failed."
 msgstr ""
 
 #: inc/integrations/tgm-plugin-activation.php:3592
 msgid ""
-"The installation and activation process is starting. This process may take a "
-"while on some hosts, so please be patient."
+"The installation and activation process is starting. This process may take "
+"a while on some hosts, so please be patient."
 msgstr ""
 
-#. translators: 1: plugin name.
 #: inc/integrations/tgm-plugin-activation.php:3594
+#. translators: 1: plugin name.
 msgid "%1$s installed and activated successfully."
 msgstr ""
 
@@ -7219,8 +7203,8 @@ msgstr ""
 msgid "All installations and activations have been completed."
 msgstr ""
 
-#. translators: 1: plugin name, 2: action number 3: total number of actions.
 #: inc/integrations/tgm-plugin-activation.php:3597
+#. translators: 1: plugin name, 2: action number 3: total number of actions.
 msgid "Installing and Activating Plugin %1$s (%2$d/%3$d)"
 msgstr ""
 
@@ -7230,8 +7214,8 @@ msgid ""
 "hosts, so please be patient."
 msgstr ""
 
-#. translators: 1: plugin name.
 #: inc/integrations/tgm-plugin-activation.php:3602
+#. translators: 1: plugin name.
 msgid "%1$s installed successfully."
 msgstr ""
 
@@ -7239,8 +7223,8 @@ msgstr ""
 msgid "All installations have been completed."
 msgstr ""
 
-#. translators: 1: plugin name, 2: action number 3: total number of actions.
 #: inc/integrations/tgm-plugin-activation.php:3605
+#. translators: 1: plugin name, 2: action number 3: total number of actions.
 msgid "Installing Plugin %1$s (%2$d/%3$d)"
 msgstr ""
 
@@ -7860,8 +7844,9 @@ msgstr ""
 #: inc/integrations/visual-composer/maps/blog.php:62
 #: inc/integrations/visual-composer/maps/products.php:92
 msgid ""
-"Build custom query according to <a href=\"http://codex.wordpress."
-"org/Function_Reference/query_posts\">WordPress Codex</a>."
+"Build custom query according to <a "
+"href=\"http://codex.wordpress.org/Function_Reference/query_posts\">"
+"WordPress Codex</a>."
 msgstr ""
 
 #: inc/integrations/visual-composer/maps/blog.php:76
@@ -8212,8 +8197,8 @@ msgstr ""
 #: inc/integrations/visual-composer/maps/blog.php:417
 #: inc/integrations/visual-composer/maps/products.php:500
 msgid ""
-"Select order type. If \"Meta value\" or \"Meta value Number\" is chosen then "
-"meta key is required."
+"Select order type. If \"Meta value\" or \"Meta value Number\" is chosen "
+"then meta key is required."
 msgstr ""
 
 #: inc/integrations/visual-composer/maps/blog.php:424
@@ -8585,9 +8570,9 @@ msgstr ""
 #: inc/integrations/visual-composer/maps/button.php:401
 msgid ""
 "When you turn on this option you need to specify this button link with a "
-"hash symbol. For example #section-id Then you need to have a section with an "
-"ID of \"section-id\" and this button click will smoothly scroll the page to "
-"that section."
+"hash symbol. For example #section-id Then you need to have a section with "
+"an ID of \"section-id\" and this button click will smoothly scroll the page "
+"to that section."
 msgstr ""
 
 #: inc/integrations/visual-composer/maps/button.php:410
@@ -8840,8 +8825,9 @@ msgstr ""
 
 #: inc/integrations/visual-composer/maps/google-map.php:37
 msgid ""
-"You can use <a href=\"http://universimmedia.pagesperso-orange.fr/geo/loc."
-"htm\" target=\"_blank\">this service</a> to get coordinates of your location."
+"You can use <a "
+"href=\"http://universimmedia.pagesperso-orange.fr/geo/loc.htm\" "
+"target=\"_blank\">this service</a> to get coordinates of your location."
 msgstr ""
 
 #: inc/integrations/visual-composer/maps/google-map.php:47
@@ -9106,8 +9092,8 @@ msgstr ""
 #: inc/integrations/visual-composer/maps/images-gallery.php:293
 msgid ""
 "Display images captions below the images when you open them in lightbox. "
-"Captions are based on titles of your photos and can be edited in Dashboard ->"
-" Media."
+"Captions are based on titles of your photos and can be edited in Dashboard "
+"-> Media."
 msgstr ""
 
 #: inc/integrations/visual-composer/maps/images-gallery.php:306
@@ -9115,8 +9101,7 @@ msgid "Custom links"
 msgstr ""
 
 #: inc/integrations/visual-composer/maps/images-gallery.php:308
-msgid ""
-"Enter links for each slide (Note: divide links with linebreaks (Enter))."
+msgid "Enter links for each slide (Note: divide links with linebreaks (Enter))."
 msgstr ""
 
 #: inc/integrations/visual-composer/maps/info-box.php:17
@@ -9171,8 +9156,8 @@ msgstr ""
 
 #: inc/integrations/visual-composer/maps/info-box.php:199
 msgid ""
-"You can display icon based on image or just write some text like 01., 02., M,"
-" X etc."
+"You can display icon based on image or just write some text like 01., 02., "
+"M, X etc."
 msgstr ""
 
 #: inc/integrations/visual-composer/maps/info-box.php:209
@@ -9772,8 +9757,7 @@ msgid "Product add to cart"
 msgstr ""
 
 #: inc/integrations/visual-composer/maps/pricing-tables.php:110
-msgid ""
-"Set your custom link for button or allow users to add some product to cart"
+msgid "Set your custom link for button or allow users to add some product to cart"
 msgstr ""
 
 #: inc/integrations/visual-composer/maps/pricing-tables.php:115
@@ -9994,7 +9978,7 @@ msgstr ""
 #: inc/integrations/woocommerce/template-tags.php:561
 #: woocommerce/cart/mini-cart.php:51
 msgid "Show"
-msgstr "Mostrar"
+msgstr ""
 
 #: inc/integrations/visual-composer/maps/products-widget.php:61
 #: inc/integrations/visual-composer/maps/products.php:60
@@ -10219,8 +10203,8 @@ msgstr ""
 
 #: inc/integrations/visual-composer/maps/promo-banner.php:842
 msgid ""
-"Suggest to use this option if you have large banners. Padding will be set in "
-"percentage to your screen width."
+"Suggest to use this option if you have large banners. Padding will be set "
+"in percentage to your screen width."
 msgstr ""
 
 #: inc/integrations/visual-composer/maps/promo-banner.php:853
@@ -10814,8 +10798,8 @@ msgstr ""
 
 #: inc/integrations/woocommerce/modules/comment-images/class-wc-comment-images.php:232
 msgid ""
-"Set the value in megabytes. Currently your server allows you to upload files "
-"up to 64 MB."
+"Set the value in megabytes. Currently your server allows you to upload "
+"files up to 64 MB."
 msgstr ""
 
 #: inc/integrations/woocommerce/modules/comment-images/class-wc-comment-images.php:244
@@ -10824,8 +10808,8 @@ msgstr ""
 
 #: inc/integrations/woocommerce/modules/comment-images/class-wc-comment-images.php:245
 msgid ""
-"If checked, the user will not be able to post a comment without attaching an "
-"image."
+"If checked, the user will not be able to post a comment without attaching "
+"an image."
 msgstr ""
 
 #: inc/integrations/woocommerce/modules/comment-images/class-wc-comment-images.php:490
@@ -10941,7 +10925,7 @@ msgstr ""
 #: inc/integrations/woocommerce/template-tags.php:1430
 #: inc/integrations/woocommerce/template-tags.php:1692
 msgid "Sign in"
-msgstr "Ingresa a tu cuenta"
+msgstr ""
 
 #: inc/integrations/woocommerce/modules/wishlist/class-ui.php:191
 msgid "Your products wishlist"
@@ -10957,7 +10941,7 @@ msgstr ""
 
 #: inc/integrations/woocommerce/modules/wishlist/class-ui.php:288
 msgid "Add to wishlist"
-msgstr "Agregar a lista de deseos"
+msgstr ""
 
 #: inc/integrations/woocommerce/modules/wishlist/class-ui.php:309
 #: inc/integrations/woocommerce/template-tags.php:1555
@@ -10968,8 +10952,8 @@ msgstr ""
 
 #: inc/integrations/woocommerce/modules/wishlist/class-wc-wishlist.php:345
 msgid ""
-"Enable wishlist functionality built in with the theme. Read more information "
-"in our documentation."
+"Enable wishlist functionality built in with the theme. Read more "
+"information in our documentation."
 msgstr ""
 
 #: inc/integrations/woocommerce/modules/wishlist/class-wc-wishlist.php:356
@@ -10986,8 +10970,8 @@ msgstr ""
 
 #: inc/integrations/woocommerce/modules/wishlist/class-wc-wishlist.php:369
 msgid ""
-"Select a page for wishlist table. It should contain the shortcode shortcode: "
-"[woodmart_wishlist]"
+"Select a page for wishlist table. It should contain the shortcode "
+"shortcode: [woodmart_wishlist]"
 msgstr ""
 
 #: inc/integrations/woocommerce/modules/wishlist/class-wc-wishlist.php:382
@@ -11064,7 +11048,7 @@ msgstr ""
 
 #: inc/integrations/woocommerce/template-tags.php:707
 msgid "products"
-msgstr "Productos"
+msgstr ""
 
 #: inc/integrations/woocommerce/template-tags.php:776
 msgid "No product categories exist."
@@ -11121,16 +11105,16 @@ msgstr ""
 
 #: inc/integrations/woocommerce/template-tags.php:1418
 msgid "Hello, %s"
-msgstr "Hola, %s"
+msgstr ""
 
 #: inc/integrations/woocommerce/template-tags.php:1422
 msgid "Login / Register"
-msgstr "Ingresa a tu cuenta"
+msgstr ""
 
 #: inc/integrations/woocommerce/template-tags.php:1430
 #: inc/integrations/woocommerce/template-tags.php:1700
 msgid "Create an Account"
-msgstr "Crea una cuenta"
+msgstr ""
 
 #: inc/integrations/woocommerce/template-tags.php:1595
 msgid "Username or email"
@@ -11139,7 +11123,7 @@ msgstr ""
 #: inc/integrations/woocommerce/template-tags.php:1599
 #: woocommerce/myaccount/form-login.php:95
 msgid "Password"
-msgstr "Contraseña"
+msgstr ""
 
 #: inc/integrations/woocommerce/template-tags.php:1610
 msgid "Log in"
@@ -11147,15 +11131,15 @@ msgstr ""
 
 #: inc/integrations/woocommerce/template-tags.php:1614
 msgid "Lost your password?"
-msgstr "Perdiste tu contraseña?"
+msgstr ""
 
 #: inc/integrations/woocommerce/template-tags.php:1616
 msgid "Remember me"
-msgstr "Recuérdame"
+msgstr ""
 
 #: inc/integrations/woocommerce/template-tags.php:1621
 msgid "Or login with"
-msgstr "O ingresa con"
+msgstr ""
 
 #: inc/integrations/woocommerce/template-tags.php:1625
 #: inc/shortcodes/social.php:65
@@ -11174,7 +11158,7 @@ msgstr ""
 #: inc/integrations/woocommerce/template-tags.php:1693
 #: inc/modules/search.php:109 sidebar.php:19
 msgid "close"
-msgstr "cerrar"
+msgstr ""
 
 #: inc/integrations/woocommerce/template-tags.php:1699
 msgid "No account yet?"
@@ -11190,8 +11174,8 @@ msgstr ""
 
 #: inc/modules/nav-menu-images/inc/admin.php:89
 msgid ""
-"You need to set an image as a featured image to be able to use it as an menu "
-"item image"
+"You need to set an image as a featured image to be able to use it as an "
+"menu item image"
 msgstr ""
 
 #: inc/modules/nav-menu-images/inc/admin.php:173
@@ -11281,9 +11265,9 @@ msgstr ""
 #: inc/modules/nav-menu-images/inc/walker.php:196
 msgid ""
 "Enable this to use one page navigation menu. If enabled you need to set the "
-"link for this item to be like this: http://your_site."
-"com/home_page/#anchor_id where anchor_id will be the ID of the ROW on your "
-"home page."
+"link for this item to be like this: "
+"http://your_site.com/home_page/#anchor_id where anchor_id will be the ID of "
+"the ROW on your home page."
 msgstr ""
 
 #: inc/modules/nav-menu-images/inc/walker.php:201
@@ -11320,7 +11304,7 @@ msgstr ""
 
 #: inc/modules/search.php:320
 msgid "No products found"
-msgstr "No existen productos con el criterio de tu búsqueda"
+msgstr ""
 
 #: inc/modules/search.php:320
 msgid "No posts found"
@@ -11450,8 +11434,8 @@ msgstr ""
 msgid "Add font"
 msgstr ""
 
-#. translators: 1: Font name
 #: inc/options/controls/custom-fonts/class-custom-fonts.php:189
+#. translators: 1: Font name
 msgid "Font (.%s)"
 msgstr ""
 
@@ -11502,8 +11486,7 @@ msgid "Load more posts"
 msgstr ""
 
 #: inc/shortcodes/brands.php:35
-msgid ""
-"You must select your brand attribute in Theme Settings -> Shop -> Brands"
+msgid "You must select your brand attribute in Theme Settings -> Shop -> Brands"
 msgstr ""
 
 #: inc/shortcodes/google-map.php:109
@@ -11557,7 +11540,7 @@ msgstr ""
 
 #: inc/shortcodes/product-filters.php:187
 msgid "Filter by price"
-msgstr "Filtrar por precio"
+msgstr ""
 
 #: inc/shortcodes/products.php:237 woocommerce/loop/pagination.php:45
 msgid "Load more products"
@@ -11774,8 +11757,7 @@ msgid ""
 msgstr ""
 
 #: inc/template-tags.php:1626 inc/template-tags.php:1887
-msgid ""
-"Create your first <a href=\"%s\"><strong>navigation menu here</strong></a>"
+msgid "Create your first <a href=\"%s\"><strong>navigation menu here</strong></a>"
 msgstr ""
 
 #: inc/template-tags.php:1699
@@ -11872,13 +11854,13 @@ msgstr[1] ""
 
 #: inc/theme-setup.php:350
 msgid ""
-"Sorry, but you do not have the correct permissions to install the %s plugin. "
-"Contact the administrator of this site for help on getting the plugin "
-"installed."
+"Sorry, but you do not have the correct permissions to install the %s "
+"plugin. Contact the administrator of this site for help on getting the "
+"plugin installed."
 msgid_plural ""
-"Sorry, but you do not have the correct permissions to install the %s plugins."
-" Contact the administrator of this site for help on getting the plugins "
-"installed."
+"Sorry, but you do not have the correct permissions to install the %s "
+"plugins. Contact the administrator of this site for help on getting the "
+"plugins installed."
 msgstr[0] ""
 msgstr[1] ""
 
@@ -11896,9 +11878,9 @@ msgstr[1] ""
 
 #: inc/theme-setup.php:353
 msgid ""
-"Sorry, but you do not have the correct permissions to activate the %s plugin."
-" Contact the administrator of this site for help on getting the plugin "
-"activated."
+"Sorry, but you do not have the correct permissions to activate the %s "
+"plugin. Contact the administrator of this site for help on getting the "
+"plugin activated."
 msgid_plural ""
 "Sorry, but you do not have the correct permissions to activate the %s "
 "plugins. Contact the administrator of this site for help on getting the "
@@ -11922,9 +11904,9 @@ msgid ""
 "Contact the administrator of this site for help on getting the plugin "
 "updated."
 msgid_plural ""
-"Sorry, but you do not have the correct permissions to update the %s plugins. "
-"Contact the administrator of this site for help on getting the plugins "
-"updated."
+"Sorry, but you do not have the correct permissions to update the %s "
+"plugins. Contact the administrator of this site for help on getting the "
+"plugins updated."
 msgstr[0] ""
 msgstr[1] ""
 
@@ -12024,8 +12006,8 @@ msgstr ""
 msgid "Show tooltips"
 msgstr ""
 
-#. translators: %s: taxonomy name
 #: inc/widgets/class-widget-layered-nav.php:287
+#. translators: %s: taxonomy name
 msgid "Any %s"
 msgstr ""
 
@@ -12349,8 +12331,8 @@ msgid_plural "%s products"
 msgstr[0] ""
 msgstr[1] ""
 
-#. translators: %s: Quantity.
 #: woocommerce/global/quantity-input.php:26
+#. translators: %s: Quantity.
 msgid "%s quantity"
 msgstr ""
 
@@ -12383,7 +12365,7 @@ msgstr ""
 
 #: woocommerce/myaccount/form-login.php:101
 msgid "A password will be sent to your email address."
-msgstr "Una contraseña será enviada a tu cuenta"
+msgstr ""
 
 #: woocommerce/myaccount/form-login.php:106
 msgid "Anti-spam"
@@ -12569,14 +12551,14 @@ msgctxt "plugin A *and* plugin B"
 msgid "and"
 msgstr ""
 
-#. translators: 1: install status, 2: update status
 #: inc/integrations/tgm-plugin-activation.php:2427
+#. translators: 1: install status, 2: update status
 msgctxt "Install/Update Status"
 msgid "%1$s, %2$s"
 msgstr ""
 
-#. translators: 1: number of plugins.
 #: inc/integrations/tgm-plugin-activation.php:2473
+#. translators: 1: number of plugins.
 msgctxt "plugins"
 msgid "All <span class=\"count\">(%s)</span>"
 msgid_plural "All <span class=\"count\">(%s)</span>"
@@ -12611,7 +12593,7 @@ msgstr ""
 #: inc/modules/search.php:87
 msgctxt "submit button"
 msgid "Search for products"
-msgstr "Buscar producto"
+msgstr ""
 
 #: inc/modules/search.php:92
 msgctxt "submit button"

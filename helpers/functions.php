@@ -351,6 +351,21 @@ function precor_update_currency_rate(WP_REST_Request $request)
           return new WP_Error('not_authentication', "Por favor rellene el tipo de cambio", array('status' => 404));
      }
 }
+
+
+/**
+ * script para igresar el chatbot de wolkvox
+ */
+
+/* Inline script printed out in the header */
+add_action('wp_head', 'tutsplus_add_script_wp_head');
+function tutsplus_add_script_wp_head()
+{
+?>
+     <script id="prodId" type="text/javascript" src="https://chat01.ipdialbox.com/chat/?prodId=cG1wLXRlbGV2ZW50YXM=" async>
+     </script>
+<?php
+}
 // Obtiene fecha Correcta respecto al timezone
 function precor_get_fecha_correcta($order)
 {
@@ -407,26 +422,30 @@ function precor_show_button_change_currency($order = null): void
 add_filter('wp_head', function () {
      if (!is_checkout()) {
           global $WOOCS;
-          $WOOCS->set_currency('USD');
+          if ($WOOCS) {
+               $WOOCS->set_currency('USD');
+          }
      }
 });
 
-//cuando sea checkout siempre la moneda sera dolar
+// cuando sea checkout siempre la moneda sera dolar
 add_filter('wp_head', function () {
      if (is_checkout()) {
           global $wp;
           global $WOOCS;
-          if (isset($wp->query_vars['order-pay']) && absint($wp->query_vars['order-pay']) > 0) {
-               $order_id = absint($wp->query_vars['order-pay']); // The order ID
-               $order = wc_get_order($order_id); // Get the WC_Order Object instance
-               if ($order) {
-                    if ($_GET["currency"] != "") {
-                         // print_r("me estoy ejecutando");
-                         $moneda = $_GET["currency"];
-                         $WOOCS->recalculate_order($order_id, $moneda);
-                         update_post_meta($order_id, '_order_currency', $moneda);
-                         // $order->set_currency($moneda);
-                         // $order->save();
+          if ($WOOCS) {
+               if (isset($wp->query_vars['order-pay']) && absint($wp->query_vars['order-pay']) > 0) {
+                    $order_id = absint($wp->query_vars['order-pay']); // The order ID
+                    $order = wc_get_order($order_id); // Get the WC_Order Object instance
+                    if ($order) {
+                         if ($_GET["currency"] != "") {
+                              // print_r("me estoy ejecutando");
+                              $moneda = $_GET["currency"];
+                              $WOOCS->recalculate_order($order_id, $moneda);
+                              update_post_meta($order_id, '_order_currency', $moneda);
+                              // $order->set_currency($moneda);
+                              // $order->save();
+                         }
                     }
                }
           }
@@ -466,4 +485,71 @@ function precor_verifyExcludesCurrency($methodTitle, $exclude): bool
           }
      }
      return false;
+// function precor_db_remove_new_site_notification_email($blog_id, $user_id, $password, $title, $meta)
+// {
+//      return false;
+// }
+// add_filter('wpmu_welcome_notification', 'precor_db_remove_new_site_notification_email');
+
+// filtro para modificar algunos campos en checkout fields de woocommerce
+function custom_override_checkout_fields($fields)
+{
+     // modifico los atributos de los checkout fields
+     $fields['shipping']['shipping_company']['maxlength'] = '20';
+     $fields['shipping']['shipping_company']['placeholder'] = 'Ingrese su RUC';
+     $fields['shipping']['shipping_first_name']['maxlength'] = '150';
+     $fields['shipping']['shipping_first_name']['placeholder'] = 'Ingrese su Razon social';
+     $fields['shipping']['direccion_fiscal']['placeholder'] = 'Ingrese su Direccion Fiscal';
+     $fields['shipping']['direccion_fiscal']['maxlength'] = '200';
+     return $fields;
+} // End custom_override_checkout_fields()
+
+add_filter('woocommerce_checkout_fields', 'custom_override_checkout_fields', 10);
+
+
+// function maximum_api_filter_custom($query_params)
+// {
+//      $query_params['per_page']["maximum"] = 100000;
+//      return $query_params;
+// }
+
+// add_filter('rest_product_collection_params', 'maximum_api_filter_custom');
+// add_action('woocommerce_resume_order', 'hpWooNewOrder');
+add_action('woocommerce_checkout_order_processed', 'maxcoDescuentosOrder');
+function maxcoDescuentosOrder($id_order)
+{
+     $woo = wc_get_order($id_order);
+     $arrayProducts = [];
+     foreach ($woo->get_items() as $product) {
+          $productReal = wc_get_product(intval($product["product_id"]));
+          $precioProductoReal = number_format($productReal->get_price(), 2);
+          $precioProductoVendido = number_format($product["total"] / intval($product["quantity"]), 2);
+          $cantidadProductoVendido = intval($product["quantity"]);
+
+          // precios totales
+          $precioTotalDelProductoOriginal = $precioProductoReal * $cantidadProductoVendido;
+          $precioTotalDelProductoVendido = $precioProductoVendido * $cantidadProductoVendido;
+
+          // descuento total
+          $descuentoTotal = number_format($precioTotalDelProductoOriginal - $precioTotalDelProductoVendido, 2);
+
+          // porcentaje de descuento
+          $porcentajeDescuento = number_format(($descuentoTotal * 100) / $precioTotalDelProductoOriginal, 2);
+
+          array_push($arrayProducts, [
+               "product_id" => $productReal->get_id(),
+               "sku" => $productReal->get_sku(),
+               "name" => $productReal->get_name(),
+               "sale_price" => $precioProductoReal,
+               "sale_price_order" => $precioProductoVendido,
+               "quantity" => $cantidadProductoVendido,
+               "total_original" => $precioTotalDelProductoOriginal,
+               "total_sale" => $precioTotalDelProductoVendido,
+               "discount" => $descuentoTotal,
+               "percentage_discount" => $porcentajeDescuento
+          ]);
+          // echo $product[""];
+     }
+     $serializado = (maybe_serialize($arrayProducts));
+     add_post_meta($id_order, "descuentos_precor", $serializado);
 }

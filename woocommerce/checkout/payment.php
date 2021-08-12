@@ -17,11 +17,12 @@
  */
 
 defined('ABSPATH') || exit;
-$realizarPedidos = false;
-
+$realizarPedidos = true;
+$activarMetodoDePago = true;
+$activarMetodoDePago = $activarMetodoDePago ? "" : "display: none;";
 ?>
 <!-- inicio de metodo de pago -->
-<div style="display: none;">
+<div style="<?= $activarMetodoDePago ?>">
 	<?php
 	if (!is_ajax()) {
 		do_action('woocommerce_review_order_before_payment');
@@ -134,7 +135,7 @@ if (!is_ajax()) {
 		const getCheckedPaymentMethodPrecor = () => {
 			// solucion rapida
 			setInterval(() => {
-				let inputRadioAddressPrecorList = document.querySelectorAll('.input-radio-payment-method-precor');
+				let inputRadioAddressPrecorList = document.querySelectorAll('.input-radio-payment-method-precor');  
 				inputRadioAddressPrecorList.forEach(e => {
 					let addressChecked = document.querySelector(`label[for=${e.id}]`)
 					if (e.checked) {

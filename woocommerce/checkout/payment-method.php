@@ -21,7 +21,7 @@ if (!defined('ABSPATH')) {
 }
 ?>
 
-
+ 
 <li class="wc_payment_method payment_method_<?php echo esc_attr($gateway->id); ?>">
 	<input id="payment_method_<?php echo esc_attr($gateway->id); ?>" type="radio" class="input-radio input-radio-payment-method-precor" name="payment_method" data-payment-method="<?= $gateway->get_title() ?>" value="<?php echo esc_attr($gateway->id); ?>" <?php checked($gateway->chosen, true); ?> data-order_button_text="<?php echo esc_attr($gateway->order_button_text); ?>" />
 
