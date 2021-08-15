@@ -135,7 +135,7 @@ if (!is_ajax()) {
 		const getCheckedPaymentMethodPrecor = () => {
 			// solucion rapida
 			setInterval(() => {
-				let inputRadioAddressPrecorList = document.querySelectorAll('.input-radio-payment-method-precor');  
+				let inputRadioAddressPrecorList = document.querySelectorAll('.input-radio-payment-method-precor');
 				inputRadioAddressPrecorList.forEach(e => {
 					let addressChecked = document.querySelector(`label[for=${e.id}]`)
 					if (e.checked) {
@@ -151,6 +151,16 @@ if (!is_ajax()) {
 		getCheckedPaymentMethodPrecor();
 
 		// eventos de cerrardo de modal por delegacion de evento
+
+		// setiar la direccion de la tienda maxco
+		document.querySelector("body").addEventListener("click", (e) => {
+			if (e.target.id === "shipping_method_0_local_pickup10") {
+				// console.log("me diste click a recojo en tienda");
+				const tiendaMaxcoDireccion = "Av. República de Panamá 4965, Surquillo";
+				document.querySelector("#billing_address_1").value = tiendaMaxcoDireccion;
+			}
+
+		})
 	</script>
 <?php } ?>
 <?php
