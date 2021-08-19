@@ -158,8 +158,9 @@ foreach (WC()->cart->get_cart() as $cart_item_key => $cart_item) {
 							<th class="product-name"><?php esc_html_e('Product', 'woocommerce'); ?></th>
 							<th class="product-name precor-display-none-sm">UND</th>
 							<th class="product-name">Peso Total</th>
-							<th class="product-name precor-display-none-sm">PAQ</th>
-							<th class="product-name precor-display-none-sm">PZAS</th>
+							<th class="product-name">Cantidad</th>
+							<!-- <th class="product-name precor-display-none-sm">PAQ</th>
+							<th class="product-name precor-display-none-sm">PZAS</th> -->
 							<th class="product-total" style="text-align: right;"><?php esc_html_e('Subtotal', 'woocommerce'); ?></th>
 						</tr>
 					</thead>
@@ -201,14 +202,17 @@ foreach (WC()->cart->get_cart() as $cart_item_key => $cart_item) {
 								<td class="product-total ">
 									<?= number_format(floatval($peso), 2)  ?>
 								</td>
+								<td class="product-total ">
+									<?= $cart_item['quantity']  ?>
+								</td>
 								
 
-								<td class="product-total precor-display-none-sm">
+								<!-- <td class="product-total precor-display-none-sm">
 									<?= $pzas ?>
 								</td>
 								<td class="product-total precor-display-none-sm">
 									<?= $paq ?>
-								</td>
+								</td> -->
 								<td class="product-total" style="text-align: right;">
 									<?php echo apply_filters('woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal($_product, $cart_item['quantity']), $cart_item, $cart_item_key); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
 									?>
