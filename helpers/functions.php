@@ -486,72 +486,74 @@ function precor_verifyExcludesCurrency($methodTitle, $exclude): bool
           }
      }
      return false;
-     // function precor_db_remove_new_site_notification_email($blog_id, $user_id, $password, $title, $meta)
-     // {
-     //      return false;
-     // }
-     // add_filter('wpmu_welcome_notification', 'precor_db_remove_new_site_notification_email');
+}
 
-     // filtro para modificar algunos campos en checkout fields de woocommerce
-     function custom_override_checkout_fields($fields)
-     {
-          // modifico los atributos de los checkout fields
-          $fields['shipping']['shipping_company']['maxlength'] = '20';
-          $fields['shipping']['shipping_company']['placeholder'] = 'Ingrese su RUC';
-          $fields['shipping']['shipping_first_name']['maxlength'] = '150';
-          $fields['shipping']['shipping_first_name']['placeholder'] = 'Ingrese su Razon social';
-          $fields['shipping']['direccion_fiscal']['placeholder'] = 'Ingrese su Direccion Fiscal';
-          $fields['shipping']['direccion_fiscal']['maxlength'] = '200';
-          return $fields;
-     } // End custom_override_checkout_fields()
+// function precor_db_remove_new_site_notification_email($blog_id, $user_id, $password, $title, $meta)
+// {
+//      return false;
+// }
+// add_filter('wpmu_welcome_notification', 'precor_db_remove_new_site_notification_email');
 
-     add_filter('woocommerce_checkout_fields', 'custom_override_checkout_fields', 10);
+// filtro para modificar algunos campos en checkout fields de woocommerce
+function custom_override_checkout_fields($fields)
+{
+     // modifico los atributos de los checkout fields
+     
+     $fields['shipping']['shipping_company']['maxlength'] = '20';
+     $fields['shipping']['shipping_company']['placeholder'] = 'Ingrese su RUC';
+     $fields['shipping']['shipping_first_name']['maxlength'] = '150';
+     $fields['shipping']['shipping_first_name']['placeholder'] = 'Ingrese su Razon social';
+     $fields['shipping']['direccion_fiscal']['placeholder'] = 'Ingrese su Direccion Fiscal';
+     $fields['shipping']['direccion_fiscal']['maxlength'] = '200';
+     return $fields;
+} // End custom_override_checkout_fields()
+
+add_filter('woocommerce_checkout_fields', 'custom_override_checkout_fields', 10);
 
 
-     // function maximum_api_filter_custom($query_params)
-     // {
-     //      $query_params['per_page']["maximum"] = 100000;
-     //      return $query_params;
-     // }
+// function maximum_api_filter_custom($query_params)
+// {
+//      $query_params['per_page']["maximum"] = 100000;
+//      return $query_params;
+// }
 
-     // add_filter('rest_product_collection_params', 'maximum_api_filter_custom');
-     // add_action('woocommerce_resume_order', 'hpWooNewOrder');
-     add_action('woocommerce_checkout_order_processed', 'maxcoDescuentosOrder');
-     function maxcoDescuentosOrder($id_order)
-     {
-          $woo = wc_get_order($id_order);
-          $arrayProducts = [];
-          foreach ($woo->get_items() as $product) {
-               $productReal = wc_get_product(intval($product["product_id"]));
-               $precioProductoReal = number_format($productReal->get_price(), 2);
-               $precioProductoVendido = number_format($product["total"] / intval($product["quantity"]), 2);
-               $cantidadProductoVendido = intval($product["quantity"]);
+// add_filter('rest_product_collection_params', 'maximum_api_filter_custom');
+// add_action('woocommerce_resume_order', 'hpWooNewOrder');
+add_action('woocommerce_checkout_order_processed', 'maxcoDescuentosOrder');
+function maxcoDescuentosOrder($id_order)
+{
+     $woo = wc_get_order($id_order);
+     $arrayProducts = [];
+     foreach ($woo->get_items() as $product) {
+          $productReal = wc_get_product(intval($product["product_id"]));
+          $precioProductoReal = number_format($productReal->get_price(), 2);
+          $precioProductoVendido = number_format($product["total"] / intval($product["quantity"]), 2);
+          $cantidadProductoVendido = intval($product["quantity"]);
 
-               // precios totales
-               $precioTotalDelProductoOriginal = $precioProductoReal * $cantidadProductoVendido;
-               $precioTotalDelProductoVendido = $precioProductoVendido * $cantidadProductoVendido;
+          // precios totales
+          $precioTotalDelProductoOriginal = $precioProductoReal * $cantidadProductoVendido;
+          $precioTotalDelProductoVendido = $precioProductoVendido * $cantidadProductoVendido;
 
-               // descuento total
-               $descuentoTotal = number_format($precioTotalDelProductoOriginal - $precioTotalDelProductoVendido, 2);
+          // descuento total
+          $descuentoTotal = number_format($precioTotalDelProductoOriginal - $precioTotalDelProductoVendido, 2);
 
-               // porcentaje de descuento
-               $porcentajeDescuento = number_format(($descuentoTotal * 100) / $precioTotalDelProductoOriginal, 2);
+          // porcentaje de descuento
+          $porcentajeDescuento = number_format(($descuentoTotal * 100) / $precioTotalDelProductoOriginal, 2);
 
-               array_push($arrayProducts, [
-                    "product_id" => $productReal->get_id(),
-                    "sku" => $productReal->get_sku(),
-                    "name" => $productReal->get_name(),
-                    "sale_price" => $precioProductoReal,
-                    "sale_price_order" => $precioProductoVendido,
-                    "quantity" => $cantidadProductoVendido,
-                    "total_original" => $precioTotalDelProductoOriginal,
-                    "total_sale" => $precioTotalDelProductoVendido,
-                    "discount" => $descuentoTotal,
-                    "percentage_discount" => $porcentajeDescuento
-               ]);
-               // echo $product[""];
-          }
-          $serializado = (maybe_serialize($arrayProducts));
-          add_post_meta($id_order, "descuentos_precor", $serializado);
+          array_push($arrayProducts, [
+               "product_id" => $productReal->get_id(),
+               "sku" => $productReal->get_sku(),
+               "name" => $productReal->get_name(),
+               "sale_price" => $precioProductoReal,
+               "sale_price_order" => $precioProductoVendido,
+               "quantity" => $cantidadProductoVendido,
+               "total_original" => $precioTotalDelProductoOriginal,
+               "total_sale" => $precioTotalDelProductoVendido,
+               "discount" => $descuentoTotal,
+               "percentage_discount" => $porcentajeDescuento
+          ]);
+          // echo $product[""];
      }
+     $serializado = (maybe_serialize($arrayProducts));
+     add_post_meta($id_order, "descuentos_precor", $serializado);
 }
