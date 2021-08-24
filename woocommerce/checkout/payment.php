@@ -58,20 +58,20 @@ $activarMetodoDePago = $activarMetodoDePago ? "" : "display: none;";
 				<?php } ?>
 				<div id="payment" class="woocommerce-checkout-payment">
 
-					<?php
-					if (WC()->cart->needs_payment()) : ?>
+					<!-- <?php
+							if (WC()->cart->needs_payment()) : ?>
 						<ul class="wc_payment_methods payment_methods methods">
 							<?php
-							if (!empty($available_gateways)) {
-								foreach ($available_gateways as $gateway) {
-									wc_get_template('checkout/payment-method.php', array('gateway' => $gateway));
+								if (!empty($available_gateways)) {
+									foreach ($available_gateways as $gateway) {
+										wc_get_template('checkout/payment-method.php', array('gateway' => $gateway));
+									}
+								} else {
+									echo '<li class="woocommerce-notice woocommerce-notice--info woocommerce-info">' . apply_filters('woocommerce_no_available_payment_methods_message', WC()->customer->get_billing_country() ? esc_html__('Sorry, it seems that there are no available payment methods for your state. Please contact us if you require assistance or wish to make alternate arrangements.', 'woocommerce') : esc_html__('Please fill in your details above to see available payment methods.', 'woocommerce')) . '</li>'; // @codingStandardsIgnoreLine
 								}
-							} else {
-								echo '<li class="woocommerce-notice woocommerce-notice--info woocommerce-info">' . apply_filters('woocommerce_no_available_payment_methods_message', WC()->customer->get_billing_country() ? esc_html__('Sorry, it seems that there are no available payment methods for your state. Please contact us if you require assistance or wish to make alternate arrangements.', 'woocommerce') : esc_html__('Please fill in your details above to see available payment methods.', 'woocommerce')) . '</li>'; // @codingStandardsIgnoreLine
-							}
 							?>
 						</ul>
-					<?php endif; ?>
+					<?php endif; ?> -->
 
 				</div>
 				<?php
@@ -119,7 +119,9 @@ if (!is_ajax()) {
 <?php
 if (!is_ajax()) {
 ?>
+	<input type="hidden" id="precor_backup_shipping_method" value="">
 	<script>
+		let shippingMethodBackup = document.querySelector('#precor_backup_shipping_method');
 		let modalMethodPayment = document.querySelector('#myModalMethodPayment');
 		let btnMethodPayment = document.getElementById('btnShowModalMethodPayment');
 		let btnHiddeMethodPayment = document.getElementById('hiddeModalMethodPayment');
@@ -146,6 +148,22 @@ if (!is_ajax()) {
 						document.querySelector("#methodPaymentTitlePrecor").innerText = paymentMethodTitle;
 					}
 				})
+
+
+				let methods = document.querySelectorAll("input.shipping_method")
+				if (methods && methods.length > 0) {
+					methods = Array.from(methods).splice(0, (methods.length / 2));
+					methods.forEach((e, index) => {
+						if (shippingMethodBackup.value === e.value) {
+							if (!e.checked) {
+								// console.log("no esta checkeado");
+								e.checked = true;
+							}
+						}
+					})
+
+				}
+
 			}, 1000);
 		}
 		getCheckedPaymentMethodPrecor();
@@ -159,7 +177,9 @@ if (!is_ajax()) {
 				const tiendaMaxcoDireccion = "Av. República de Panamá 4965, Surquillo";
 				document.querySelector("#billing_address_1").value = tiendaMaxcoDireccion;
 			}
-
+			if (e.target.classList.contains("shipping_method")) {
+				shippingMethodBackup.value = (e.target.value);
+			}
 		})
 	</script>
 <?php } ?>
