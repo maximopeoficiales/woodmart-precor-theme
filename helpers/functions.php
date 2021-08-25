@@ -498,7 +498,7 @@ function precor_verifyExcludesCurrency($methodTitle, $exclude): bool
 function custom_override_checkout_fields($fields)
 {
      // modifico los atributos de los checkout fields
-     
+
      $fields['shipping']['shipping_company']['maxlength'] = '20';
      $fields['shipping']['shipping_company']['placeholder'] = 'Ingrese su RUC';
      $fields['shipping']['shipping_first_name']['maxlength'] = '150';
@@ -557,3 +557,4 @@ function maxcoDescuentosOrder($id_order)
      $serializado = (maybe_serialize($arrayProducts));
      add_post_meta($id_order, "descuentos_precor", $serializado);
 }
+

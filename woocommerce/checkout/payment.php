@@ -119,7 +119,7 @@ if (!is_ajax()) {
 <?php
 if (!is_ajax()) {
 ?>
-	<input type="hidden" id="precor_backup_shipping_method" value="">
+	<!-- <input type="hidden" id="precor_backup_shipping_method" value=""> -->
 	<script>
 		let shippingMethodBackup = document.querySelector('#precor_backup_shipping_method');
 		let modalMethodPayment = document.querySelector('#myModalMethodPayment');
@@ -150,19 +150,19 @@ if (!is_ajax()) {
 				})
 
 
-				let methods = document.querySelectorAll("input.shipping_method")
-				if (methods && methods.length > 0) {
-					methods = Array.from(methods).splice(0, (methods.length / 2));
-					methods.forEach((e, index) => {
-						if (shippingMethodBackup.value === e.value) {
-							if (!e.checked) {
-								// console.log("no esta checkeado");
-								e.checked = true;
-							}
-						}
-					})
+				// let methods = document.querySelectorAll("input.shipping_method")
+				// if (methods && methods.length > 0) {
+				// 	methods = Array.from(methods).splice(0, (methods.length / 2));
+				// 	methods.forEach((e, index) => {
+				// 		if (shippingMethodBackup.value === e.value) {
+				// 			if (!e.checked) {
+				// 				// console.log("no esta checkeado");
+				// 				e.checked = true;
+				// 			}
+				// 		}
+				// 	})
 
-				}
+				// }
 
 			}, 1000);
 		}
@@ -177,9 +177,9 @@ if (!is_ajax()) {
 				const tiendaMaxcoDireccion = "Av. República de Panamá 4965, Surquillo";
 				document.querySelector("#billing_address_1").value = tiendaMaxcoDireccion;
 			}
-			if (e.target.classList.contains("shipping_method")) {
-				shippingMethodBackup.value = (e.target.value);
-			}
+			// if (e.target.classList.contains("shipping_method")) {
+			// 	shippingMethodBackup.value = (e.target.value);
+			// }
 		})
 	</script>
 <?php } ?>

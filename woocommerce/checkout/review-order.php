@@ -237,7 +237,7 @@ foreach (WC()->cart->get_cart() as $cart_item_key => $cart_item) {
 							<td><?php wc_cart_totals_coupon_html($coupon); ?></td>
 						</tr>
 					<?php endforeach; ?>
-
+<!-- 
 					<?php if (WC()->cart->needs_shipping() && WC()->cart->show_shipping()) : ?>
 
 						<?php do_action('woocommerce_review_order_before_shipping'); ?>
@@ -272,7 +272,7 @@ foreach (WC()->cart->get_cart() as $cart_item_key => $cart_item) {
 								<td><?php wc_cart_totals_taxes_total_html(); ?></td>
 							</tr>
 						<?php endif; ?>
-					<?php endif; ?>
+					<?php endif; ?> -->
 
 
 					<tr class="order-total">
