@@ -558,3 +558,156 @@ function maxcoDescuentosOrder($id_order)
      add_post_meta($id_order, "descuentos_precor", $serializado);
 }
 
+add_action("wp_ajax_nopriv_precor_modal_products", "precor_ajax_modal_products");
+add_action("wp_ajax_precor_modal_products", "precor_ajax_modal_products");
+function precor_ajax_modal_products()
+{
+     try {
+          ob_start();
+          precor_generate_modal_products();
+          $HTMLoutput = ob_get_contents();
+          ob_end_clean();
+          header('Content-Type: text/json');
+          die(json_encode(["data" => html_entity_decode($HTMLoutput)]));
+     } catch (\Throwable $th) {
+          return $th;
+     }
+}
+
+
+
+
+function precor_generate_modal_products()
+{
+     $totalProducts = count(WC()->cart->get_cart());
+     $pesoTotalKg = 0;
+     foreach (WC()->cart->get_cart() as $cart_item_key => $cart_item) {
+          // logica para agregar peso
+          $_product_id = $cart_item['product_id'];
+          $peso = doubleval(get_post_meta($_product_id, 'peso', true))  * $cart_item['quantity'];
+          $pesoTotalKg += doubleval((is_null($peso) || $peso == "") ?   0 : $peso);
+     }
+?>
+     <div id="myModalProducts" class="modalProducts">
+          <div class="modalContainerProducts">
+               <div class="modalHeaderProducts">
+                    <h4 style="color: white !important; margin-bottom: 0;">Lista de Productos</h4>
+                    <div>
+                         <button class="button-precor text-white" type="button" id="hiddeModalProducts" style="background-color: #69daf5 !important; max-width: 80px; margin-bottom: 0;">Aceptar</button>
+                    </div>
+               </div>
+               <div class="modaltotalKgWoocommerce">
+                    <p></p>
+                    <p>Peso Total: <?= number_format($pesoTotalKg, 2) ?> kg</p>
+               </div>
+
+               <div class="modaltotalWoocommerce">
+                    <p>Cantidad de Productos: <?= $totalProducts ?></p>
+                    <p class="order-total">
+                         <span><?php esc_html_e('Total', 'woocommerce'); ?> : <?php wc_cart_totals_order_total_html(); ?></span>
+                    </p>
+               </div>
+
+
+               <!-- de aqui para abajo se autogenera con la peticion ajax -->
+
+               <div class="modalContentProducts">
+                    <table class="">
+                         <thead>
+                              <tr>
+                                   <th class="product-name"><?php esc_html_e('Product', 'woocommerce'); ?></th>
+                                   <th class="product-name precor-display-none-sm">UND</th>
+                                   <th class="product-name">Peso Total</th>
+                                   <th class="product-name">Cantidad</th>
+                                   <!-- <th class="product-name precor-display-none-sm">PAQ</th>
+							<th class="product-name precor-display-none-sm">PZAS</th> -->
+                                   <th class="product-total" style="text-align: right;"><?php esc_html_e('Subtotal', 'woocommerce'); ?></th>
+                              </tr>
+                         </thead>
+                         <tbody>
+                              <?php
+                              foreach (WC()->cart->get_cart() as $cart_item_key => $cart_item) {
+                                   // logica para agregar peso
+                                   $_product_id = $cart_item['product_id'];
+                                   $und = get_post_meta($_product_id, 'und', true);
+                                   $paq = get_post_meta($_product_id, 'unxpaq', true) == "" ? "" : get_post_meta($_product_id, 'unxpaq', true);
+                                   $pzas = 0;
+                                   if ($paq == "") {
+                                        $pzas = "";
+                                   } else {
+                                        $pzas = $cart_item['quantity'] / $paq;
+                                   }
+                                   $peso = doubleval(get_post_meta($_product_id, 'peso', true))  * $cart_item['quantity'];
+                                   // $pesoTotalKg += doubleval((is_null($peso) || $peso == "") ?   0 : $peso);
+                                   // // 
+                                   $_product = apply_filters('woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key);
+
+                                   if ($_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters('woocommerce_checkout_cart_item_visible', true, $cart_item, $cart_item_key)) {
+                              ?>
+                                        <tr class="<?php echo esc_attr(apply_filters('woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key)); ?>">
+                                             <td class="product-name">
+                                                  <?php echo apply_filters('woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key) . '&nbsp;'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
+                                                  ?>
+                                                  <?php echo apply_filters('woocommerce_checkout_cart_item_quantity', ' <strong class="product-quantity">' . sprintf('&times;&nbsp;%s', $cart_item['quantity']) . '</strong>', $cart_item, $cart_item_key); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
+                                                  ?>
+                                                  <?php echo wc_get_formatted_cart_item_data($cart_item); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
+                                                  ?>
+                                             </td>
+
+                                             <td class="product-total precor-display-none-sm">
+                                                  <?= $und ?>
+                                             </td>
+                                             <!-- aqui va el peso -->
+                                             <td class="product-total ">
+                                                  <?= number_format(floatval($peso), 2)  ?>
+                                             </td>
+                                             <td class="product-total ">
+                                                  <?= $cart_item['quantity']  ?>
+                                             </td>
+
+
+                                             <!-- <td class="product-total precor-display-none-sm">
+									<?= $pzas ?>
+								</td>
+								<td class="product-total precor-display-none-sm">
+									<?= $paq ?>
+								</td> -->
+                                             <td class="product-total" style="text-align: right;">
+                                                  <?php echo apply_filters('woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal($_product, $cart_item['quantity']), $cart_item, $cart_item_key); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
+                                                  ?>
+                                             </td>
+                                        </tr>
+                              <?php
+                                   }
+                              }
+                              ?>
+                         </tbody>
+                         <tfoot>
+                              <?php $numColumnas = 5; ?>
+                              <tr class="cart-subtotal">
+                                   <th><?php esc_html_e('Subtotal', 'woocommerce'); ?></th>
+                                   <td colspan="<?= $numColumnas ?>" style="text-align: right;"><?php wc_cart_totals_subtotal_html(); ?></td>
+                              </tr>
+
+                              <?php foreach (WC()->cart->get_coupons() as $code => $coupon) : ?>
+                                   <tr class="cart-discount coupon-<?php echo esc_attr(sanitize_title($code)); ?>">
+                                        <th><?php wc_cart_totals_coupon_label($coupon); ?></th>
+                                        <td></td>
+                                        <td><?php wc_cart_totals_coupon_html($coupon); ?></td>
+                                   </tr>
+                              <?php endforeach; ?>
+
+
+
+                              <tr class="order-total">
+                                   <th><?php esc_html_e('Total', 'woocommerce'); ?></th>
+                                   <td colspan="<?= $numColumnas ?>" style="text-align: right;"><?php wc_cart_totals_order_total_html(); ?></td>
+                              </tr>
+
+
+                         </tfoot>
+                    </table>
+               </div>
+          </div>
+     </div>
+<?php } ?>
