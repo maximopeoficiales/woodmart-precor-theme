@@ -119,7 +119,7 @@ if (!is_ajax()) {
 <?php
 if (!is_ajax()) {
 ?>
-	<!-- <input type="hidden" id="precor_backup_shipping_method" value=""> -->
+	<input type="hidden" id="precor_backup_shipping_method" value="">
 	<script>
 		let shippingMethodBackup = document.querySelector('#precor_backup_shipping_method');
 		let modalMethodPayment = document.querySelector('#myModalMethodPayment');
