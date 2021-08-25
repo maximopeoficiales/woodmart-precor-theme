@@ -557,7 +557,9 @@ function hookNewContentInOrderReview()
      <script>
           window.addEventListener('DOMContentLoaded', (event) => {
                document.querySelector('#btnShowModalProducts').addEventListener('click', async () => {
+                    document.querySelector("#content_modal_products_ajax").innerHTML = ""
                     document.querySelector('#myModalProducts').style.display = 'block';
+                    document.querySelector('#spinner_modal').style.display = 'block';
                     await getModalProducts();
                });
                document.querySelector('#hiddeModalProducts').addEventListener('click', () => {
@@ -567,6 +569,7 @@ function hookNewContentInOrderReview()
                const getModalProducts = async () => {
                     let data = await (await fetch("<?= $urlWpAjax  ?>?action=precor_modal_products")).json();
                     document.querySelector("#content_modal_products_ajax").innerHTML = ""
+                    document.querySelector('#spinner_modal').style.display = 'none';
                     document.querySelector("#content_modal_products_ajax").innerHTML = data.data;
                }
 
@@ -587,6 +590,7 @@ function precor_generate_modal_products()
           $pesoTotalKg += doubleval((is_null($peso) || $peso == "") ?   0 : $peso);
      }
 ?>
+    
 
      <div class="" id="content_modal_products_ajax">
           <div class="modaltotalKgWoocommerce">
