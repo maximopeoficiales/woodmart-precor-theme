@@ -37,23 +37,18 @@ function hookNewContentInOrderReview()
      echo "<button class=' button-precor bg-precor-azul' type='button' id='btnShowModalProducts'>Ver Productos</button>";
      echo "
       <script>
-      let modal = document.querySelectorAll('#myModalProducts')[0];
-      let btn = document.getElementById('btnShowModalProducts');
-      let span = document.getElementById('hiddeModalProducts');
-      btn.onclick = function() {
-           modal.style.display = 'block';
-      }
-      span.onclick = function() {
-           modal.style.display = 'none';
-      }
-      window.onclick = function(event) {
-           if (event.target == modal) {
-                modal.style.display = 'none';
-           }
-      } 
- </script>
+
+      window.addEventListener('DOMContentLoaded', (event) => {
+          document.querySelector('#btnShowModalProducts').addEventListener('click',()=>{
+               document.querySelector('#myModalProducts').style.display = 'block';
+          });
+          document.querySelector('#hiddeModalProducts').addEventListener('click',()=>{
+               document.querySelector('#myModalProducts').style.display = 'none';
+           });
+      });
+     
+     </script>
       ";
-     //  <h4 class='text-center'>Elige tu forma de pago</h4>
 }
 
 // obtengo categoria del producto por idProduct

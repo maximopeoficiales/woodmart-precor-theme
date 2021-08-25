@@ -108,4 +108,8 @@ defined('ABSPATH') || exit;
 	</div>
 <?php } ?>
 
-<?php precor_generate_modal_products(); ?>
+<?php
+if (!is_ajax()) {
+	precor_generate_modal_products();
+}
+?>
