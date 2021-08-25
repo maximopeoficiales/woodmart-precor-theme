@@ -110,6 +110,16 @@ defined('ABSPATH') || exit;
 
 <?php
 if (!is_ajax()) {
+	echo '  <div id="myModalProducts" class="modalProducts">
+	<div class="modalContainerProducts">
+		 <div class="modalHeaderProducts">
+			  <h4 style="color: white !important; margin-bottom: 0;">Lista de Productos</h4>
+			  <div>
+				   <button class="button-precor text-white" type="button" id="hiddeModalProducts" style="background-color: #69daf5 !important; max-width: 80px; margin-bottom: 0;">Aceptar</button>
+			  </div>
+		 </div>';
 	precor_generate_modal_products();
+	echo "       </div>
+	</div>";
 }
 ?>
