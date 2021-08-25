@@ -58,7 +58,7 @@ $activarMetodoDePago = $activarMetodoDePago ? "" : "display: none;";
 				<?php } ?>
 				<div id="payment" class="woocommerce-checkout-payment">
 
-					<!-- <?php
+					 <?php
 							if (WC()->cart->needs_payment()) : ?>
 						<ul class="wc_payment_methods payment_methods methods">
 							<?php
@@ -71,7 +71,7 @@ $activarMetodoDePago = $activarMetodoDePago ? "" : "display: none;";
 								}
 							?>
 						</ul>
-					<?php endif; ?> -->
+					<?php endif; ?> 
 
 				</div>
 				<?php
@@ -119,7 +119,7 @@ if (!is_ajax()) {
 <?php
 if (!is_ajax()) {
 ?>
-	<input type="hidden" id="precor_backup_shipping_method" value="">
+	<!-- <input type="hidden" id="precor_backup_shipping_method" value=""> -->
 	<script>
 		let shippingMethodBackup = document.querySelector('#precor_backup_shipping_method');
 		let modalMethodPayment = document.querySelector('#myModalMethodPayment');
