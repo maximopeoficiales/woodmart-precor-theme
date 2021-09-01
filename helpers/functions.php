@@ -26,7 +26,7 @@ class Product_Table_Price_Role_Column extends Abstract_Product_Data
                return '<span class="woocs_price_code""><span class="woocommerce-Price-amount amount"><bdi>' . $price . '<span class="woocommerce-Price-currencySymbol">$</span></bdi></span> <small class="woocommerce-price-suffix">Sin IGV</small></span>';
           }
 
-          return '<span class="woocs_price_code""><span class="woocommerce-Price-amount amount"><bdi>' . $price . '<span class="woocommerce-Price-currencySymbol">$</span></bdi></span> <small class="woocommerce-price-suffix">Sin IGV</small></span>';
+          return 'asdasd';
      }
      public function get_data()
      {
