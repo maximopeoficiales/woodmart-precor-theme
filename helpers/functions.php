@@ -26,7 +26,7 @@ class Product_Table_Price_Role_Column extends Abstract_Product_Data
                          $price = number_format(floatval($this->product->get_price()), 2);
                     }
                }
-               return $priceRolJson;
+               return '<span class="woocs_price_code""><span class="woocommerce-Price-amount amount"><bdi>' . $price . '<span class="woocommerce-Price-currencySymbol">$</span></bdi></span> <small class="woocommerce-price-suffix">Sin IGV</small></span>';
           }
 
           return '<span class="woocs_price_code""><span class="woocommerce-Price-amount amount"><bdi>' . $price . '<span class="woocommerce-Price-currencySymbol">$</span></bdi></span> <small class="woocommerce-price-suffix">Sin IGV</small></span>';
