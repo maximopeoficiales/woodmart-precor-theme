@@ -18,7 +18,7 @@ class Product_Table_Price_Role_Column extends Abstract_Product_Data
           $price = number_format(floatval($this->product->get_price()), 2);
 
           if (!empty($role)) {
-               $priceRolJson = get_post_meta(intval($this->product->get_id()), "_role_base_price_$role", true);
+               $priceRolJson = get_post_meta(intval($this->product->get_id()), "_role_base_price_$role")[0];
                if (!empty($priceRolJson)) {
                     $priceRol = maybe_unserialize($priceRolJson);
                     $price = number_format(floatval($priceRol["discount_value"]), 2);
