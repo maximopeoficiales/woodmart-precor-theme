@@ -1,4 +1,62 @@
 <?php
+
+use Barn2\Plugin\WC_Product_Table\Data\Abstract_Product_Data,
+     Barn2\Plugin\WC_Product_Table\Table_Args;
+
+if (!class_exists('Barn2\Plugin\WC_Product_Table\Data\Abstract_Product_Data')) {
+     return;
+}
+
+/**
+ * Handles data retrieval for the 'role_price' column in the product table.
+ */
+class Product_Table_Price_Role_Column extends Abstract_Product_Data
+{
+
+     public function getPriceByRole($role)
+     {
+          $price = number_format(floatval($this->product->get_price()), 2);
+
+          if (!empty($role)) {
+               $priceRolJson = get_post_meta(intval($this->product->get_id()), "_role_base_price_$role", true);
+               if (!empty($priceRolJson)) {
+                    $priceRol = maybe_unserialize($priceRolJson);
+                    $price = number_format(floatval($priceRol["discount_value"]), 2);
+               }
+               return '<span class="woocs_price_code""><span class="woocommerce-Price-amount amount"><bdi>' . $price . '<span class="woocommerce-Price-currencySymbol">$</span></bdi></span> <small class="woocommerce-price-suffix">Sin IGV</small></span>';
+          }
+
+          return '<span class="woocs_price_code""><span class="woocommerce-Price-amount amount"><bdi>' . $price . '<span class="woocommerce-Price-currencySymbol">$</span></bdi></span> <small class="woocommerce-price-suffix">Sin IGV</small></span>';
+     }
+     public function get_data()
+     {
+          $user = get_userdata(get_current_user_id());
+          $user_roles    = $user->roles;
+          if (in_array('a1', $user_roles, true)) {
+               return $this->getPriceByRole("a1");
+          } else if (in_array('a2', $user_roles, true)) {
+               return $this->getPriceByRole("a2");
+          } else if (in_array('a3', $user_roles, true)) {
+               return $this->getPriceByRole("a3");
+          } else if (in_array('a4', $user_roles, true)) {
+               return $this->getPriceByRole("a4");
+          } else {
+               return $this->getPriceByRole(null);
+          }
+     }
+}
+// add_action("init", function () {
+
+//      // Get all the user roles as an array.
+//      $user = get_userdata(get_current_user_id());
+//      $user_roles    = $user->roles;
+//      if (in_array('a1', $user_roles, true)) {
+//           // Do something.
+//           echo 'YES, User is a subscriber';
+//      }
+// });
+
+
 // Functions Adicionales del tema
 //cambio el nombre del archivo que llega al correo
 add_filter('wpo_wcpdf_filename', 'wpo_wcpdf_custom_filename', 10, 4);
@@ -467,3 +525,9 @@ function precor_verifyExcludesCurrency($methodTitle, $exclude): bool
      }
      return false;
 }
+
+
+
+add_filter('wc_product_table_custom_table_data_precor_price', function ($obj, WC_Product $product, Table_Args $table_args) {
+     return new Product_Table_Price_Role_Column($product);
+}, 10, 3);
