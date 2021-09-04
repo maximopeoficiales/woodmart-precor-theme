@@ -117,9 +117,9 @@ function precorEvaluateBadgeQuotes($status)
 				$order      = $customer_order;
 				$item_count = $order->get_item_count();
 				$badgePrecorColor = precorEvaluateBadgeQuotes($order->get_status());
-				if (0 === $item_count) {
-					continue;
-				}
+				// if (0 === $item_count) {
+				// 	continue;
+				// }
 
 
 				$order_date = $customer_order->get_date_created();
