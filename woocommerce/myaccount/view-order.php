@@ -34,10 +34,27 @@ $notes = $order->get_customer_order_notes();
     ?>
 </p>
 
-<?php if ($notes) : ?>
+
+<?php
+// try {
+// solucion rapido de eliminacion de nota que viene del webservice
+if ($notes) {
+    foreach ($notes as $index => $note) {
+        if (strpos($note->comment_content, "ha sido mejorada")) {
+            unset($notes[$index]);
+        }
+    }
+}
+// } catch (\Throwable $th) {
+//     echo $th;
+// }
+?>
+<?php if ($notes) { ?>
     <h2><?php esc_html_e('Order updates', 'woocommerce'); ?></h2>
     <ol class="woocommerce-OrderUpdates commentlist notes">
-        <?php foreach ($notes as $note) : ?>
+        <?php foreach ($notes as $note) {
+
+        ?>
             <li class="woocommerce-OrderUpdate comment note">
                 <div class="woocommerce-OrderUpdate-inner comment_container">
                     <div class="woocommerce-OrderUpdate-text comment-text">
@@ -52,8 +69,8 @@ $notes = $order->get_customer_order_notes();
                     <div class="clear"></div>
                 </div>
             </li>
-        <?php endforeach; ?>
+        <?php }; ?>
     </ol>
-<?php endif; ?>
+<?php }; ?>
 
 <?php do_action('woocommerce_view_order', $order_id); ?>
