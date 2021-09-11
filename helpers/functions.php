@@ -534,3 +534,4 @@ function precor_verifyExcludesCurrency($methodTitle, $exclude): bool
 add_filter('wc_product_table_custom_table_data_precor_price', function ($obj, WC_Product $product, Table_Args $table_args) {
      return new Product_Table_Price_Role_Column($product);
 }, 10, 3);
+   
