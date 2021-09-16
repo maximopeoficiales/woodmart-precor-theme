@@ -392,8 +392,13 @@ function precor_show_button_change_currency($order = null): void
 ?>
 <?php
 //cuando no sea checkout que siempre sea dolares
-add_filter('wp_head', function () {
-     if (!is_checkout()) {
+add_filter('wp-head', function () {
+     $url = home_url($_SERVER['REQUEST_URI']);
+     // print_r($url);
+     $isCheckout = strpos($url, "finalizar-compra");
+     // print_r($isCheckout ? "si soy" : "no soy");
+     // si no es checkout
+     if (!$isCheckout) {
           global $WOOCS;
           if ($WOOCS) {
                $WOOCS->set_currency('USD');
@@ -590,7 +595,7 @@ function precor_generate_modal_products()
           $pesoTotalKg += doubleval((is_null($peso) || $peso == "") ?   0 : $peso);
      }
 ?>
-    
+
 
      <div class="" id="content_modal_products_ajax">
           <div class="modaltotalKgWoocommerce">
