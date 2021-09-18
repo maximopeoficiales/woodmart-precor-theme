@@ -163,6 +163,6 @@ class OrderCustomWoo
       );
       return $results2[0]->user_value != null
          ? strval($results2[0]->user_value)
-         : "";
+         : ""; 
    }
 }
