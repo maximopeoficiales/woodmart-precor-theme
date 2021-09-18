@@ -1,11 +1,14 @@
 <?php if (!defined("ABSPATH")) {
 	exit();
 }
-require get_template_directory() . "/helpers/wc-orders-custom/OrderCustomWoo.php";
-$order = new OrderCustomWoo($this->order_id);
-$data = $order->getOrderData();
-$currentOrder = $order->getOrder();
-
+try {
+	require get_template_directory() . "/helpers/wc-orders-custom/OrderCustomWoo.php";
+	$order = new OrderCustomWoo($this->order_id);
+	$data = $order->getOrderData();
+	$currentOrder = $order->getOrder();
+} catch (\Throwable $th) {
+echo $th;
+}
 // echo $order->getOrder()->get_billing_address_1();
 $isQuote = $order->getOrder()->get_created_via() == "ywraq" ? true : false;
 $type = $isQuote ? "Cotizacion " : "Pedido";

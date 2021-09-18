@@ -77,7 +77,7 @@ class OrderCustomWoo
          "total_tax" => $this->order->get_total_tax(),
          "prices_include_tax" => $this->order->get_prices_include_tax(),
          "customer_id" => $this->order->get_customer_id(),
-        "customer_id_cli" => $this->getPRFXValueByUserID(
+         "customer_id_cli" => $this->getPRFXValueByUserID(
             $this->order->get_customer_id(),
             "id_cli"
          ),
@@ -163,6 +163,6 @@ class OrderCustomWoo
       );
       return $results2[0]->user_value != null
          ? strval($results2[0]->user_value)
-         : null;
+         : "";
    }
 }
