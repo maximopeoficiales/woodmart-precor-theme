@@ -38,10 +38,7 @@ defined('ABSPATH') || exit;
 		<!--footer custom  -->
 		<div style="width: 100%; background-color: #E9E9E9; padding: 15px 0; margin-top: 2rem;">
 			<footer style="text-align: center; color: #6f6f6f; font-size: 10px; font-weight: 600; margin: 15px auto;">
-				<div style="margin-bottom: 10px;">
-					<span><img src="<?= precor_url_domain_replace(get_template_directory_uri()) . "/helpers/imgs/facebook.png" ?>" alt="" srcset="" class="img-red-social"></span>
-					<span><img src="<?= precor_url_domain_replace(get_template_directory_uri()) . "/helpers/imgs/youtube.png" ?>" alt="" srcset="" class="img-red-social"></span>
-				</div>
+				
 				<p class="footer-parrafo">Oficinas: Av. Manuel Olguin 373 Lima 33 Perú Edificio El Qubo Piso 9</p>
 				<p class="footer-parrafo">Planta: Av. Nicolas Dueñas 559,Lima</p>
 				<p class="footer-parrafo">Central Administrativa (551) 705-4000</p>
