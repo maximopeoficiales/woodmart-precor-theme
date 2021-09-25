@@ -21,3 +21,11 @@
   border-radius: 15px;
   padding: 20px;
 }
+.woocommerce-ResetPassword {
+  background: white;
+  border-radius: 15px;
+  padding: 20px;
+}
+#user_login {
+  background-color: white;
+}
