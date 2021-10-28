@@ -465,12 +465,12 @@ function precor_show_button_change_currency($order = null): void
 } ?>
 <?php
 //cuando no sea checkout que siempre sea dolares
-add_filter('wp_head', function () {
-     if (!is_checkout()) {
-          global $WOOCS;
-          $WOOCS->set_currency('USD');
-     }
-});
+// add_filter('wp_head', function () {
+//      if (!is_checkout()) {
+//           global $WOOCS;
+//           $WOOCS->set_currency('USD');
+//      }
+// });
 
 //cuando sea checkout siempre la moneda sera dolar
 add_filter('wp_head', function () {
@@ -504,11 +504,13 @@ add_shortcode('precor_get_type_rate_currency', function ($atts) {
 
 
 // filtro para excluir metodos de pago donde tenga tal moneda
-// add_filter('woocommerce_available_payment_gateways', 'woocs_filter_gateways', 1);
+add_filter('woocommerce_available_payment_gateways', 'woocs_filter_gateways', 1);
 function woocs_filter_gateways($gateway_list)
 {
      $exclude = array(
           'Mi crédito PRECOR' => array('PEN'),
+          'ScotiaBank' => array('PEN'),
+          'BBVA' => array('PEN'),
      );
      // recibe el metodo de pago , y los exclude
      foreach ($gateway_list as $key => $gateway) {
