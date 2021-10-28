@@ -136,6 +136,18 @@ function precor_pfrx_custom_addshorcode()
           $valor = do_shortcode("[prflxtrflds_field field_id=$field_id]");
           return number_format($valor, 2);
      });
+     // shortcode para mostrar el balance de credito siempre en dolares
+     add_shortcode('precor_get_balance_credit', function ($atts) {
+          if (class_exists('Wallet')) {
+               $valor2 = Wallet::get_balance(get_current_user_id());
+
+               $format = number_format(floatval($valor2), 2);
+
+               return "<b>$ " . $format . "</b>";
+          } else {
+               return do_shortcode("[fsww_balance]");
+          }
+     });
 }
 function precor_pfrx_addshorcode()
 {
@@ -536,4 +548,3 @@ function precor_verifyExcludesCurrency($methodTitle, $exclude): bool
 add_filter('wc_product_table_custom_table_data_precor_price', function ($obj, WC_Product $product, Table_Args $table_args) {
      return new Product_Table_Price_Role_Column($product);
 }, 10, 3);
-   
