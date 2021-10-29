@@ -19,6 +19,7 @@
 defined('ABSPATH') || exit;
 
 wc_print_notice(esc_html__('Password reset email has been sent.', 'woocommerce'));
+wp_enqueue_style('login-styles', get_template_directory_uri() . '/helpers/css/login-style.css', array());
 ?>
 
 <?php do_action('woocommerce_before_lost_password_confirmation_message'); ?>
