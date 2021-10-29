@@ -30,3 +30,9 @@
 #user_login {
   background-color: white;
 }
+.website-wrapper {
+  height: 100vh;
+}
+.main-page-wrapper {
+  height: 100vh;
+}
