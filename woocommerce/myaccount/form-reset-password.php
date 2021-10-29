@@ -22,9 +22,10 @@ wp_enqueue_style('login-styles', get_template_directory_uri() . '/helpers/css/lo
 ?>
 
 <form method="post" class="woocommerce-ResetPassword lost_reset_password">
-
 	<p><?php echo apply_filters( 'woocommerce_reset_password_message', esc_html__( 'Enter a new password below.', 'woocommerce' ) ); ?></p><?php // @codingStandardsIgnoreLine ?>
-
+	
+	<p><b>Usar una mayúscula, caracteres extraños (* _ -) y/o por lo menos 8 caracteres para que su contraseña sea segura</b></p>
+	
 	<p class="woocommerce-form-row woocommerce-form-row--first form-row form-row-first">
 		<label for="password_1"><?php esc_html_e( 'New password', 'woocommerce' ); ?>&nbsp;<span class="required">*</span></label>
 		<input type="password" class="woocommerce-Input woocommerce-Input--text input-text" name="password_1" id="password_1" autocomplete="new-password" />
