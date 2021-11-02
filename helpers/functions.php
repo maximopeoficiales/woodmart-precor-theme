@@ -152,18 +152,18 @@ function precor_create_button_custom($bgcolor, $link, $text): void
 // imprime un template con el nombre , telefono , email del ejecutivo
 function precor_contact_ejecutivo_byUserid($user_id): void
 {
-          // $nombreEjecutivo = precor_getPRFXValueByUserID(
-          //      $user_id,
-          //      "nombeje"
-          // );
-          // $telefonoEjecutivo = precor_getPRFXValueByUserID(
-          //      $user_id,
-          //      "telf_eje"
-          // );
-          // $emailEjecutivo = precor_getPRFXValueByUserID(
-          //      $user_id,
-          //      "email_eje"
-          // );
+     // $nombreEjecutivo = precor_getPRFXValueByUserID(
+     //      $user_id,
+     //      "nombeje"
+     // );
+     // $telefonoEjecutivo = precor_getPRFXValueByUserID(
+     //      $user_id,
+     //      "telf_eje"
+     // );
+     // $emailEjecutivo = precor_getPRFXValueByUserID(
+     //      $user_id,
+     //      "email_eje"
+     // );
      echo      '
      <h1 class="precor-title-email" style="text-align: justify;">¿Deseas comunicarte con tu ejecutivo de ventas?</h1>
      <div class="precor-color-texto">
@@ -441,11 +441,12 @@ add_shortcode('precor_get_type_rate_currency', function ($atts) {
 
 
 // filtro para excluir metodos de pago donde tenga tal moneda
-// add_filter('woocommerce_available_payment_gateways', 'woocs_filter_gateways', 1);
+add_filter('woocommerce_available_payment_gateways', 'woocs_filter_gateways', 1);
 function woocs_filter_gateways($gateway_list)
 {
      $exclude = array(
           'Mi crédito PRECOR' => array('PEN'),
+          'Pago con tarjeta de crédito' => array('PEN'),
      );
      // recibe el metodo de pago , y los exclude
      foreach ($gateway_list as $key => $gateway) {
