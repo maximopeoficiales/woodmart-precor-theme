@@ -301,7 +301,32 @@ add_action('rest_api_init', function () {
           'callback' => 'precor_update_currency_rate',
           'args' => array(),
      ));
+
+     register_rest_route('precor_prfx/v1', '/get_data_user_sap/', array(
+          'methods' => 'POST',
+          'callback' => 'precor_get_data_user_sap_api',
+          'args' => array(),
+     ));
 });
+// endpoint para obtener data del usuario sap
+
+function precor_get_data_user_sap_api(WP_REST_Request $request)
+{
+     $user_id = $request->get_json_params()["user_id"];
+     if (precor_isUserCreatedSap($user_id)) {
+          $ruc = precor_getPRFXValueByUserID($user_id, "nrdoc");
+          $drcfisc = precor_getPRFXValueByUserID($user_id, "drcfisc");
+          $nomb = precor_getPRFXValueByUserID($user_id, "nomb");
+
+          return ["status" => 200, "code" => "precor_get_data_user_sap_api", "message" => "Es usuario de sap", "data" => [
+               "ruc" => $ruc,
+               "drcfisc" => $drcfisc,
+               "nomb" => $nomb,
+          ]];
+     } else {
+          return ["status" => 400, "code" => "precor_get_data_user_sap_api", "message" => "No es usuario de sap", "data" => []];
+     }
+}
 
 function precor_update_currency_rate(WP_REST_Request $request)
 {
@@ -488,16 +513,19 @@ function custom_override_checkout_fields($fields)
 } // End custom_override_checkout_fields()
 
 add_filter('woocommerce_checkout_fields', 'custom_override_checkout_fields', 10);
+function precor_isUserCreatedSap($user_id): bool
+{
+     // Attributes
 
-
-// function maximum_api_filter_custom($query_params)
-// {
-//      $query_params['per_page']["maximum"] = 100000;
-//      return $query_params;
-// }
-
-// add_filter('rest_product_collection_params', 'maximum_api_filter_custom');
-// add_action('woocommerce_resume_order', 'hpWooNewOrder');
+     // solo cuando es inactivo te muestra el mesange de desbloqueado
+     global $wpdb;
+     $sql = "SELECT wf.balance FROM wp_fswcwallet wf WHERE wf.user_id = $user_id LIMIT 1";
+     $results = $wpdb->get_results($wpdb->prepare($sql));
+     $wpdb->flush();
+     $isUserSap = $results[0]->balance == null ? false : true;
+     // print_r($results);
+     return $isUserSap;
+}
 add_action('woocommerce_checkout_order_processed', 'maxcoDescuentosOrder');
 function maxcoDescuentosOrder($id_order)
 {

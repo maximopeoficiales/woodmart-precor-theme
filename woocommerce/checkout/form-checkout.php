@@ -79,3 +79,46 @@ $get_checkout_url = apply_filters('woocommerce_get_checkout_url', wc_get_checkou
 </form>
 
 <?php do_action('woocommerce_after_checkout_form', $checkout); ?>
+<?php
+
+
+?>
+
+<script>
+	try {
+
+		window.addEventListener("DOMContentLoaded", async () => {
+			const getDataUserIsSap = async () => {
+				var myHeaders = new Headers();
+				myHeaders.append("Content-Type", "application/json");
+
+				var raw = JSON.stringify({
+					"user_id": <?php echo get_current_user_id(); ?>
+				});
+
+				var requestOptions = {
+					method: 'POST',
+					headers: myHeaders,
+					body: raw,
+					redirect: 'follow'
+				};
+
+				let result = await (await (fetch("<?php echo get_site_url(); ?>/wp-json/precor_prfx/v1/get_data_user_sap", requestOptions))).json();
+				return result;
+			}
+
+			let result = await getDataUserIsSap();
+			console.log(result);
+			if (result.status == 200) {
+				document.getElementById("shipping_company").value = result.data.ruc ?? "";
+				document.getElementById("shipping_first_name").value = result.data.nomb ?? "";
+				document.getElementById("direccion_fiscal").value = result.data.drcfisc ?? "";
+				if (document.querySelector(".shipping_address").style.display == "none") {
+					document.querySelector("#ship-to-different-address-checkbox").click();
+				}
+			}
+		});
+	} catch (error) {
+
+	}
+</script>
