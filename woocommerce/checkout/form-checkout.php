@@ -108,7 +108,7 @@ $get_checkout_url = apply_filters('woocommerce_get_checkout_url', wc_get_checkou
 			}
 
 			let result = await getDataUserIsSap();
-			console.log(result);
+			// console.log(result);
 			if (result.status == 200) {
 				document.getElementById("shipping_company").value = result.data.ruc ?? "";
 				document.getElementById("shipping_first_name").value = result.data.nomb ?? "";
