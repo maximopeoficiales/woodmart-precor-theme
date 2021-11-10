@@ -18,7 +18,7 @@
 
 defined('ABSPATH') || exit;
 
-do_action('woocommerce_before_lost_password_form');
+// do_action('woocommerce_before_lost_password_form');
 wp_enqueue_style('login-styles', get_template_directory_uri() . '/helpers/css/login-style.css', array());
 ?>
 
