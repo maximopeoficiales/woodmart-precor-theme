@@ -523,6 +523,7 @@ function woocs_filter_gateways($gateway_list)
           'Mi crédito PRECOR' => array('PEN'),
           'ScotiaBank' => array('PEN'),
           'BBVA' => array('PEN'),
+          'Pago con tarjeta de crédito' => array('PEN'),
      );
      // recibe el metodo de pago , y los exclude
      foreach ($gateway_list as $key => $gateway) {
