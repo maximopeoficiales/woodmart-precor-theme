@@ -548,3 +548,14 @@ function precor_verifyExcludesCurrency($methodTitle, $exclude): bool
 add_filter('wc_product_table_custom_table_data_precor_price', function ($obj, WC_Product $product, Table_Args $table_args) {
      return new Product_Table_Price_Role_Column($product);
 }, 10, 3);
+
+function precor_userHasPaymentExpiry($user_id): bool
+{
+     global $wpdb;
+     $sql = "SELECT *  FROM wp_fswcwallet wa
+          WHERE wa.lock_message = 'Documentos de Pagos Vencidos'
+          AND  wa.user_id = $user_id LIMIT 1";
+     $results = $wpdb->get_results($wpdb->prepare($sql));
+     $wpdb->flush();
+     return count($results) > 0 ? true : false;
+}
