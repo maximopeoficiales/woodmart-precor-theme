@@ -1,4 +1,16 @@
 <?php
+// verifica que un usuario este con los metodos de pago activos
+function precor_userHasPaymentExpiry($user_id): bool
+{
+     global $wpdb;
+     $sql = "SELECT *  FROM wp_fswcwallet wa
+          WHERE wa.lock_message = 'Documentos de Pagos Vencidos'
+          AND  wa.user_id = $user_id LIMIT 1";
+     $results = $wpdb->get_results($wpdb->prepare($sql));
+     $wpdb->flush();
+     return count($results) > 0 ? true : false;
+}
+
 // Functions Adicionales del tema
 //cambio el nombre del archivo que llega al correo
 add_filter('wpo_wcpdf_filename', 'wpo_wcpdf_custom_filename', 10, 4);

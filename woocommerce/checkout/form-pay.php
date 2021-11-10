@@ -69,7 +69,12 @@ $totals = $order->get_order_item_totals(); // phpcs:ignore WordPress.WP.GlobalVa
 			<?php endif; ?>
 		</tfoot>
 	</table>
+	<?php
+	$validate = precor_userHasPaymentExpiry(get_current_user_id());
 
+	if (!$validate) {
+		# code...
+	?>
 	<div id="payment">
 	    
 		<?php if ( $order->needs_payment() ) : ?>
@@ -101,4 +106,10 @@ $totals = $order->get_order_item_totals(); // phpcs:ignore WordPress.WP.GlobalVa
 			<?php wp_nonce_field( 'woocommerce-pay', 'woocommerce-pay-nonce' ); ?>
 		</div>
 	</div>
+	<?php } else {
+	?>
+		<br>
+		<h1 style="text-align: center;">Ud. tiene documentos de pago vencidos</h1>
+	<?php
+	} ?>
 </form>
