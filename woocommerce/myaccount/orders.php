@@ -40,7 +40,7 @@ function precorEvaluateBadge($status)
 			$badgeColor = "badge-precor-danger";
 			break;
 		case 'processing':
-			$badgeColor = "badge-precor-light";
+			$badgeColor = "badge-precor-success";
 			break;
 		case 'pending':
 			$badgeColor = "badge-precor-secondary";
