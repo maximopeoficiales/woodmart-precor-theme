@@ -20,7 +20,10 @@ defined('ABSPATH') || exit;
 $realizarPedidos = true;
 $activarMetodoDePago = true;
 $activarMetodoDePago = $activarMetodoDePago ? "" : "display: none;";
-
+$validate = precor_userHasPaymentExpiry(get_current_user_id());
+if ($validate) {
+	$realizarPedidos = false;
+}
 ?>
 <!-- inicio de metodo de pago -->
 <div style="<?= $activarMetodoDePago ?>">
@@ -92,7 +95,7 @@ $activarMetodoDePago = $activarMetodoDePago ? "" : "display: none;";
 // este
 if (!is_ajax()) {
 ?>
-	
+
 	<?php
 	?>
 	<div class="form-row place-order precor-botones">
