@@ -116,8 +116,12 @@ if (!is_ajax()) {
 			echo apply_filters('woocommerce_order_button_html', '<button type="submit" class="button alt" name="woocommerce_checkout_place_order" id="place_order" value="' . esc_attr($order_button_text) . '" data-value="' . esc_attr($order_button_text) . '">' .
 				esc_html($order_button_text) . '</button>');
 			// @codingStandardsIgnoreLine 
-		}
+		} else {
 		?>
+
+			<br>
+			<h3 style="text-align: center;">Ud. tiene documentos de pago vencidos</h3>
+		<?php } ?>
 
 		<?php do_action('woocommerce_review_order_after_submit'); ?>
 
