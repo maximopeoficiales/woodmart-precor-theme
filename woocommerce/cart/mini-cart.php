@@ -59,7 +59,7 @@ do_action('woocommerce_before_mini_cart'); ?>
 							$price = number_format(floatval($priceRol["discount_value"]), 2);
 
 							if (empty($price)) {
-								$price = apply_filters('woocommerce_cart_item_price', WC()->cart->get_product_price($_product), $cart_item, $cart_item_key);
+								$price = $product_priceOriginal;
 							} else {
 								$price = apply_filters('woocommerce_cart_item_price', $price, $cart_item, $cart_item_key);
 							}
