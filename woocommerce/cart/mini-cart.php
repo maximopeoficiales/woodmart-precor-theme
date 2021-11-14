@@ -46,16 +46,25 @@ do_action('woocommerce_before_mini_cart'); ?>
 
 					if ($_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters('woocommerce_widget_cart_item_visible', true, $cart_item, $cart_item_key)) {
 						$product_name      = apply_filters('woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key);
+
+						$product_priceOriginal     = apply_filters('woocommerce_cart_item_price', WC()->cart->get_product_price($_product), $cart_item, $cart_item_key);
+						$product_permalink = apply_filters('woocommerce_cart_item_permalink', $_product->is_visible() ? $_product->get_permalink($cart_item) : '', $cart_item, $cart_item_key);
+
 						$price = 0;
+
 						$priceRolJson = get_post_meta(intval($product_id), "_role_base_price_$idRole")[0];
+
 						if (!empty($priceRolJson)) {
 							$priceRol = maybe_unserialize($priceRolJson);
 							$price = number_format(floatval($priceRol["discount_value"]), 2);
+
 							if (empty($price)) {
-								$price = number_format(floatval($this->product->get_price()), 2);
+								$price = apply_filters('woocommerce_cart_item_price', WC()->cart->get_product_price($_product), $cart_item, $cart_item_key);
+							} else {
+								$price = apply_filters('woocommerce_cart_item_price', $price, $cart_item, $cart_item_key);
 							}
 						}
-						$product_price     = $price;
+						$product_price   = $price;
 				?>
 						<li class="woocommerce-mini-cart-item <?php echo esc_attr(apply_filters('woocommerce_mini_cart_item_class', 'mini_cart_item', $cart_item, $cart_item_key)); ?>">
 							<a href="<?php echo esc_url($product_permalink); ?>" class="cart-item-link"><?php esc_html_e('Show', 'woocommerce'); ?></a>
