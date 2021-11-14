@@ -135,7 +135,11 @@ do_action('woocommerce_before_mini_cart'); ?>
 				 *
 				 * @hooked woocommerce_widget_shopping_cart_subtotal - 10
 				 */
-				do_action('woocommerce_widget_shopping_cart_total');
+				// do_action('woocommerce_widget_shopping_cart_total');
+				// wc_cart_totals_order_total_html();
+				// print_r(precor_getSubtotalWithRoleProduct());
+				$valor = precor_getSubtotalWithRoleProduct();
+				echo precor_get_subtotal_mini_cart($valor);
 				?>
 			</p>
 		<?php endif; ?>
