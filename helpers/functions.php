@@ -50,13 +50,14 @@ class Product_Table_Price_Role_Column extends Abstract_Product_Data
 }
 // add_action("init", function () {
 
-//      // Get all the user roles as an array.
-//      $user = get_userdata(get_current_user_id());
-//      $user_roles    = $user->roles;
-//      if (in_array('a1', $user_roles, true)) {
-//           // Do something.
-//           echo 'YES, User is a subscriber';
-//      }
+     // Get all the user roles as an array.
+     // $user = get_userdata(get_current_user_id());
+     // $user_roles    = $user->roles;
+     // print_r($user_roles[1]);
+     // // if (in_array('a1', $user_roles, true)) {
+     //      // Do something.
+     //      echo 'YES, User is a subscriber';
+     // }
 // });
 
 
