@@ -365,7 +365,7 @@ else :
 	$billing_vat       = empty($billing_vat) ? yit_get_prop($order, '_billing_vat', true) : $billing_vat;
 
 
-	$content = (empty($billing_name) && empty($billing_surname)) ? $user_name : $billing_name . ' ' . $billing_surname;
+	$content = (empty($billing_name) && empty($billing_surname)) ? $user_name : $billing_name . ' ';
 	printf('<tr><th>%s</th><td data-title="%s">%s</td></tr>', esc_html__('Name:', 'yith-woocommerce-request-a-quote'), esc_attr__('Name:', 'yith-woocommerce-request-a-quote'), esc_html($content));
 
 	if ($billing_company) {
@@ -376,7 +376,7 @@ else :
 	}
 
 	if ($billing_address_1 || $billing_address_2) {
-		$content = $billing_address_1 . ($billing_address_1 ? '<br />' : '') . $billing_address_2;
+		$content = $billing_address_1 . ($billing_address_1 ? '' : '') ;
 		printf('<tr><th>%s</th><td data-title="%s">%s</td></tr>', esc_html__('Address:', 'yith-woocommerce-request-a-quote'), esc_attr__('Address:', 'yith-woocommerce-request-a-quote'), esc_html($content));
 	}
 
