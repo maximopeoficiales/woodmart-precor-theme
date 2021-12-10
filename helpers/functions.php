@@ -602,3 +602,18 @@ function precor_userHasPaymentExpiry($user_id): bool
      $wpdb->flush();
      return count($results) > 0 ? true : false;
 }
+
+add_filter('gettext', 'change_some_woocommerce_strings', 10, 3);
+add_filter('ngettext', 'change_some_woocommerce_strings', 10, 3);
+function change_some_woocommerce_strings($translate_text, $original_text, $domain)
+{
+     if (stripos($original_text, 'Out of stock') !== false) {
+          $translate_text = str_ireplace(
+               array('Out of stock', 'Out of stock'),
+               array('Sin Stock', 'Sin Stock'),
+               $original_text
+          );
+     }
+
+     return $translate_text;
+}
