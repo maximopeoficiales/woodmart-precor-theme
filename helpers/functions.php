@@ -607,13 +607,20 @@ add_filter('gettext', 'change_some_woocommerce_strings', 10, 3);
 add_filter('ngettext', 'change_some_woocommerce_strings', 10, 3);
 function change_some_woocommerce_strings($translate_text, $original_text, $domain)
 {
-     if (stripos($original_text, 'Out of stock') !== false) {
+     if (
+          stripos($original_text, 'is') !== false || stripos($original_text, 'Out of stock') !== false || stripos($original_text, 'Please add or decrease items to continue') !== false || stripos($original_text, 'must be bought in groups of') !== false || stripos($original_text, 'The minimum order quantity for') !== false
+          ||  stripos($original_text, 'please increase the quantity in your cart') !== false
+
+     ) {
           $translate_text = str_ireplace(
-               array('Out of stock', 'Out of stock'),
-               array('Sin Stock', 'Sin Stock'),
+               array("is", 'Out of stock', 'Please add or decrease items to continue', "The minimum order quantity for", "must be bought in groups of", "please increase the quantity in your cart"),
+               array("es", 'Sin Stock', 'Agregue o disminuya elementos para continuar', "La cantidad mínima de pedido para", "deben comprarse en grupos de", "Por favor aumente la cantidad en su carrito"),
                $original_text
           );
      }
+
+
+
 
      return $translate_text;
 }
