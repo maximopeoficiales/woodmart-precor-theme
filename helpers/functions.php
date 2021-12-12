@@ -603,6 +603,9 @@ function precor_userHasPaymentExpiry($user_id): bool
      return count($results) > 0 ? true : false;
 }
 
+
+
+
 add_filter('gettext', 'change_some_woocommerce_strings', 10, 3);
 add_filter('ngettext', 'change_some_woocommerce_strings', 10, 3);
 function change_some_woocommerce_strings($translate_text, $original_text, $domain)
