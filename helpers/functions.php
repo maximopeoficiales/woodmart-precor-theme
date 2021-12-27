@@ -50,6 +50,32 @@ function getCategoryNameByIdProduct($idProduct): string
      return $term["name"];
 }
 
+
+add_filter('gettext', 'change_some_woocommerce_strings', 10, 3);
+add_filter('ngettext', 'change_some_woocommerce_strings', 10, 3);
+function change_some_woocommerce_strings($translate_text, $original_text, $domain)
+{
+     if (
+          stripos($original_text, 'is') !== false || stripos($original_text, 'Out of stock') !== false || stripos($original_text, 'Please add or decrease items to continue') !== false || stripos($original_text, 'must be bought in groups of') !== false || stripos($original_text, 'The minimum order quantity for') !== false
+          ||  stripos($original_text, 'please increase the quantity in your cart') !== false
+          ||  stripos($original_text, 'Processing') !== false
+          ||  stripos($original_text, 'Completed') !== false
+          ||  stripos($original_text, 'Failed') !== false
+
+     ) {
+          $translate_text = str_ireplace(
+               array("is", 'Out of stock', 'Please add or decrease items to continue', "The minimum order quantity for", "must be bought in groups of", "please increase the quantity in your cart","Processing","Completed","Failed"),
+               array("es", 'Sin Stock', 'Agregue o disminuya elementos para continuar', "La cantidad mínima de pedido para", "deben comprarse en grupos de", "Por favor aumente la cantidad en su carrito","Procesando","Completado","Fallo"),
+               $original_text
+          );
+     }
+
+
+
+
+     return $translate_text;
+}
+
 // shortcode
 // Add Shortcode
 function precor_pfrx_custom_addshorcode()
@@ -214,22 +240,22 @@ add_filter('woocommerce_account_menu_items', 'precor_remove_my_account_links');
 function precor_remove_my_account_links($menu_links)
 {
 
-     // unset($menu_links['edit-address']); // Addresses
+      unset($menu_links['edit-address']); // Addresses
      unset($menu_links['dashboard']); // Remove Dashboard
      unset($menu_links['payment-methods']); // Remove Payment Methods
      unset($menu_links['orders']); // Remove Orders
      unset($menu_links['downloads']); // Disable Downloads
      unset($menu_links['edit-account']); // Remove Account details tab
      unset($menu_links['edit-address']); // Remove Account details tab
-     unset($menu_links['customer-logout']); // Remove Logout link
-     // $menu_links['dashboard'] = "Mi Cuenta";
+    unset($menu_links['customer-logout']); // Remove Logout link
+      $menu_links['dashboard'] = "Mi Cuenta";
 
      $new = array(
           'catalogoProductos' => 'Catalogo de Productos',
           "misDatos" => "Mis Datos",
           "miCredito" => "Mi Credito",
-          "misDirecciones" => "Mis Direcciones",
-          "misCotizaciones" => "Mis Cotizaciones",
+          //"misDirecciones" => "Mis Direcciones",
+          //"misCotizaciones" => "Mis Cotizaciones",
           "misPedidos" => "Mis Pedidos",
      );
 
@@ -250,7 +276,7 @@ function precor_hook_endpoint($url, $endpoint, $value, $permalink)
 {
      switch ($endpoint) {
           case 'catalogoProductos':
-               $url = site_url("mi-cuenta/catalogo-de-productos");
+               $url = site_url("mi-cuenta/tienda");
                break;
           case 'misDatos':
                $url = site_url("mi-cuenta/mis-datos");
@@ -504,6 +530,8 @@ function precor_verifyExcludesCurrency($methodTitle, $exclude): bool
      return false;
 }
 
+
+
 // function precor_db_remove_new_site_notification_email($blog_id, $user_id, $password, $title, $meta)
 // {
 //      return false;
@@ -624,6 +652,8 @@ function hookNewContentInOrderReview()
      </script>
 <?php } ?>
 <?php
+
+
 
 
 function precor_generate_modal_products()

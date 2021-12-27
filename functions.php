@@ -399,3 +399,4 @@ wp_register_style("customPrecor", get_template_directory_uri() . "/helpers/css/s
 wp_enqueue_style('customPrecor');
 // llamo a mi carpeta helpers 
 require get_template_directory() . "/helpers/functions.php";
+

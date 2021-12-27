@@ -103,7 +103,7 @@ if (woodmart_get_opt('thank_you_page_extra_content')) {
 			<div class="" style="margin-top: 1rem; margin-bottom: 1rem;">
 				<p style="margin-bottom: 0;"><strong>Gracias por tu compra.</strong></p>
 				<div class="precor-color-texto">
-					<p>Una vez el pago confirmado el pago tu pedido será entregado en un plazo desde 24 a 48 horas. El equipo de programación de Precor se contactará con usted para coordinar el día y hora exacta de entrega.</p>
+					<p>Una vez el pago confirmado el pago tu pedido será entregado en un plazo desde 24 a 48 horas. El equipo de programación de Maxco se contactará con usted para coordinar el día y hora exacta de entrega.</p>
 				</div>
 			</div>
 
