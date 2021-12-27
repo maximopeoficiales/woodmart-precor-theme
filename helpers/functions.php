@@ -64,8 +64,8 @@ function change_some_woocommerce_strings($translate_text, $original_text, $domai
 
      ) {
           $translate_text = str_ireplace(
-               array("is", 'Out of stock', 'Please add or decrease items to continue', "The minimum order quantity for", "must be bought in groups of", "please increase the quantity in your cart","Processing","Completed","Failed"),
-               array("es", 'Sin Stock', 'Agregue o disminuya elementos para continuar', "La cantidad mínima de pedido para", "deben comprarse en grupos de", "Por favor aumente la cantidad en su carrito","Procesando","Completado","Fallo"),
+               array("is", 'Out of stock', 'Please add or decrease items to continue', "The minimum order quantity for", "must be bought in groups of", "please increase the quantity in your cart", "Processing", "Completed", "Failed"),
+               array("es", 'Sin Stock', 'Agregue o disminuya elementos para continuar', "La cantidad mínima de pedido para", "deben comprarse en grupos de", "Por favor aumente la cantidad en su carrito", "Procesando", "Completado", "Fallo"),
                $original_text
           );
      }
@@ -84,6 +84,18 @@ function precor_pfrx_custom_addshorcode()
           $field_id = $atts["field_id"];
           $valor = do_shortcode("[prflxtrflds_field field_id=$field_id]");
           return number_format($valor, 2);
+     });
+     // shortcode para mostrar el balance de credito siempre en dolares
+     add_shortcode('precor_get_balance_credit', function ($atts) {
+          if (class_exists('Wallet')) {
+               $valor2 = Wallet::get_balance(get_current_user_id());
+
+               $format = number_format(floatval($valor2), 2);
+
+               return "<b>$ " . $format . "</b>";
+          } else {
+               return do_shortcode("[fsww_balance]");
+          }
      });
 }
 function precor_pfrx_addshorcode()
@@ -240,15 +252,15 @@ add_filter('woocommerce_account_menu_items', 'precor_remove_my_account_links');
 function precor_remove_my_account_links($menu_links)
 {
 
-      unset($menu_links['edit-address']); // Addresses
+     unset($menu_links['edit-address']); // Addresses
      unset($menu_links['dashboard']); // Remove Dashboard
      unset($menu_links['payment-methods']); // Remove Payment Methods
      unset($menu_links['orders']); // Remove Orders
      unset($menu_links['downloads']); // Disable Downloads
      unset($menu_links['edit-account']); // Remove Account details tab
      unset($menu_links['edit-address']); // Remove Account details tab
-    unset($menu_links['customer-logout']); // Remove Logout link
-      $menu_links['dashboard'] = "Mi Cuenta";
+     unset($menu_links['customer-logout']); // Remove Logout link
+     $menu_links['dashboard'] = "Mi Cuenta";
 
      $new = array(
           'catalogoProductos' => 'Catalogo de Productos',
