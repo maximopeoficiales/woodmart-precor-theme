@@ -7,7 +7,7 @@ try {
 	$data = $order->getOrderData();
 	$currentOrder = $order->getOrder();
 } catch (\Throwable $th) {
-echo $th;
+	echo $th;
 }
 // echo $order->getOrder()->get_billing_address_1();
 $isQuote = $order->getOrder()->get_created_via() == "ywraq" ? true : false;
@@ -212,7 +212,7 @@ $type = $isQuote ? "Cotizacion " : "Pedido";
 					</tr>
 					<tr>
 						<td><b>VALIDEZ DE OFERTA</b></td>
-						<td><?= get_option('precor_validez_oferta') ?></td>
+						<td><?= get_option('precor_validez_oferta') ?? "08 DIAS" ?></td>
 					</tr>
 				</tbody>
 			</table>
