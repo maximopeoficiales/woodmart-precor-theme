@@ -70,11 +70,11 @@ $type = $isQuote ? "Cotizacion " : "Pedido";
 				<th class="text-8">CANT.</th>
 				<th class="text-8">CODIGO</th>
 				<th class="text-8" style="width: 25%;">DESCRIPCION</th>
-				<th class="text-8">UND.</th>
-				<th class="text-8">PZAS</th>
-				<th class="text-8">
+				<th class="text-8">UNID.</th>
+				<th class="text-8">PQTE.</th>
+				<!-- <th class="text-8">
 					PESO.PZA KG
-				</th>
+				</th> -->
 				<th class="text-8">P.LISTA USD</th>
 				<th class="text-8">VAL.VTA USD</th>
 				<!-- <th class="text-8">TOTAL USD</th> -->
@@ -126,11 +126,14 @@ $type = $isQuote ? "Cotizacion " : "Pedido";
 					<td class="text-8 text-left"><?= $product["name"] ?></td>
 					<!-- paquete / valor de paquete -->
 					<?php  ?>
-					<td class="text-8 text-center"><?= ($und == "" || $product["und_value"] == "") ? "" : $und . "/" . number_format($product["und_value"], 2) ?></td>
+					<!-- <td class="text-8 text-center"><?= ($und == "" || $product["und_value"] == "") ? "" : $und . "/" . number_format($product["und_value"], 2) ?></td> -->
+
+					<td class="text-8 text-center"><?= ($und == "" || $product["und_value"] == "") ? "" : $und ?></td>
+
 					<!-- piezas -->
 					<td class="text-8 text-right"><?= $pzas == INF ? "" : $pzas ?></td>
 					<!-- pezo pieza kg -->
-					<td class="text-8 text-right"><?= number_format($pesoPiezaKg, 2) ?></td>
+					<!-- <td class="text-8 text-right"><?= number_format($pesoPiezaKg, 2) ?></td> -->
 					<!-- precio del producto -->
 					<td class="text-8 text-right"><?= number_format($product["price"], 2) ?></td>
 					<!-- precio con descuento -->
