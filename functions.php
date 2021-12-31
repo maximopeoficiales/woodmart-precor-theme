@@ -261,6 +261,9 @@ if (!function_exists('woodmart_enqueue_scripts')) {
 			wp_register_script('accounting', WC()->plugin_url() . '/assets/js/accounting/accounting.min.js', array('jquery'), $version, true);
 			wp_register_script('wc-jquery-ui-touchpunch', WC()->plugin_url() . '/assets/js/jquery-ui-touch-punch/jquery-ui-touch-punch.min.js', array('jquery-ui-slider'), $version, true);
 		}
+		
+		
+
 
 		// Add virations form scripts through the site to make it work on quick view
 		if (woodmart_get_opt('quick_view_variable') || woodmart_get_opt('quick_shop_variable')) {
@@ -399,3 +402,5 @@ wp_register_style("customPrecor", get_template_directory_uri() . "/helpers/css/s
 wp_enqueue_style('customPrecor');
 // llamo a mi carpeta helpers 
 require get_template_directory() . "/helpers/functions.php";
+
+

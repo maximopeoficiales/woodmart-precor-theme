@@ -613,11 +613,14 @@ function change_some_woocommerce_strings($translate_text, $original_text, $domai
      if (
           stripos($original_text, 'is') !== false || stripos($original_text, 'Out of stock') !== false || stripos($original_text, 'Please add or decrease items to continue') !== false || stripos($original_text, 'must be bought in groups of') !== false || stripos($original_text, 'The minimum order quantity for') !== false
           ||  stripos($original_text, 'please increase the quantity in your cart') !== false
+          ||  stripos($original_text, 'Processing') !== false
+          ||  stripos($original_text, 'Completed') !== false
+          ||  stripos($original_text, 'Failed') !== false
 
      ) {
           $translate_text = str_ireplace(
-               array("is", 'Out of stock', 'Please add or decrease items to continue', "The minimum order quantity for", "must be bought in groups of", "please increase the quantity in your cart"),
-               array("es", 'Sin Stock', 'Agregue o disminuya elementos para continuar', "La cantidad mínima de pedido para", "deben comprarse en grupos de", "Por favor aumente la cantidad en su carrito"),
+               array("is", 'Out of stock', 'Please add or decrease items to continue', "The minimum order quantity for", "must be bought in groups of", "please increase the quantity in your cart","Processing","Completed","Failed"),
+               array("es", 'Sin Stock', 'Agregue o disminuya elementos para continuar', "La cantidad mínima de pedido para", "deben comprarse en grupos de", "Por favor aumente la cantidad en su carrito","Procesando","Completado","Fallo"),
                $original_text
           );
      }
