@@ -55,7 +55,7 @@ precor_get_image_header_custom("Recurso 1.jpg");
 	<?php endif;
 
 	// se imprira el boton
-	precor_create_button_custom("#003b71", esc_url($link_reset_password), "Cambie su contraseña aqui");
+	precor_create_button_custom("#003b71", esc_url($link_reset_password), "Cambie su contraseña aqui", false);
 	?>
 
 
