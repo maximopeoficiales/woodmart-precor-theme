@@ -186,17 +186,26 @@ function precor_get_image_header_custom($nameImgDebajo): void
 
 }
 // crea un boton custom
-function precor_create_button_custom($bgcolor, $link, $text): void
+// crea un boton custom
+function precor_create_button_custom($bgcolor, $link, $text, $button = true): void
 {
-     echo '
- <table border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor=”' . $bgcolor . '”>
- <tr>
-      <a href="' . $link . '" class="" style="color: white; !important;  display: block !important;text-decoration: none;padding-top: 18px !important;padding-bottom: 18px !important;margin-top: 10px !important;margin-bottom: 10px !important;border-radius: 10px !important;text-align: center !important;font-weight: 600; !important;width:100% !important;">
-           ' . $text . '
-      </a>
- </tr>
-</table>
- ';
+     if ($button) {
+          echo '
+          <table border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor=”' . $bgcolor . '”>
+          <tr>
+               <a href="' . $link . '" class="" style="color: white; !important;  display: block !important;text-decoration: none;padding-top: 18px !important;padding-bottom: 18px !important;margin-top: 10px !important;margin-bottom: 10px !important;border-radius: 10px !important;text-align: center !important;font-weight: 600; !important;width:100% !important;">
+                    ' . $text . '
+               </a>
+          </tr>
+          </table>
+          ';
+     } else {
+          echo '
+               <a href="' . $link . '" class="" style="color: ' . $bgcolor . '; !important;  display: block !important;text-decoration: none;padding-top: 18px !important;padding-bottom: 18px !important;margin-top: 10px !important;margin-bottom: 10px !important;border-radius: 10px !important;text-align: center !important;font-weight: 600; !important;width:100% !important;">
+                    ' . $text . '
+               </a>
+          ';
+     }
 }
 
 // imprime un template con el nombre , telefono , email del ejecutivo
