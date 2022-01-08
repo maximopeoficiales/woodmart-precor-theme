@@ -35,8 +35,14 @@ do_action('woocommerce_before_mini_cart'); ?>
 				do_action('woocommerce_before_mini_cart_contents');
 				$user = get_userdata(get_current_user_id());
 				$user_roles    = $user->roles;
+				// validacion de rol cuando es subscriber
 				$idRole = $user_roles[1];
+				if ($idRole == 'subscriber' || $idRole == 'administrator ') {
+					$idRole = $user_roles[0];
+				}
+
 				$_i = 0;
+
 				foreach (WC()->cart->get_cart() as $cart_item_key => $cart_item) {
 					$_i++;
 					if ($_i > $items_to_show) break;
@@ -64,7 +70,7 @@ do_action('woocommerce_before_mini_cart'); ?>
 								$price = apply_filters('woocommerce_cart_item_price', $price, $cart_item, $cart_item_key);
 							}
 						}
-						$product_price   = $price;
+						$product_price   = $price == 0 ? $product_priceOriginal : $price;
 				?>
 						<li class="woocommerce-mini-cart-item <?php echo esc_attr(apply_filters('woocommerce_mini_cart_item_class', 'mini_cart_item', $cart_item, $cart_item_key)); ?>">
 							<a href="<?php echo esc_url($product_permalink); ?>" class="cart-item-link"><?php esc_html_e('Show', 'woocommerce'); ?></a>
