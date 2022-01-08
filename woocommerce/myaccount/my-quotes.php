@@ -121,14 +121,18 @@ function precorEvaluateBadgeQuotes($status)
 				// 	continue;
 				// }
 
+				$order_status = $order->get_status() == "ywraq-accepted" ? "Aceptado" : $order->get_status();
 
+				if (strtolower($order_status) == "completed") {
+					$order_status = "Completado";
+				}
 				$order_date = $customer_order->get_date_created();
 				$order_lang = yit_get_prop($order, 'wpml_language', true);
 
 			?>
 				<tr class="quotes">
 					<td class="quotes-status" data-title="<?php esc_attr_e('Status', 'yith-woocommerce-request-a-quote'); ?>" style="text-align:<?php echo $text_align; ?>; white-space:nowrap;">
-						<span class="badge-precor <?= $badgePrecorColor ?>"> <?php ywraq_get_order_status_tag($order->get_status() == "ywraq-accepted" ? "Aceptado" : $order->get_status()); ?></span>
+						<span class="badge-precor <?= $badgePrecorColor ?>"> <?php ywraq_get_order_status_tag($order_status); ?></span>
 					</td>
 					<td class="quotes-number" data-title="<?php esc_attr_e('Order Number', 'yith-woocommerce-request-a-quote'); ?>">
 						<a href="<?php echo esc_url(YITH_YWRAQ_Order_Request()->get_view_order_url($order_id)); ?>">
