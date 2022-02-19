@@ -110,7 +110,7 @@ function precorEvaluateBadge($status)
 
 							<?php elseif ('order-status' === $column_id) : ?>
 
-								<?php echo "<span class='badge-precor $badgePrecorColor'>" . esc_html(wc_get_order_status_name($order->get_status())) . "</span>"; ?>
+								<?php echo "<span class='badge-precor $badgePrecorColor'>" . esc_html(wc_get_order_status_name($statusSpanish)) . "</span>"; ?>
 
 							<?php elseif ('order-total' === $column_id) : ?>
 								<?php
