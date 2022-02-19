@@ -84,7 +84,9 @@ function precorEvaluateBadge($status)
 			<?php
 			foreach ($customer_orders->orders as $customer_order) {
 				$order      = wc_get_order($customer_order); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
-				$statusCodePrecor = precor_getStatusCode($order, "PR01");
+				
+				// tra
+				$statusCodePrecor = precor_getStatusCode($order, precor_getPrecorID());
 				$statusSpanish = precor_translateStatus($order, $statusCodePrecor);
 
 				$badgePrecorColor = precor_EvaluateBadgeSpanish($statusSpanish);

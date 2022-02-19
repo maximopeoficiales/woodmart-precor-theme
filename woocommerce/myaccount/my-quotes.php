@@ -73,7 +73,7 @@ $customer_quotes = wc_get_orders(
 				$order_id   = $customer_order->get_id();
 				$order      = $customer_order;
 				$item_count = $order->get_item_count();
-				$statusCodePrecor = precor_getStatusCode($order, "PR01");
+				$statusCodePrecor = precor_getStatusCode($order, precor_getPrecorID());
 				$statusSpanish = precor_translateStatus($order, $statusCodePrecor);
 
 				$badgePrecorColor = precor_EvaluateBadgeSpanish($statusSpanish);

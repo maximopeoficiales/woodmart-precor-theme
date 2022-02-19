@@ -918,3 +918,11 @@ function precor_EvaluateBadgeSpanish($status)
      }
      return $badgeColor;
 }
+function precor_getPrecorID()
+{
+     return "PR01";
+}
+function precor_getMaxcoID()
+{
+     return "EM01";
+}
