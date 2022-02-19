@@ -894,7 +894,7 @@ function precor_EvaluateBadgeSpanish($status)
                $badgeColor = "badge-precor-primary";
                break;
           case 'pago procesando':
-               $badgeColor = "badge-precor-success";
+               $badgeColor = "badge-precor-primary";
                break;
           case 'en espera':
                $badgeColor = "badge-precor-info";
