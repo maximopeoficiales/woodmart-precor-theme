@@ -41,50 +41,7 @@ $customer_quotes = wc_get_orders(
 		)
 	)
 );
-function precorEvaluateBadgeQuotes($status)
-{
-	$badgeColor = "";
-	switch ($status) {
-		case 'completed':
-			$badgeColor = "badge-precor-success";
-			break;
-		case 'cancelled':
-			$badgeColor = "badge-precor-danger";
-			break;
-		case 'refunded':
-			$badgeColor = "badge-precor-danger";
-			break;
-		case 'failed':
-			$badgeColor = "badge-precor-danger";
-			break;
-		case 'processing':
-			$badgeColor = "badge-precor-success";
-			break;
-		case 'pending':
-			$badgeColor = "badge-precor-success";
-			break;
-		case 'on-hold':
-			$badgeColor = "badge-precor-info";
-			break;
-			// quote status
-		case 'ywraq-new':
-			$badgeColor = "badge-precor-info";
-			break;
-		case 'ywraq-pending':
-			$badgeColor = "badge-precor-primary";
-			break;
-		case 'ywraq-accepted':
-			$badgeColor = "badge-precor-success";
-			break;
-		case 'ywraq-rejected':
-			$badgeColor = "badge-precor-danger";
-			break;
-		default:
-			$badgeColor = "badge-precor-dark";
-			break;
-	}
-	return $badgeColor;
-}
+
 
 ?>
 
@@ -116,16 +73,10 @@ function precorEvaluateBadgeQuotes($status)
 				$order_id   = $customer_order->get_id();
 				$order      = $customer_order;
 				$item_count = $order->get_item_count();
-				$badgePrecorColor = precorEvaluateBadgeQuotes($order->get_status());
-				// if (0 === $item_count) {
-				// 	continue;
-				// }
-				// se fuerza traduccion en precor
-				$order_status = $order->get_status() == "ywraq-accepted" ? "Aceptado" : $order->get_status();
+				$statusCodePrecor = precor_getStatusCode($order, "PR01");
+				$statusSpanish = precor_translateStatus($order, $statusCodePrecor);
 
-				if (strtolower($order_status) == "completed") {
-					$order_status = "Completado";
-				}
+				$badgePrecorColor = precor_EvaluateBadgeSpanish($statusSpanish);
 
 				$order_date = $customer_order->get_date_created();
 				$order_lang = yit_get_prop($order, 'wpml_language', true);
@@ -133,7 +84,7 @@ function precorEvaluateBadgeQuotes($status)
 			?>
 				<tr class="quotes">
 					<td class="quotes-status" data-title="<?php esc_attr_e('Status', 'yith-woocommerce-request-a-quote'); ?>" style="text-align:<?php echo $text_align; ?>; white-space:nowrap;">
-						<span class="badge-precor <?= $badgePrecorColor ?>"> <?php ywraq_get_order_status_tag($order_status); ?></span>
+						<span class="badge-precor <?= $badgePrecorColor ?>"> <?php ywraq_get_order_status_tag($statusSpanish); ?></span>
 					</td>
 					<td class="quotes-number" data-title="<?php esc_attr_e('Order Number', 'yith-woocommerce-request-a-quote'); ?>">
 						<a href="<?php echo esc_url(YITH_YWRAQ_Order_Request()->get_view_order_url($order_id)); ?>">

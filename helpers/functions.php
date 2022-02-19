@@ -638,3 +638,283 @@ function change_some_woocommerce_strings($translate_text, $original_text, $domai
 
      return $translate_text;
 }
+
+function precor_translateStatus($quote, $statusCode = null): string
+{
+
+     $status = str_replace("ywraq-", "", $quote->status);
+     $spanish = "";
+     switch ($status) {
+          case 'completed':
+               $spanish = "completado";
+               break;
+          case 'pending':
+               $spanish = "pendiente";
+               break;
+          case 'processing':
+               $spanish = "procesando";
+               break;
+          case 'on-hold':
+               $spanish = "en espera";
+               break;
+          case 'rejected':
+               $spanish = "rechazado";
+               break;
+          case 'accepted':
+               $spanish = "aceptado";
+               break;
+          case 'expired':
+               $spanish = "vencido";
+               break;
+          case 'cancelled':
+               $spanish = "cancelado";
+               break;
+          case 'failed':
+               $spanish = "fallado";
+               break;
+          default:
+               $spanish = $status;
+               break;
+     }
+     // si es recaudacion
+     if ($statusCode == 4) {
+          $spanish = "recaudacion";
+          // pendiente
+     } else if ($statusCode == 1) {
+          // caso especial cuando es pendiente buscas en el metadata si es aceptado
+          foreach ($quote->meta_data as $m) {
+               // esto solo pasa cuando es aceptado se guarda en el metadata
+               if ($m->key == "ywraq_raq_status") {
+                    if ($m->value == "accepted") {
+                         $spanish = "aceptado";
+                         // break;
+                    }
+                    if ($m->value == "expired") {
+                         $spanish = "vencido";
+                         // break;
+                    }
+               }
+          }
+          // llega correctamente entonces trae el codigo correcto
+     } else if ($statusCode == 2) {
+          foreach ($quote->meta_data as $m) {
+               // esto solo pasa cuando es aceptado se guarda en el metadata
+               if ($m->key == "ywraq_raq_status") {
+                    if ($m->value == "accepted") {
+                         $spanish = "aceptado";
+                         // break;
+                    }
+                    if ($m->value == "expired") {
+                         $spanish = "vencido";
+                         // break;
+                    }
+               }
+          }
+     } else if ($statusCode == 5) {
+
+          // correcion para correcto funcionamiento del webservices
+          $spanish = "completado";
+     } else if ($statusCode == 7) {
+          $spanish = "pago procesando";
+     } else if ($statusCode == 8) {
+          $spanish = "pago procesado";
+     } else if ($statusCode == 6) {
+          $spanish = "pago rechazado";
+     }
+
+
+
+     return $spanish;
+}
+function precor_getStatusCode($quote, $id_soc)
+
+{
+     $status = $quote->status;
+     $paymentMethodTitle = $quote->payment_method_title;
+     // $status = $quote->status;
+     // data
+     $pendiente = [
+          "pending", "ywraq-pending", "processing", "on-hold",
+          // "ywraq-rejected",
+          "ywraq-accepted"
+     ];
+     $vencido = ["ywraq-expired", "cancelled", "failed"];
+     $statusCode = 0;
+     $transactionId = null;
+
+     // evaludacion de estado simple
+     switch ($status) {
+          case 'ywraq-accepted':
+               $statusCode = 2;
+               break;
+          case 'ywraq-rejected':
+               $statusCode = 3;
+               break;
+          case 'completed':
+               $statusCode = 5;
+               break;
+     }
+
+     foreach ($pendiente as $v2) {
+          if ($v2 == $status) {
+               $statusCode = 1;
+               break;
+          }
+     }
+     foreach ($vencido as $v3) {
+          if ($v3 == $status) {
+               $statusCode = 6;
+               break;
+          }
+     }
+     foreach ($quote->meta_data as $m) {
+          // esto solo pasa cuando es aceptado se guarda en el metadata
+          if ($m->key == "Transaction ID") {
+               $transactionId = intval($m->value);
+               break;
+          }
+     }
+     // esta en pendiente
+     if ($statusCode == 1) {
+
+          // caso especial en woo esta como pending pero en el metdata esta como aceptado
+          foreach ($quote->meta_data as $m) {
+               // esto solo pasa cuando es aceptado se guarda en el metadata
+               if ($m->key == "ywraq_raq_status") {
+                    if ($m->value == "accepted") {
+                         $statusCode = 2;
+                         break;
+                    }
+               }
+          }
+          // si el estatus es aceptado y elegia tales metodos de pago es recaudacion
+          if ($statusCode == 2) {
+               if (
+                    $paymentMethodTitle == "BBVA" ||
+                    $paymentMethodTitle == "BBVA $" ||
+                    $paymentMethodTitle == "BCP" ||
+                    $paymentMethodTitle == "BCP $" ||
+                    $paymentMethodTitle == "ScotiaBank" ||
+
+                    $paymentMethodTitle == "BCP S/." ||
+                    $paymentMethodTitle == "BBVA S/."
+               ) {
+                    $statusCode = 4;
+               }
+          }
+     }
+
+     // si es maxco no existe aceptado
+     if (precor_isMaxco($id_soc)) {
+          if (
+               $paymentMethodTitle == "BBVA" ||
+               $paymentMethodTitle == "BBVA $" || $paymentMethodTitle == "BCP" ||
+               $paymentMethodTitle == "BCP $" ||
+               $paymentMethodTitle == "ScotiaBank" ||
+               $paymentMethodTitle == "BCP S/." ||
+               $paymentMethodTitle == "BBVA S/."
+          ) {
+               $statusCode = 4;
+          }
+     }
+
+     if ($paymentMethodTitle == "Mi crédito PRECOR") {
+          $statusCode = 5;
+     }
+
+     // cuando es tarjeta de credito
+     if ($paymentMethodTitle == "Pago con tarjeta de crédito") {
+          // nuevos codigo de estado cuando es tarjeta de credito
+          if ($status == "failed" || $status == "refunded" || $status == "rejected") {
+               $statusCode = 6;
+          } else
+        if ($status == "pending") {
+               $statusCode = 7;
+          } else if ($status == "processing") {
+               // $statusCode = 7;
+               $statusCode = 8;
+          } else if ($status == "completed") {
+               $statusCode = 8;
+          } else {
+               $statusCode = 9;
+          }
+          // // cuando se pago con tarjeta de credito pero no tiene transaction id significa que fue fallida  la transaccion
+          // if ($status == "pending" && $transactionId === null) {
+          //     $statusCode = 6;
+          // }
+     }
+
+     return $statusCode;
+}
+
+function precor_isMaxco($id_soc)
+{
+     if ($id_soc == "EM01") {
+          return true;
+     } else if ($id_soc == "MA01") {
+          return true;
+     } else {
+          return false;
+     }
+}
+
+function precor_isPrecor($id_soc)
+{
+     if ($id_soc == "PR01") {
+          return true;
+     } else {
+          return false;
+     }
+}
+
+
+function precor_EvaluateBadgeSpanish($status)
+{
+     $badgeColor = "";
+     switch ($status) {
+          case 'completado':
+               $badgeColor = "badge-precor-success";
+               break;
+          case 'pago procesado':
+               $badgeColor = "badge-precor-success";
+               break;
+          case 'cancelado':
+               $badgeColor = "badge-precor-danger";
+               break;
+          case 'refunded':
+               $badgeColor = "badge-precor-danger";
+               break;
+          case 'fallido':
+               $badgeColor = "badge-precor-danger";
+               break;
+          case 'procesando':
+               $badgeColor = "badge-precor-success";
+               break;
+          case 'pendiente':
+               $badgeColor = "badge-precor-primary";
+               break;
+          case 'pago procesando':
+               $badgeColor = "badge-precor-success";
+               break;
+          case 'en espera':
+               $badgeColor = "badge-precor-info";
+               break;
+               // quote status
+          case 'recaudacion':
+               $badgeColor = "badge-precor-info";
+               break;
+          case 'pago rechazado':
+               $badgeColor = "badge-precor-danger";
+               break;
+          case 'vencido':
+               $badgeColor = "badge-precor-danger";
+               break;
+          case 'rechazado':
+               $badgeColor = "badge-precor-danger";
+               break;
+          default:
+               $badgeColor = "badge-precor-dark";
+               break;
+     }
+     return $badgeColor;
+}
