@@ -931,12 +931,16 @@ add_action('woocommerce_new_order', 'precor_sendEmailNewOrder');
 // add_action('woocommerce_resume_order', 'hpWooNewOrder');
 function precor_sendEmailNewOrder($id_order)
 {
-     function get_custom_email_html($order, $heading = false, $mailer)
+     function get_custom_email_html($order_id, $heading = false, $mailer)
      {
           // $template = "emails/admin-new-order.php";
           $template = "emails/request-quote.php";
           return wc_get_template_html($template, array(
-               'order'         => $order,
+               'raq_data'         => [
+                    "order_id" => $order_id
+               ],
+               'order_id'         => $order_id,
+               'email_description' => "",
                'email_heading' => $heading,
                'sent_to_admin' => false,
                'plain_text'    => false,
@@ -951,19 +955,19 @@ function precor_sendEmailNewOrder($id_order)
           $isQuote = false;
      }
      // if (!$isQuote) {
-          // load the mailer class
-          $mailer = WC()->mailer();
-          $emailEjecutivo = precor_getPRFXValueByUserID(
-               $order->get_customer_id(),
-               "email_eje"
-          );
+     // load the mailer class
+     $mailer = WC()->mailer();
+     $emailEjecutivo = precor_getPRFXValueByUserID(
+          $order->get_customer_id(),
+          "email_eje"
+     );
 
-          //format the email
-          $recipient = $emailEjecutivo;
-          $subject = __("Un cliente ha hecho un nuevo pedido", 'theme_name');
-          $content = get_custom_email_html($order, $subject, $mailer);
-          $headers = "Content-Type: text/html\r\n";
-          //send the email through wordpress
-          $mailer->send($recipient, $subject, $content, $headers);
+     //format the email
+     $recipient = $emailEjecutivo;
+     $subject = __("Un cliente ha hecho un nuevo pedido", 'theme_name');
+     $content = get_custom_email_html($id_order, $subject, $mailer);
+     $headers = "Content-Type: text/html\r\n";
+     //send the email through wordpress
+     $mailer->send($recipient, $subject, $content, $headers);
      // }
 }
