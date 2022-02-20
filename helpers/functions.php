@@ -926,3 +926,44 @@ function precor_getMaxcoID()
 {
      return "EM01";
 }
+
+add_action('woocommerce_new_order', 'precor_sendEmailNewOrder');
+// add_action('woocommerce_resume_order', 'hpWooNewOrder');
+function precor_sendEmailNewOrder($id_order)
+{
+     function get_custom_email_html($order, $heading = false, $mailer, $isQuote = false)
+     {
+          $template = $isQuote ? 'emails/request-quote.php' : "emails/admin-new-order.php";
+          return wc_get_template_html($template, array(
+               'order'         => $order,
+               'email_heading' => $heading,
+               'sent_to_admin' => false,
+               'plain_text'    => false,
+               'email'         => $mailer
+          ));
+     }
+     $order =  wc_get_order($id_order);
+     $isQuote = false;
+     if (strval($order->payment_method) ==  "yith-request-a-quote") {
+          $isQuote = true;
+     } else {
+          $isQuote = false;
+     }
+
+     // load the mailer class
+     $mailer = WC()->mailer();
+
+     $emailEjecutivo = precor_getPRFXValueByUserID(
+          $order->get_customer_id(),
+          "email_eje"
+     );
+
+     //format the email
+     $recipient = $emailEjecutivo;
+     $subject = __("Un cliente ha hecho un nuevo pedido", 'theme_name');
+     $content = get_custom_email_html($order, $subject, $mailer, $isQuote);
+     $headers = "Content-Type: text/html\r\n";
+
+     //send the email through wordpress
+     $mailer->send($recipient, $subject, $content, $headers);
+}
