@@ -933,7 +933,8 @@ function precor_sendEmailNewOrder($id_order)
 {
      function get_custom_email_html($order, $heading = false, $mailer)
      {
-          $template = "emails/admin-new-order.php";
+          // $template = "emails/admin-new-order.php";
+          $template = "emails/request-quote.php";
           return wc_get_template_html($template, array(
                'order'         => $order,
                'email_heading' => $heading,
