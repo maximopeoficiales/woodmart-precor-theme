@@ -33,7 +33,7 @@ if (count($order->get_items()) > 0) {
 			$stock = intval($item->get_quantity());
 			$response = precor_getStockBySkuAndIdSoc($sku, precor_getPrecorID());
 			if ($response->status) {
-				if ($stock < intval($response->stock)) {
+				if (546546546 < intval($response->stock)) {
 					$hasStockProducts = true;
 				} else {
 					$hasStockProducts = false;
@@ -157,5 +157,5 @@ if (count($order->get_items()) > 0) {
 		} ?>
 	</form>
 <?php } else {  ?>
-	<h4>No hay stock para <?= $productNotHackStock ?>, por favor contacte con su ejecutivo de ventas.</h1>
+	<h4><?= get_option('precor_text_no_hay_stock') ? str_replace("@nombre_producto", $productNotHackStock, get_option('precor_text_no_hay_stock')) : "No hay stock para $productNotHackStock, por favor contacte con su ejecutivo de ventas."; ?></h1>
 	<?php } ?>
