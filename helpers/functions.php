@@ -949,7 +949,7 @@ function precor_sendEmailNewOrder($id_order)
      } else {
           $isQuote = false;
      }
-     if (!$isQuote) {
+     // if (!$isQuote) {
           // load the mailer class
           $mailer = WC()->mailer();
           $emailEjecutivo = precor_getPRFXValueByUserID(
@@ -964,5 +964,5 @@ function precor_sendEmailNewOrder($id_order)
           $headers = "Content-Type: text/html\r\n";
           //send the email through wordpress
           $mailer->send($recipient, $subject, $content, $headers);
-     }
+     // }
 }
