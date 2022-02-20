@@ -931,13 +931,14 @@ add_action('woocommerce_new_order', 'precor_sendEmailNewOrder');
 // add_action('woocommerce_resume_order', 'hpWooNewOrder');
 function precor_sendEmailNewOrder($id_order)
 {
-     function get_custom_email_html($order_id, $heading = false, $mailer)
+     function get_custom_email_html($order_id, WC_Order $order, $heading = false, $mailer)
      {
           // $template = "emails/admin-new-order.php";
           $template = "emails/request-quote.php";
           return wc_get_template_html($template, array(
                'raq_data'         => [
-                    "order_id" => $order_id
+                    "order_id" => $order_id,
+                    "raq_content" => $order->get_items()
                ],
                'order_id'         => $order_id,
                'email_description' => "",
@@ -965,7 +966,7 @@ function precor_sendEmailNewOrder($id_order)
      //format the email
      $recipient = $emailEjecutivo;
      $subject = __("Un cliente ha hecho un nuevo pedido", 'theme_name');
-     $content = get_custom_email_html($id_order, $subject, $mailer);
+     $content = get_custom_email_html($id_order, $order, $subject, $mailer);
      $headers = "Content-Type: text/html\r\n";
      //send the email through wordpress
      $mailer->send($recipient, $subject, $content, $headers);
