@@ -33,7 +33,7 @@ if (count($order->get_items()) > 0) {
 			$stock = intval($item->get_quantity());
 			$response = precor_getStockBySkuAndIdSoc($sku, precor_getPrecorID());
 			if ($response->status) {
-				if (546546546 < intval($response->stock)) {
+				if ($stock < intval($response->stock)) {
 					$hasStockProducts = true;
 				} else {
 					$hasStockProducts = false;
