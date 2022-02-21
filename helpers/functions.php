@@ -927,7 +927,7 @@ function precor_getMaxcoID()
      return "EM01";
 }
 
-add_action('woocommerce_new_order', 'precor_sendEmailNewOrder');
+// add_action('woocommerce_new_order', 'precor_sendEmailNewOrder');
 // add_action('woocommerce_resume_order', 'hpWooNewOrder');
 function precor_sendEmailNewOrder($id_order)
 {
