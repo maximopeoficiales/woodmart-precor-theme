@@ -18,7 +18,31 @@
 defined( 'ABSPATH' ) || exit; 
 
 $totals = $order->get_order_item_totals(); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+// validacion de stock
+$hasStockProducts = true;
+$productNotHackStock = "";
+if (count($order->get_items()) > 0) {
+	foreach ($order->get_items() as $item_id => $item) :
+		try {
+			$sku = wc_get_product(intval($item->get_product_id()))->get_sku();
+			$stock = intval($item->get_quantity());
+			$response = precor_getStockBySkuAndIdSoc($sku, precor_getPrecorID());
+			if ($response->status) {
+				if ($stock <= intval($response->stock)) {
+					$hasStockProducts = true;
+				} else {
+					$hasStockProducts = false;
+					$productNotHackStock = $item->get_name();
+					break;
+				}
+			}
+		} catch (\Throwable $th) {
+			echo $th;
+		}
+	endforeach;
+}
 ?>
+<?php if ($hasStockProducts) { ?>
 <form id="order_review" method="post">
 
 	<table class="shop_table">
@@ -113,3 +137,6 @@ $totals = $order->get_order_item_totals(); // phpcs:ignore WordPress.WP.GlobalVa
 	<?php
 	} ?>
 </form>
+<?php } else {  ?>
+	<h4><?= get_option('precor_text_no_hay_stock') ? str_replace("@nombre_producto", $productNotHackStock, get_option('precor_text_no_hay_stock')) : "No hay stock para $productNotHackStock, por favor contacte con su ejecutivo de ventas."; ?></h1>
+	<?php } ?>
