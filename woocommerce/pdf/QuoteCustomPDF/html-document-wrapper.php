@@ -209,7 +209,7 @@ $type = $isQuote ? "Cotizacion " : "Pedido";
 					</tr>
 					<tr>
 						<td><b>VALIDEZ DE OFERTA</b></td>
-						<td>08 DIAS</td>
+						<td><?= get_option('precor_validez_oferta') ?? "08 DIAS" ?></td>
 					</tr>
 				</tbody>
 			</table>
