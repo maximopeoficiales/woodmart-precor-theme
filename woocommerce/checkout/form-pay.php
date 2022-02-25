@@ -26,7 +26,7 @@ if (count($order->get_items()) > 0) {
 		try {
 			$sku = wc_get_product(intval($item->get_product_id()))->get_sku();
 			$stock = intval($item->get_quantity());
-			$response = precor_getStockBySkuAndIdSoc($sku, precor_getPrecorID());
+			$response = precor_getStockBySkuAndIdSoc($sku, precor_getMaxcoID());
 			if ($response->status) {
 				if ($stock <= intval($response->stock)) {
 					$hasStockProducts = true;
