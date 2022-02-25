@@ -23,50 +23,7 @@ defined('ABSPATH') || exit;
 do_action('woocommerce_before_account_orders', $has_orders);
 // function que evualua y pone color al badge
 
-function precorEvaluateBadge($status)
-{
-	$badgeColor = "";
-	switch ($status) {
-		case 'completed':
-			$badgeColor = "badge-precor-success";
-			break;
-		case 'cancelled':
-			$badgeColor = "badge-precor-danger";
-			break;
-		case 'refunded':
-			$badgeColor = "badge-precor-danger";
-			break;
-		case 'failed':
-			$badgeColor = "badge-precor-danger";
-			break;
-		case 'processing':
-			$badgeColor = "badge-precor-success";
-			break;
-		case 'pending':
-			$badgeColor = "badge-precor-secondary";
-			break;
-		case 'on-hold':
-			$badgeColor = "badge-precor-info";
-			break;
-			// quote status
-		case 'ywraq-new':
-			$badgeColor = "badge-precor-info";
-			break;
-		case 'ywraq-pending':
-			$badgeColor = "badge-precor-warning";
-			break;
-		case 'ywraq-accepted':
-			$badgeColor = "badge-precor-success";
-			break;
-		case 'ywraq-rejected':
-			$badgeColor = "badge-precor-danger";
-			break;
-		default:
-			$badgeColor = "badge-precor-dark";
-			break;
-	}
-	return $badgeColor;
-}
+
 ?>
 
 <?php if ($has_orders) : ?>
@@ -84,7 +41,10 @@ function precorEvaluateBadge($status)
 			<?php
 			foreach ($customer_orders->orders as $customer_order) {
 				$order      = wc_get_order($customer_order); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
-				$badgePrecorColor = precorEvaluateBadge($order->get_status());
+				$statusCodePrecor = precor_getStatusCode($order, precor_getPrecorID());
+				$statusSpanish = precor_translateStatus($order, $statusCodePrecor);
+
+				$badgePrecorColor = precor_EvaluateBadgeSpanish($statusSpanish);
 				$item_count = $order->get_item_count() - $order->get_item_count_refunded();
 			?>
 				<tr class="woocommerce-orders-table__row woocommerce-orders-table__row--status-<?php echo esc_attr($order->get_status()); ?> order">
@@ -104,7 +64,7 @@ function precorEvaluateBadge($status)
 
 							<?php elseif ('order-status' === $column_id) : ?>
 
-								<?php echo "<span class='badge-precor $badgePrecorColor'>" . esc_html(wc_get_order_status_name($order->get_status())) . "</span>"; ?>
+								<?php echo "<span class='badge-precor $badgePrecorColor'>" . esc_html(wc_get_order_status_name($statusSpanish)) . "</span>"; ?>
 
 							<?php elseif ('order-total' === $column_id) : ?>
 								<?php
