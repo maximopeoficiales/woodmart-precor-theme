@@ -23,50 +23,6 @@ defined('ABSPATH') || exit;
 do_action('woocommerce_before_account_orders', $has_orders);
 // function que evualua y pone color al badge
 
-function precorEvaluateBadge($status)
-{
-	$badgeColor = "";
-	switch ($status) {
-		case 'completed':
-			$badgeColor = "badge-precor-success";
-			break;
-		case 'cancelled':
-			$badgeColor = "badge-precor-danger";
-			break;
-		case 'refunded':
-			$badgeColor = "badge-precor-danger";
-			break;
-		case 'failed':
-			$badgeColor = "badge-precor-danger";
-			break;
-		case 'processing':
-			$badgeColor = "badge-precor-success";
-			break;
-		case 'pending':
-			$badgeColor = "badge-precor-secondary";
-			break;
-		case 'on-hold':
-			$badgeColor = "badge-precor-info";
-			break;
-			// quote status
-		case 'ywraq-new':
-			$badgeColor = "badge-precor-info";
-			break;
-		case 'ywraq-pending':
-			$badgeColor = "badge-precor-warning";
-			break;
-		case 'ywraq-accepted':
-			$badgeColor = "badge-precor-success";
-			break;
-		case 'ywraq-rejected':
-			$badgeColor = "badge-precor-danger";
-			break;
-		default:
-			$badgeColor = "badge-precor-dark";
-			break;
-	}
-	return $badgeColor;
-}
 ?>
 
 <?php if ($has_orders) : ?>
