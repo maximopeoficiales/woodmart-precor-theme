@@ -672,6 +672,9 @@ function precor_translateStatus($quote, $statusCode = null): string
           case 'failed':
                $spanish = "fallado";
                break;
+          case 'new':
+               $spanish = "nuevo";
+               break;
           default:
                $spanish = $status;
                break;
