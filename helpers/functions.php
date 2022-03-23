@@ -82,7 +82,7 @@ function precor_translateStatus($quote, $statusCode = null): string
      } else if ($statusCode == 7) {
           $spanish = "pago procesando";
      } else if ($statusCode == 8) {
-          $spanish = "pago procesado";
+          $spanish = "completado";
      } else if ($statusCode == 6) {
           $spanish = "pago rechazado";
      }
