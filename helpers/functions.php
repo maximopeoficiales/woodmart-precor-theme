@@ -727,6 +727,9 @@ function precor_translateStatus($quote, $statusCode = null): string
           $spanish = "completado";
      }
 
+     if ($spanish == "pago procesado") {
+          return "completado";
+     }
 
 
      return $spanish;
