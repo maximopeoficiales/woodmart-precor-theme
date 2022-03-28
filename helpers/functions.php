@@ -85,10 +85,13 @@ function precor_translateStatus($quote, $statusCode = null): string
           $spanish = "pago procesado";
      } else if ($statusCode == 6) {
           $spanish = "pago rechazado";
-     }else if ($status == "completed"){
+     } else if ($status == "completed") {
           $spanish = "completado";
      }
 
+     if ($spanish == "pago procesado") {
+          return "completado";
+     }
 
 
      return $spanish;
