@@ -132,7 +132,7 @@ $get_checkout_url = apply_filters('woocommerce_get_checkout_url', wc_get_checkou
 
 					} else {
 						shippingDelivery.parentElement.style.display = "none";
-						localPickup.parentElement.click();
+						localPickup.click();
 					}
 
 				}
