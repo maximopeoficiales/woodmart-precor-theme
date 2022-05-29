@@ -292,8 +292,8 @@ function precor_create_button_custom($bgcolor, $link, $text, $button = true): vo
           </table>
           ';
      } else {
-          echo '
-               <a href="' . $link . '" class="" style="color: ' . $bgcolor . '; !important;  display: block !important;text-decoration: none;padding-top: 18px !important;padding-bottom: 18px !important;margin-top: 10px !important;margin-bottom: 10px !important;border-radius: 10px !important;text-align: center !important;font-weight: 600; !important;width:100% !important;">
+           echo '
+               <a href="' . $link . '" style="color: black; !important;  display: block !important;text-decoration: none;padding-top: 18px !important;padding-bottom: 18px !important;margin-top: 10px !important;margin-bottom: 10px !important;text-align: center !important;font-weight: 600; !important;width:100% !important;">
                     ' . $text . '
                </a>
           ';
@@ -624,11 +624,15 @@ function change_some_woocommerce_strings($translate_text, $original_text, $domai
           ||  stripos($original_text, 'Processing') !== false
           ||  stripos($original_text, 'Completed') !== false
           ||  stripos($original_text, 'Failed') !== false
+          ||  stripos($original_text, 'If thes was a mestake') !== false
+          ||  stripos($original_text, 'ignore thes email and nothing will happen') !== false
+          ||  stripos($original_text, 'To reset your password') !== false
+          ||  stripos($original_text, 'vesit the following address') !== false
 
      ) {
           $translate_text = str_ireplace(
-               array("is", 'Out of stock', 'Please add or decrease items to continue', "The minimum order quantity for", "must be bought in groups of", "please increase the quantity in your cart", "Processing", "Completed", "Failed"),
-               array("es", 'Sin Stock', 'Agregue o disminuya elementos para continuar', "La cantidad mínima de pedido para", "deben comprarse en grupos de", "Por favor aumente la cantidad en su carrito", "Procesando", "Completado", "Fallo"),
+               array("is", 'Out of stock', 'Please add or decrease items to continue', "The minimum order quantity for", "must be bought in groups of", "please increase the quantity in your cart", "Processing", "Completed", "Failed","If thes was a mestake","ignore thes email and nothing will happen",'To reset your password','vesit the following address'),
+               array("es", 'Sin Stock', 'Agregue o disminuya elementos para continuar', "La cantidad mínima de pedido para", "deben comprarse en grupos de", "Por favor aumente la cantidad en su carrito", "Procesando", "Completado", "Fallo","Si esto fue un error","ignora este correo y no pasará nada","Para restablecer su contraseña","visite la siguiente dirección"),
                $original_text
           );
      }
