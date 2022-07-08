@@ -32,9 +32,9 @@ precor_get_image_header_custom("Recurso 6.jpg");
 <p><?php printf(esc_html__('Someone has requested a new password for the following account on %s:', 'woocommerce'), esc_html(wp_specialchars_decode(get_option('blogname'), ENT_QUOTES))); ?></p>
 <?php /* translators: %s: Customer username */ ?>
 <p><?php printf(esc_html__('Username: %s', 'woocommerce'), esc_html($user_login)); ?></p>
-<p><?php esc_html_e('If you didn\'t make this request, just ignore this email. If you\'d like to proceed:', 'woocommerce'); ?></p>
+<p><?php esc_html_e('Si no realizó esta solicitud, simplemente ignore este correo electrónico. Si desea continuar:', 'woocommerce'); ?></p>
 <p>
-	<?php precor_create_button_custom("#003b71", esc_url(add_query_arg(array('key' => $reset_key, 'id' => $user_id), wc_get_endpoint_url('lost-password', '', wc_get_page_permalink('myaccount')))), "Click para resetear su contraseña") ?>
+	<?php precor_create_button_custom("#003b71", esc_url(add_query_arg(array('key' => $reset_key, 'id' => $user_id), wc_get_endpoint_url('lost-password', '', wc_get_page_permalink('myaccount')))), "Click para resetear su contraseña", false) ?>
 </p>
 
 <?php

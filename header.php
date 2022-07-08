@@ -5,6 +5,7 @@
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
+    
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<link rel="profile" href="http://gmpg.org/xfn/11">
@@ -14,6 +15,7 @@
 </head>
 
 <body <?php body_class(); ?>>
+  
 	<?php do_action( 'woodmart_after_body_open' ); ?>
 	
 	<div class="website-wrapper">

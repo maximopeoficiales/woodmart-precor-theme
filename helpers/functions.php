@@ -1,7 +1,43 @@
 <?php
 // nuevas funciones
+// Agrego columna para agregar el estado representativo
+add_filter('manage_edit-shop_order_columns', 'custom_shop_order_column', 20);
+function custom_shop_order_column($columns)
+{
+     $reordered_columns = array();
 
-function precor_translateStatus($quote, $statusCode = null): string
+     // Inserting columns to a specific location
+     foreach ($columns as $key => $column) {
+          $reordered_columns[$key] = $column;
+          if ($key ==  'order_status') {
+               // Inserting after "Status" column
+               $reordered_columns['order_status_precor'] = __('Estado', 'Estado');
+          }
+     }
+     unset($reordered_columns["order_status"]);
+     return $reordered_columns;
+}
+
+// Cambio el color y texto respecto al estado de precor SAP 
+add_action('manage_shop_order_posts_custom_column', 'custom_orders_list_column_content', 20, 2);
+function custom_orders_list_column_content($column, $post_id)
+{
+
+     $order = new WC_Order($post_id);
+     $statusCodePrecor = precor_getStatusCode($order, precor_getPrecorID());
+     $statusSpanish = precor_translateStatus($order, $statusCodePrecor, true);
+     $statusSelector =  $order->get_status("");
+     if ($statusSpanish == "completado") {
+          $statusSelector = "completed";
+     }
+     switch ($column) {
+          case 'order_status_precor':
+               echo '<mark class="order-status status-' . $statusSelector . ' tips"><span>' . $statusSpanish . '</span></mark>';
+               break;
+     }
+}
+
+function precor_translateStatus($quote, $statusCode = null, $capitalize = false): string
 {
 
      $status = str_replace("ywraq-", "", $quote->status);
@@ -90,11 +126,11 @@ function precor_translateStatus($quote, $statusCode = null): string
      }
 
      if ($spanish == "pago procesado") {
-          return "completado";
+          $spanish = "completado";
      }
 
 
-     return $spanish;
+     return $capitalize ? ucwords($spanish) : $spanish;
 }
 function precor_getStatusCode($quote, $id_soc)
 
@@ -359,14 +395,17 @@ function change_some_woocommerce_strings($translate_text, $original_text, $domai
           ||  stripos($original_text, 'Processing') !== false
           ||  stripos($original_text, 'Completed') !== false
           ||  stripos($original_text, 'Failed') !== false
+          ||  stripos($original_text, 'Regester') !== false
+          ||  stripos($original_text, 'Login') !== false
 
      ) {
           $translate_text = str_ireplace(
-               array("is", 'Out of stock', 'Please add or decrease items to continue', "The minimum order quantity for", "must be bought in groups of", "please increase the quantity in your cart", "Processing", "Completed", "Failed"),
-               array("es", 'Sin Stock', 'Agregue o disminuya elementos para continuar', "La cantidad mínima de pedido para", "deben comprarse en grupos de", "Por favor aumente la cantidad en su carrito", "Procesando", "Completado", "Fallo"),
+               array("is", 'Out of stock', 'Please add or decrease items to continue', "The minimum order quantity for", "must be bought in groups of", "please increase the quantity in your cart", "Processing", "Completed", "Failed", "Regester", "Login"),
+               array("es", 'Sin Stock', 'Agregue o disminuya elementos para continuar', "La cantidad mínima de pedido para", "deben comprarse en grupos de", "Por favor aumente la cantidad en su carrito", "Procesando", "Completado", "Fallo", "Registrarse", "Iniciar Sesion"),
                $original_text
           );
      }
+
 
 
 
@@ -499,7 +538,7 @@ function precor_create_button_custom($bgcolor, $link, $text, $button = true): vo
           ';
      } else {
           echo '
-               <a href="' . $link . '" class="" style="color: ' . $bgcolor . '; !important;  display: block !important;text-decoration: none;padding-top: 18px !important;padding-bottom: 18px !important;margin-top: 10px !important;margin-bottom: 10px !important;border-radius: 10px !important;text-align: center !important;font-weight: 600; !important;width:100% !important;">
+               <a href="' . $link . '" style="color: black; !important;  display: block !important;text-decoration: none;padding-top: 18px !important;padding-bottom: 18px !important;margin-top: 10px !important;margin-bottom: 10px !important;text-align: center !important;font-weight: 600; !important;width:100% !important;">
                     ' . $text . '
                </a>
           ';
@@ -706,6 +745,8 @@ function precor_update_currency_rate(WP_REST_Request $request)
           return new WP_Error('not_authentication', "Por favor rellene el tipo de cambio", array('status' => 404));
      }
 }
+
+
 
 
 /**
@@ -939,6 +980,8 @@ function precor_ajax_modal_products()
           return $th;
      }
 }
+
+
 
 //agrego boton de mostrar productos al checkout con una peticion ajax
 add_action('woocommerce_checkout_order_review', 'hookNewContentInOrderReview', 15);

@@ -21,15 +21,18 @@
 defined('ABSPATH') || exit;
 
 $notes = $order->get_customer_order_notes();
+$statusCodePrecor = precor_getStatusCode($order, precor_getPrecorID());
+$statusSpanish = precor_translateStatus($order, $statusCodePrecor);
 ?>
 <p>
     <?php
     printf(
         /* translators: 1: order number 2: order date 3: order status */
-        esc_html__('El pedido %1$s se realizÃ³ el %2$s y estÃ¡ actualmente %3$s.'),
+        esc_html__('El pedido %1$s se realiz¨® el %2$s y est¨¢ actualmente %3$s.'),
         '<mark class="order-number">' . get_post_meta($order->get_order_number(), "id_ped", true) . ' (#' . $order->get_order_number() . ')</mark>',
         '<mark class="order-date">' . precor_get_fecha_correcta($order) . '</mark>', // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-        '<mark class="order-status">' . wc_get_order_status_name($order->get_status()) . '</mark>' // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        '<mark class="order-status">' . wc_get_order_status_name(ucfirst($statusSpanish)) . '</mark>' // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        // '<mark class="order-status">' . wc_get_order_status_name($order->get_status()) . '</mark>' // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     );
     ?>
 </p>

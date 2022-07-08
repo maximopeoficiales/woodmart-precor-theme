@@ -124,7 +124,7 @@ $get_checkout_url = apply_filters('woocommerce_get_checkout_url', wc_get_checkou
 			setInterval(() => {
 				let postalCode = document.getElementById("billing_postcode").value;
 				if (postalCode) {
-					const shippingDelivery = document.querySelector("#shipping_method li #shipping_method_0_flat_rate54");
+					const shippingDelivery = document.querySelector("#shipping_method li #shipping_method_0_free_shipping55");
 					const localPickup = document.querySelector("#shipping_method_0_local_pickup56");
 
 					if (postCodeAvaliable.includes(parseInt(postalCode))) {
