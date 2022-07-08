@@ -1,5 +1,17 @@
 <?php
 // nuevas funciones
+add_filter('woocommerce_admin_order_preview_get_order_details', 'admin_order_preview_add_custom_billing_data', 10, 2);
+function admin_order_preview_add_custom_billing_data($data, $order)
+{
+     $precorData = precor_getStatusSelectorWithStatusSpanish($order);
+     $statusSelector = $precorData['selector'];
+     $statusSpanish = $precorData['statusSpanish'];
+
+     $data["status"] = $statusSelector;
+     $data["status_name"] = $statusSpanish;
+
+     return $data;
+}
 // Agrego columna para agregar el estado representativo
 add_filter('manage_edit-shop_order_columns', 'custom_shop_order_column', 20);
 function custom_shop_order_column($columns)
@@ -24,19 +36,25 @@ function custom_orders_list_column_content($column, $post_id)
 {
 
      $order = new WC_Order($post_id);
-     $statusCodePrecor = precor_getStatusCode($order, precor_getPrecorID());
-     $statusSpanish = precor_translateStatus($order, $statusCodePrecor, true);
-     $statusSelector =  $order->get_status("");
-     if ($statusSpanish == "completado") {
-          $statusSelector = "completed";
-     }
+     $data = precor_getStatusSelectorWithStatusSpanish($order);
+     $statusSelector = $data['selector'];
+     $statusSpanish = $data['statusSpanish'];
      switch ($column) {
           case 'order_status_precor':
                echo '<mark class="order-status status-' . $statusSelector . ' tips"><span>' . $statusSpanish . '</span></mark>';
                break;
      }
 }
-
+function precor_getStatusSelectorWithStatusSpanish($order)
+{
+     $statusCodePrecor = precor_getStatusCode($order, precor_getPrecorID());
+     $statusSpanish = precor_translateStatus($order, $statusCodePrecor, true);
+     $statusSelector =  $order->status;
+     if (strtolower($statusSpanish) == "completado") {
+          $statusSelector = "completed";
+     }
+     return ["selector" => $statusSelector, "statusSpanish" => $statusSpanish];
+}
 function precor_translateStatus($quote, $statusCode = null, $capitalize = false): string
 {
 
